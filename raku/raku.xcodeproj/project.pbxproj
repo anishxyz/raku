@@ -10,9 +10,9 @@
 		B65B16E22D003C3E0083440D /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16E12D003C3E0083440D /* Commit.swift */; };
 		B65B16E42D003E280083440D /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16E32D003E280083440D /* Project.swift */; };
 		B65B16E82D003F850083440D /* GraphSchemaV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16E72D003F850083440D /* GraphSchemaV1.swift */; };
+		B65B16EB2D0049740083440D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16EA2D0049740083440D /* HomeView.swift */; };
 		B6F0690D2D003594003FBCF3 /* rakuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0690C2D003594003FBCF3 /* rakuApp.swift */; };
 		B6F0690F2D003594003FBCF3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0690E2D003594003FBCF3 /* ContentView.swift */; };
-		B6F069112D003594003FBCF3 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F069102D003594003FBCF3 /* Item.swift */; };
 		B6F069132D003595003FBCF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F069122D003595003FBCF3 /* Assets.xcassets */; };
 		B6F069172D003595003FBCF3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F069162D003595003FBCF3 /* Preview Assets.xcassets */; };
 		B6F069212D003596003FBCF3 /* rakuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F069202D003596003FBCF3 /* rakuTests.swift */; };
@@ -41,10 +41,10 @@
 		B65B16E12D003C3E0083440D /* Commit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
 		B65B16E32D003E280083440D /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		B65B16E72D003F850083440D /* GraphSchemaV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphSchemaV1.swift; sourceTree = "<group>"; };
+		B65B16EA2D0049740083440D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B6F069092D003594003FBCF3 /* raku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = raku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F0690C2D003594003FBCF3 /* rakuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rakuApp.swift; sourceTree = "<group>"; };
 		B6F0690E2D003594003FBCF3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B6F069102D003594003FBCF3 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		B6F069122D003595003FBCF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6F069142D003595003FBCF3 /* raku.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = raku.entitlements; sourceTree = "<group>"; };
 		B6F069162D003595003FBCF3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -106,6 +106,14 @@
 			path = schemas;
 			sourceTree = "<group>";
 		};
+		B65B16E92D00496A0083440D /* views */ = {
+			isa = PBXGroup;
+			children = (
+				B65B16EA2D0049740083440D /* HomeView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		B6F069002D003594003FBCF3 = {
 			isa = PBXGroup;
 			children = (
@@ -132,7 +140,7 @@
 				B65B16E02D003BED0083440D /* models */,
 				B6F0690C2D003594003FBCF3 /* rakuApp.swift */,
 				B6F0690E2D003594003FBCF3 /* ContentView.swift */,
-				B6F069102D003594003FBCF3 /* Item.swift */,
+				B65B16E92D00496A0083440D /* views */,
 				B6F069122D003595003FBCF3 /* Assets.xcassets */,
 				B6F069142D003595003FBCF3 /* raku.entitlements */,
 				B6F069152D003595003FBCF3 /* Preview Content */,
@@ -296,8 +304,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B65B16E22D003C3E0083440D /* Commit.swift in Sources */,
+				B65B16EB2D0049740083440D /* HomeView.swift in Sources */,
 				B6F0690F2D003594003FBCF3 /* ContentView.swift in Sources */,
-				B6F069112D003594003FBCF3 /* Item.swift in Sources */,
 				B65B16E82D003F850083440D /* GraphSchemaV1.swift in Sources */,
 				B65B16E42D003E280083440D /* Project.swift in Sources */,
 				B6F0690D2D003594003FBCF3 /* rakuApp.swift in Sources */,

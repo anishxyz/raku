@@ -10,7 +10,7 @@ import Foundation
 import SwiftData
 
 enum GraphSchemaV1: VersionedSchema {
-    static var versionIdentifier = Schema.Version(1, 0, 0)
+    static var versionIdentifier = Schema.Version(0, 1, 0)
     
     static var models: [any PersistentModel.Type] {
         [Commit.self, Project.self]
@@ -41,11 +41,13 @@ enum GraphSchemaV1: VersionedSchema {
         var created_at: Date
         var archived_at: Date?
         var type: ProjectType
+        @Attribute(.unique) var name: String
         
-        @Relationship(inverse: \Commit.project) var commits: [Commit]
+        @Relationship(deleteRule: .cascade, inverse: \Commit.project) var commits: [Commit]
         
-        init(created_at: Date?, type: ProjectType) {
+        init(created_at: Date?, type: ProjectType, name: String) {
             self.type = type
+            self.name = name
             self.created_at = created_at ?? Date()
             self.archived_at = nil
             self.commits = []
