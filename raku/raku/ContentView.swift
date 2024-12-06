@@ -10,10 +10,19 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var projects: [Project]
 
     var body: some View {
-        Text("hello")
+        TabView {
+            ProjectsView()
+                .tabItem {
+                    Label("Projects", systemImage: "folder")
+                }
+
+            TodosView()
+                .tabItem {
+                    Label("Todos", systemImage: "gear")
+                }
+        }
     }
 
 }
