@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Foundation
 import SwiftData
 
 enum GraphSchemaV1: VersionedSchema {
@@ -18,12 +17,12 @@ enum GraphSchemaV1: VersionedSchema {
     
     @Model
     final class Commit {
-        var timestamp: Date
+        @Attribute(.unique) var date: Date
         var intensity: Float
-        var project: Project
+        var project: Project?
         
-        init(timestamp: Date?, intensity: Float, project: Project) {
-            self.timestamp = timestamp ?? Date()
+        init(date: Date = Date(), intensity: Float, project: Project?) {
+            self.date = date.startOfDay
             self.intensity = intensity
             self.project = project
         }

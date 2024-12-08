@@ -14,7 +14,8 @@
 		B65B16EF2D018EAF0083440D /* TodosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16EE2D018EAF0083440D /* TodosView.swift */; };
 		B65B16F12D02E6540083440D /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16F02D02E6540083440D /* ProjectView.swift */; };
 		B65B16F42D02EACA0083440D /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16F32D02EACA0083440D /* ColorConstants.swift */; };
-		B65B16F62D0552F20083440D /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16F52D0552F20083440D /* MockData.swift */; };
+		B65B16F62D0552F20083440D /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16F52D0552F20083440D /* PreviewContainer.swift */; };
+		B65B16F82D055F770083440D /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16F72D055F770083440D /* DateExtension.swift */; };
 		B6F0690D2D003594003FBCF3 /* rakuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0690C2D003594003FBCF3 /* rakuApp.swift */; };
 		B6F0690F2D003594003FBCF3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0690E2D003594003FBCF3 /* ContentView.swift */; };
 		B6F069132D003595003FBCF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F069122D003595003FBCF3 /* Assets.xcassets */; };
@@ -49,7 +50,8 @@
 		B65B16EE2D018EAF0083440D /* TodosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosView.swift; sourceTree = "<group>"; };
 		B65B16F02D02E6540083440D /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
 		B65B16F32D02EACA0083440D /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
-		B65B16F52D0552F20083440D /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		B65B16F52D0552F20083440D /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
+		B65B16F72D055F770083440D /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		B6F069092D003594003FBCF3 /* raku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = raku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F0690C2D003594003FBCF3 /* rakuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rakuApp.swift; sourceTree = "<group>"; };
 		B6F0690E2D003594003FBCF3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,7 +97,7 @@
 				B65B16E52D003F610083440D /* migrations */,
 				B65B16E12D003C3E0083440D /* Commit.swift */,
 				B65B16E32D003E280083440D /* Project.swift */,
-				B65B16F52D0552F20083440D /* MockData.swift */,
+				B65B16F52D0552F20083440D /* PreviewContainer.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -133,6 +135,14 @@
 			path = constants;
 			sourceTree = "<group>";
 		};
+		B65B16F92D055FA00083440D /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B65B16F72D055F770083440D /* DateExtension.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
 		B6F069002D003594003FBCF3 = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +166,7 @@
 		B6F0690B2D003594003FBCF3 /* raku */ = {
 			isa = PBXGroup;
 			children = (
+				B65B16F92D055FA00083440D /* extensions */,
 				B65B16F22D02EA7E0083440D /* constants */,
 				B65B16E02D003BED0083440D /* models */,
 				B6F0690C2D003594003FBCF3 /* rakuApp.swift */,
@@ -326,13 +337,14 @@
 				B65B16ED2D018E8A0083440D /* ProjectsView.swift in Sources */,
 				B65B16E22D003C3E0083440D /* Commit.swift in Sources */,
 				B65B16EF2D018EAF0083440D /* TodosView.swift in Sources */,
+				B65B16F82D055F770083440D /* DateExtension.swift in Sources */,
 				B6F0690F2D003594003FBCF3 /* ContentView.swift in Sources */,
 				B65B16E82D003F850083440D /* GraphSchemaV1.swift in Sources */,
 				B65B16E42D003E280083440D /* Project.swift in Sources */,
 				B65B16F42D02EACA0083440D /* ColorConstants.swift in Sources */,
 				B65B16F12D02E6540083440D /* ProjectView.swift in Sources */,
 				B6F0690D2D003594003FBCF3 /* rakuApp.swift in Sources */,
-				B65B16F62D0552F20083440D /* MockData.swift in Sources */,
+				B65B16F62D0552F20083440D /* PreviewContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
