@@ -16,21 +16,12 @@ struct ProjectsView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: 12) {
                     ForEach(projects, id: \.name) { project in
-                        VStack(alignment: .leading) {
-                            Text(project.name)
-                                .font(.headline)
-                            Text("Type: \(project.type.rawValue.capitalized)")
-                                .font(.subheadline)
-                            Text("Created At: \(project.created_at.formatted(date: .numeric, time: .omitted))")
-                                .font(.caption)
-                        }
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .cornerRadius(8)
+                        ProjectView(project: project)
                     }
                 }
+                .padding()
             }
             .navigationTitle("Projects")
         }
