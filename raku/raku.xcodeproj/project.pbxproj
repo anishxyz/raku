@@ -16,6 +16,7 @@
 		B65B16F42D02EACA0083440D /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16F32D02EACA0083440D /* ColorConstants.swift */; };
 		B65B16F62D0552F20083440D /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16F52D0552F20083440D /* PreviewContainer.swift */; };
 		B65B16F82D055F770083440D /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16F72D055F770083440D /* DateExtension.swift */; };
+		B65B16FC2D056B5E0083440D /* ContributionGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16FB2D056B5E0083440D /* ContributionGridView.swift */; };
 		B6F0690D2D003594003FBCF3 /* rakuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0690C2D003594003FBCF3 /* rakuApp.swift */; };
 		B6F0690F2D003594003FBCF3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0690E2D003594003FBCF3 /* ContentView.swift */; };
 		B6F069132D003595003FBCF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F069122D003595003FBCF3 /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		B65B16F32D02EACA0083440D /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
 		B65B16F52D0552F20083440D /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
 		B65B16F72D055F770083440D /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		B65B16FB2D056B5E0083440D /* ContributionGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionGridView.swift; sourceTree = "<group>"; };
 		B6F069092D003594003FBCF3 /* raku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = raku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F0690C2D003594003FBCF3 /* rakuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rakuApp.swift; sourceTree = "<group>"; };
 		B6F0690E2D003594003FBCF3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 		B65B16E92D00496A0083440D /* views */ = {
 			isa = PBXGroup;
 			children = (
+				B65B16FA2D056B520083440D /* components */,
 				B65B16EC2D018E8A0083440D /* ProjectsView.swift */,
 				B65B16EE2D018EAF0083440D /* TodosView.swift */,
 				B65B16F02D02E6540083440D /* ProjectView.swift */,
@@ -141,6 +144,14 @@
 				B65B16F72D055F770083440D /* DateExtension.swift */,
 			);
 			path = extensions;
+			sourceTree = "<group>";
+		};
+		B65B16FA2D056B520083440D /* components */ = {
+			isa = PBXGroup;
+			children = (
+				B65B16FB2D056B5E0083440D /* ContributionGridView.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 		B6F069002D003594003FBCF3 = {
@@ -341,6 +352,7 @@
 				B6F0690F2D003594003FBCF3 /* ContentView.swift in Sources */,
 				B65B16E82D003F850083440D /* GraphSchemaV1.swift in Sources */,
 				B65B16E42D003E280083440D /* Project.swift in Sources */,
+				B65B16FC2D056B5E0083440D /* ContributionGridView.swift in Sources */,
 				B65B16F42D02EACA0083440D /* ColorConstants.swift in Sources */,
 				B65B16F12D02E6540083440D /* ProjectView.swift in Sources */,
 				B6F0690D2D003594003FBCF3 /* rakuApp.swift in Sources */,
