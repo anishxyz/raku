@@ -11,7 +11,7 @@ import SwiftData
 
 
 struct ProjectsView: View {
-    @Query private var projects: [Project]
+    @Query(sort: \Project.created_at, order: .forward) private var projects: [Project]
 
     var body: some View {
         NavigationView {

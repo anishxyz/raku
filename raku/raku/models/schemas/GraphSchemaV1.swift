@@ -34,7 +34,6 @@ enum GraphSchemaV1: VersionedSchema {
         case binary
     }
     
-    
     @Model
     final class Project {
         @Attribute(.unique) var name: String
@@ -42,13 +41,15 @@ enum GraphSchemaV1: VersionedSchema {
         var created_at: Date
         var archived_at: Date?
         var type: ProjectType
+        var key: String?
         
-        init(created_at: Date = Date(), type: ProjectType, name: String) {
+        init(created_at: Date = Date(), type: ProjectType, name: String, key: String?) {
             self.type = type
             self.name = name
             self.created_at = created_at.startOfDay
             self.archived_at = nil
             self.commits = []
+            self.key = key
         }
     }
 }
