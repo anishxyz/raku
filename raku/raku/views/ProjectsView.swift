@@ -30,26 +30,7 @@ struct ProjectsView: View {
 }
 
 
-#Preview {
-    do {
-        // Create an in-memory model container with mock data
-        let container = try ModelContainer(for: Project.self)
-        let context = container.mainContext
-        
-        // Insert mock data into the context
-        let mockProjects = [
-            GraphSchemaV1.Project(created_at: Date(), type: .github, name: "Project Alpha"),
-            GraphSchemaV1.Project(created_at: Date().addingTimeInterval(-86400), type: .range, name: "Project Beta"),
-            GraphSchemaV1.Project(created_at: Date().addingTimeInterval(-604800), type: .binary, name: "Project Gamma")
-        ]
-        
-        for project in mockProjects {
-            context.insert(project)
-        }
-        
-        return ProjectsView()
-            .modelContainer(container)
-    } catch {
-        fatalError()
-    }
+#Preview { @MainActor in
+    ProjectsView()
+        .modelContainer(previewContainer)
 }

@@ -10,3 +10,4 @@ import SwiftData
 
 
 typealias Project = GraphSchemaV1.Project
+typealias ProjectType = GraphSchemaV1.ProjectType
