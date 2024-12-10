@@ -10,7 +10,7 @@ import Foundation
 // MARK: - RakuAPIManager
 struct RakuAPIManager {
     static let shared = RakuAPIManager()
-    private let baseURL = "http://api.anish.xyz/raku/v1/contributions/"
+    private let baseURL = "https://api.anish.xyz/raku/v1/contributions/"
     
     private init() {}
     
