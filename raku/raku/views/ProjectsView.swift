@@ -24,6 +24,19 @@ struct ProjectsView: View {
                 .padding()
             }
             .navigationTitle("Projects")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        // Add your action here
+                        print("Plus button tapped!")
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                    .clipShape(.circle)
+                    .buttonStyle(.bordered)
+                    .tint(.orange)
+                }
+            }
         }
         
     }

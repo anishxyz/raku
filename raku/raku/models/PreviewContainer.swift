@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import SwiftUI
 
 var BINARY_PROJECT_NAMES = ["Haiku", "Sonnet", "Opus"]
 
@@ -42,7 +43,8 @@ let previewContainer: ModelContainer = {
             let project = Project(
                 created_at: startDate,
                 type: .binary,
-                name: "Project \(projectName)"
+                name: "Project \(projectName)",
+                color: Color.blue
             )
             container.mainContext.insert(project)
 

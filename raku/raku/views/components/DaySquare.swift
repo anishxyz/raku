@@ -39,7 +39,7 @@ struct DaySquare: View {
                 // Contribution square
                 if contributionCount > 0 {
                     Rectangle()
-                        .fill(Color.orange)
+                        .fill(project.color.opacity(0.8))
                 } else {
                     Rectangle()
                         .fill(Color.gray.opacity(0.3))
