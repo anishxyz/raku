@@ -1,12 +1,7 @@
 name: Run rakuTests
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch: # Manual trigger
 
 jobs:
   test:
