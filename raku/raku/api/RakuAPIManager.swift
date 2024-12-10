@@ -16,19 +16,21 @@ struct RakuAPIManager {
     
     func fetchContributions(
         for username: String,
-        startDate: String? = nil,
-        endDate: String? = nil,
+        startDate: Date? = nil,
+        endDate: Date? = nil,
         completion: @escaping (Result<ContributionResponse, Error>) -> Void
     ) {
+        let dateFormatter = ISO8601DateFormatter()
+        
         // Build the URL with query parameters
         var urlComponents = URLComponents(string: baseURL + username)
         var queryItems: [URLQueryItem] = []
         
         if let startDate = startDate {
-            queryItems.append(URLQueryItem(name: "start", value: startDate))
+            queryItems.append(URLQueryItem(name: "start", value: dateFormatter.string(from: startDate)))
         }
         if let endDate = endDate {
-            queryItems.append(URLQueryItem(name: "end", value: endDate))
+            queryItems.append(URLQueryItem(name: "end", value: dateFormatter.string(from: endDate)))
         }
         urlComponents?.queryItems = queryItems
         
@@ -58,7 +60,9 @@ struct RakuAPIManager {
             }
             
             do {
-                let contributionResponse = try JSONDecoder().decode(ContributionResponse.self, from: data)
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let contributionResponse = try decoder.decode(ContributionResponse.self, from: data)
                 completion(.success(contributionResponse))
             } catch {
                 completion(.failure(error))
@@ -77,7 +81,7 @@ struct ContributionResponse: Decodable {
 
 // MARK: - Contribution
 struct Contribution: Decodable {
-    let date: String
+    let date: Date
     let count: Int
 }
 
@@ -87,4 +91,3 @@ enum NetworkError: Error {
     case invalidResponse
     case noData
 }
-
