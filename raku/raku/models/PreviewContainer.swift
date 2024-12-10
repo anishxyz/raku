@@ -42,8 +42,7 @@ let previewContainer: ModelContainer = {
             let project = Project(
                 created_at: startDate,
                 type: .binary,
-                name: "Project \(projectName)",
-                key: nil
+                name: "Project \(projectName)"
             )
             container.mainContext.insert(project)
 
@@ -67,6 +66,13 @@ let previewContainer: ModelContainer = {
                 }
             }
         }
+        
+        let project = Project(
+            created_at: Date(),
+            type: .github,
+            name: "anishxyz"
+        )
+        container.mainContext.insert(project)
 
         return container
     } catch {

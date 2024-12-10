@@ -30,7 +30,7 @@ enum GraphSchemaV1: VersionedSchema {
     
     enum ProjectType: String, Codable {
         case github
-        case range
+//        case range
         case binary
     }
     
@@ -41,15 +41,15 @@ enum GraphSchemaV1: VersionedSchema {
         var created_at: Date
         var archived_at: Date?
         var type: ProjectType
-        var key: String?
+        var commits_override: [Date: Int] // used for .github
         
-        init(created_at: Date = Date(), type: ProjectType, name: String, key: String?) {
+        init(created_at: Date = Date(), type: ProjectType, name: String) {
             self.type = type
             self.name = name
             self.created_at = created_at.startOfDay
             self.archived_at = nil
             self.commits = []
-            self.key = key
+            self.commits_override = [:]
         }
     }
 }

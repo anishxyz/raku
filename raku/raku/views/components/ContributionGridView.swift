@@ -10,20 +10,20 @@ import SwiftUI
 
 struct ContributionGridView: View {
     let project: Project
-    
+
     private let daySize: CGFloat = 16
     private let spacing: CGFloat = 4
-    
+
     var body: some View {
         GeometryReader { proxy in
             let availableWidth = proxy.size.width
             let columnsCount = calculateColumnCount(for: availableWidth)
-            
+
             let today = Date().startOfDay
             let totalDays = columnsCount * 7
             let startDate = Calendar.current.date(byAdding: .day, value: -(totalDays - 1), to: today) ?? today
             let allDays = generateDates(from: startDate, to: today)
-            
+
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: spacing) {
                     ForEach(0..<columnsCount, id: \.self) { colIndex in
@@ -32,8 +32,12 @@ struct ContributionGridView: View {
                                 let dayIndex = colIndex * 7 + rowIndex
                                 if dayIndex < allDays.count {
                                     let day = allDays[dayIndex]
-                                    DaySquare(day: day, project: project)
-                                        .frame(width: daySize, height: daySize)
+                                    DaySquare(
+                                        day: day,
+                                        project: project,
+                                        contributionCount: getContributionCount(for: day)
+                                    )
+                                    .frame(width: daySize, height: daySize)
                                 }
                             }
                         }
@@ -42,14 +46,19 @@ struct ContributionGridView: View {
             }
         }
         .frame(height: (daySize * 7) + (spacing * 6)) // 7 rows and spacing
+        .onAppear {
+            if project.type == .github {
+                fetchAndMergeContributions(for: project)
+            }
+        }
     }
-    
+
     private func calculateColumnCount(for width: CGFloat) -> Int {
         let totalItemWidth = daySize + spacing
         let count = Int(floor(width / totalItemWidth))
         return max(count, 1)
     }
-    
+
     private func generateDates(from start: Date, to end: Date) -> [Date] {
         var dates: [Date] = []
         var current = start
@@ -59,37 +68,36 @@ struct ContributionGridView: View {
         }
         return dates
     }
+
+    private func getContributionCount(for day: Date) -> Int {
+        if project.type == .github {
+            return project.commits_override[day] ?? 0
+        } else {
+            return project.commits.filter { $0.date == day }.count
+        }
+    }
     
-    struct DaySquare: View {
-        let day: Date
-        let project: Project
+    private func fetchAndMergeContributions(for project: Project) {
+        let username = project.name
         
-        var body: some View {
-            let hasCommit = project.commits.contains(where: { $0.date == day })
-            let isBeforeProjectCreated = day < project.created_at
-            
-            ZStack {
-                if isBeforeProjectCreated {
-                    // Before project creation date
-                    Rectangle()
-                        .fill(Color.clear)
-                        .overlay(
-                            Rectangle()
-                                .stroke(style: StrokeStyle(lineWidth: 1, dash: [4, 2]))
-                                .foregroundColor(.gray)
-                        )
-                } else {
-                    // After project creation date
-                    if hasCommit {
-                        Rectangle()
-                            .fill(Color.orange)
-                    } else {
-                        Rectangle()
-                            .fill(Color.gray.opacity(0.3))
+        RakuAPIManager.shared.fetchContributions(for: username) { result in
+            switch result {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    let newContributions = Dictionary(
+                        uniqueKeysWithValues: response.contributions.map { ($0.date, $0.count) }
+                    )
+                    project.commits_override.merge(newContributions) { current, new in
+                        max(current, new)
+                    }
+                    // Update created_at to the earliest date in commits_override
+                    if let earliestDate = project.commits_override.keys.min() {
+                        project.created_at = earliestDate
                     }
                 }
+            case .failure(let error):
+                print("Failed to fetch contributions: \(error)")
             }
-            .cornerRadius(4)
         }
     }
 }

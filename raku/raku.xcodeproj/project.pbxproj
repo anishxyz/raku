@@ -19,6 +19,7 @@
 		B65B16FC2D056B5E0083440D /* ContributionGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16FB2D056B5E0083440D /* ContributionGridView.swift */; };
 		B65B17022D0828040083440D /* RakuAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17012D0828040083440D /* RakuAPIManager.swift */; };
 		B65B17042D082B310083440D /* RakuAPIManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17032D082B310083440D /* RakuAPIManagerTests.swift */; };
+		B65B17062D0847030083440D /* DaySquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17052D0847030083440D /* DaySquare.swift */; };
 		B6F0690D2D003594003FBCF3 /* rakuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0690C2D003594003FBCF3 /* rakuApp.swift */; };
 		B6F0690F2D003594003FBCF3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0690E2D003594003FBCF3 /* ContentView.swift */; };
 		B6F069132D003595003FBCF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F069122D003595003FBCF3 /* Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		B65B16FB2D056B5E0083440D /* ContributionGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionGridView.swift; sourceTree = "<group>"; };
 		B65B17012D0828040083440D /* RakuAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RakuAPIManager.swift; sourceTree = "<group>"; };
 		B65B17032D082B310083440D /* RakuAPIManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RakuAPIManagerTests.swift; sourceTree = "<group>"; };
+		B65B17052D0847030083440D /* DaySquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySquare.swift; sourceTree = "<group>"; };
 		B6F069092D003594003FBCF3 /* raku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = raku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F0690C2D003594003FBCF3 /* rakuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rakuApp.swift; sourceTree = "<group>"; };
 		B6F0690E2D003594003FBCF3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				B65B16FB2D056B5E0083440D /* ContributionGridView.swift */,
+				B65B17052D0847030083440D /* DaySquare.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				B65B17022D0828040083440D /* RakuAPIManager.swift in Sources */,
 				B65B16ED2D018E8A0083440D /* ProjectsView.swift in Sources */,
 				B65B16E22D003C3E0083440D /* Commit.swift in Sources */,
+				B65B17062D0847030083440D /* DaySquare.swift in Sources */,
 				B65B16EF2D018EAF0083440D /* TodosView.swift in Sources */,
 				B65B16F82D055F770083440D /* DateExtension.swift in Sources */,
 				B6F0690F2D003594003FBCF3 /* ContentView.swift in Sources */,
