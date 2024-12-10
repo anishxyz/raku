@@ -15,6 +15,7 @@ struct DaySquare: View {
     
     var body: some View {
         let isBeforeProjectCreated = day < project.created_at && project.type != .github
+        let isInFuture = day > Date.now.startOfDay
         
         ZStack {
             if isBeforeProjectCreated {
@@ -26,6 +27,14 @@ struct DaySquare: View {
                             .stroke(style: StrokeStyle(lineWidth: 1, dash: [4, 2]))
                             .foregroundColor(.gray)
                     )
+            } else if isInFuture {
+                Rectangle()
+                    .fill(Color.clear)
+//                    .overlay(
+//                        Rectangle()
+//                            .stroke(style: StrokeStyle(lineWidth: 1, dash: [4, 2]))
+//                            .foregroundColor(.gray)
+//                    )
             } else {
                 // Contribution square
                 if contributionCount > 0 {

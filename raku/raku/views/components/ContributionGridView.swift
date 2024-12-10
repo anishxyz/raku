@@ -20,9 +20,10 @@ struct ContributionGridView: View {
             let columnsCount = calculateColumnCount(for: availableWidth)
 
             let today = Date().startOfDay
+            let endDate = calculateStartDate(for: today)
             let totalDays = columnsCount * 7
-            let startDate = Calendar.current.date(byAdding: .day, value: -(totalDays - 1), to: today) ?? today
-            let allDays = generateDates(from: startDate, to: today)
+            let startDate = Calendar.current.date(byAdding: .day, value: -(totalDays - 1), to: endDate) ?? endDate
+            let allDays = generateDates(from: startDate, to: endDate)
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: spacing) {
@@ -51,6 +52,15 @@ struct ContributionGridView: View {
                 fetchAndMergeContributions(for: project)
             }
         }
+    }
+    
+    private func calculateStartDate(for today: Date) -> Date {
+        let calendar = Calendar.current
+        // Find the next Saturday
+        let weekday = calendar.component(.weekday, from: today)
+        let daysUntilSaturday = (7 - weekday + 7) % 7
+        let upcomingSaturday = calendar.date(byAdding: .day, value: daysUntilSaturday, to: today) ?? today
+        return upcomingSaturday
     }
 
     private func calculateColumnCount(for width: CGFloat) -> Int {
