@@ -12,7 +12,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
+
+    - name: Change to project directory and build
+      run: |
+        cd raku/raku
+        swift build -v
+
+    - name: Change to project directory and run tests
+      run: |
+        cd raku/raku
+        swift test -v
