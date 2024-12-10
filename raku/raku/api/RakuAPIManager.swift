@@ -20,7 +20,8 @@ struct RakuAPIManager {
         endDate: Date? = nil,
         completion: @escaping (Result<ContributionResponse, Error>) -> Void
     ) {
-        let dateFormatter = ISO8601DateFormatter()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         
         // Build the URL with query parameters
         var urlComponents = URLComponents(string: baseURL + username)
@@ -62,6 +63,7 @@ struct RakuAPIManager {
             do {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .iso8601
+                decoder.dateDecodingStrategy = .formatted(dateFormatter)
                 let contributionResponse = try decoder.decode(ContributionResponse.self, from: data)
                 completion(.success(contributionResponse))
             } catch {
