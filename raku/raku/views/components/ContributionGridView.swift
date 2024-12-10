@@ -32,7 +32,7 @@ struct ContributionGridView: View {
                                 let dayIndex = colIndex * 7 + rowIndex
                                 if dayIndex < allDays.count {
                                     let day = allDays[dayIndex]
-                                    DaySquare(day: day, project: project, daySize: daySize)
+                                    DaySquare(day: day, project: project)
                                         .frame(width: daySize, height: daySize)
                                 }
                             }
@@ -63,7 +63,6 @@ struct ContributionGridView: View {
     struct DaySquare: View {
         let day: Date
         let project: Project
-        let daySize: CGFloat
         
         var body: some View {
             let hasCommit = project.commits.contains(where: { $0.date == day })
