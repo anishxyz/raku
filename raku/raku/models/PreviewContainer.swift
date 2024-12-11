@@ -72,7 +72,8 @@ let previewContainer: ModelContainer = {
         let project = Project(
             created_at: Date(),
             type: .github,
-            name: "anishxyz"
+            name: "anishxyz",
+            color: RakuColors.githubGreen
         )
         container.mainContext.insert(project)
 

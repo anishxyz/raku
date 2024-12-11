@@ -44,7 +44,8 @@ struct ContributionGridView: View {
                                     DaySquare(
                                         day: day,
                                         project: project,
-                                        contributionCount: getContributionCount(for: day)
+                                        contributionCount: getContributionCount(for: day),
+                                        intensity: normalizedValue
                                     )
                                     .frame(width: daySize, height: daySize)
                                 }
