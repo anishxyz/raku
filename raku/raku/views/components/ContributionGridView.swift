@@ -97,9 +97,11 @@ struct ContributionGridView: View {
                     let newContributions = Dictionary(
                         uniqueKeysWithValues: response.contributions.map { ($0.date, $0.count) }
                     )
-                    project.commits_override.merge(newContributions) { current, new in
-                        max(current, new)
+                    // overwrite
+                    for (date, count) in newContributions {
+                        project.commits_override[date] = count
                     }
+                    
                     // Update created_at to the earliest date in commits_override
                     if let earliestDate = project.commits_override.keys.min() {
                         project.created_at = earliestDate
