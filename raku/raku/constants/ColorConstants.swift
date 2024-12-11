@@ -10,4 +10,5 @@ import SwiftUI
 
 struct RakuColors {
     static let secondaryBackground = Color(.systemGray6)
+    static let githubGreen = Color(red: 40/255, green: 167/255, blue: 69/255)
 }
