@@ -24,6 +24,11 @@ struct ContributionGridView: View {
             let totalDays = columnsCount * 7
             let startDate = Calendar.current.date(byAdding: .day, value: -(totalDays - 1), to: endDate) ?? endDate
             let allDays = generateDates(from: startDate, to: endDate)
+            
+            let contributionCounts = allDays.map { getContributionCount(for: $0) }
+            let average = calculateAverage(from: contributionCounts)
+            let maxCount = contributionCounts.max() ?? 1
+            let minCount = contributionCounts.min() ?? 0
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: spacing) {
@@ -33,6 +38,9 @@ struct ContributionGridView: View {
                                 let dayIndex = colIndex * 7 + rowIndex
                                 if dayIndex < allDays.count {
                                     let day = allDays[dayIndex]
+                                    let count = getContributionCount(for: day)
+                                    let normalizedValue = normalize(count: count, average: average, max: maxCount, min: minCount)
+                                                                        
                                     DaySquare(
                                         day: day,
                                         project: project,
@@ -51,6 +59,22 @@ struct ContributionGridView: View {
             if project.type == .github {
                 fetchAndMergeContributions(for: project)
             }
+        }
+    }
+    
+    private func calculateAverage(from counts: [Int]) -> Double {
+       guard !counts.isEmpty else { return 0.0 }
+       return Double(counts.reduce(0, +)) / Double(counts.count)
+   }
+    
+    private func normalize(count: Int, average: Double, max: Int, min: Int) -> Double {
+        let maxDouble = Double(max)
+        let minDouble = Double(min)
+        let countDouble = Double(count)
+        if countDouble >= average {
+            return 0.5 * (countDouble - average / maxDouble - average) + 0.5
+        } else {
+            return 0.5 * (countDouble - average / average - minDouble) + 0.5
         }
     }
     
