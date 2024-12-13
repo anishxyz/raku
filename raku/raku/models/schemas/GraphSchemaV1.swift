@@ -34,14 +34,7 @@ enum GraphSchemaV1: VersionedSchema {
         case binary
 //        case range
     }
-    
-    struct _Color: Codable {
-       var red: Float
-       var green: Float
-       var blue: Float
-       var opacity: Float
-    }
-    
+
     @Model
     final class Project {
         @Attribute(.unique) var name: String
@@ -62,30 +55,14 @@ enum GraphSchemaV1: VersionedSchema {
             )
         }
         
-        init(created_at: Date = Date(), type: ProjectType, name: String, color: Color = Color.orange) {
+        init(name: String, type: ProjectType, color: Color = Color.orange) {
             self.type = type
             self.name = name
-            self.created_at = created_at.startOfDay
+            self.created_at = Date().startOfDay
             self.archived_at = nil
             self.commits = []
             self.commits_override = [:]
-            
-            // Extract RGBA components from the SwiftUI Color
-            let uiColor = UIColor(color)
-            var r: CGFloat = 0
-            var g: CGFloat = 0
-            var b: CGFloat = 0
-            var o: CGFloat = 0
-
-            uiColor.getRed(&r, green: &g, blue: &b, alpha: &o)
-
-            // Initialize the _Color nested type
-            self._color = _Color(
-                red: Float(r),
-                green: Float(g),
-                blue: Float(b),
-                opacity: Float(o)
-            )
+            self._color = extractColorComponents(from: color)
         }
     }
 }

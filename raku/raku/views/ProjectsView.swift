@@ -12,7 +12,9 @@ import SwiftData
 
 struct ProjectsView: View {
     @Query(sort: \Project.created_at, order: .forward) private var projects: [Project]
-
+    @State private var isCreateSheetOpen = false
+    @State private var editingProject: Project? = nil
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -29,6 +31,7 @@ struct ProjectsView: View {
                     Button(action: {
                         // Add your action here
                         print("Plus button tapped!")
+                        isCreateSheetOpen = true
                     }) {
                         Image(systemName: "plus")
                     }
@@ -36,6 +39,11 @@ struct ProjectsView: View {
                     .buttonStyle(.bordered)
                     .tint(.orange)
                 }
+            }
+            .sheet(isPresented: $isCreateSheetOpen) {
+                CreateProjectSheetView(isSheetPresented: $isCreateSheetOpen, editingProject: $editingProject)
+                    .presentationDetents([.medium])
+//                    .presentationDragIndicator(.visible)
             }
         }
         
