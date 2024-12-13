@@ -73,9 +73,9 @@ struct ContributionGridView: View {
         let minDouble = Double(min)
         let countDouble = Double(count)
         if countDouble >= average {
-            return 0.5 * (countDouble - average / maxDouble - average) + 0.5
+            return 0.5 * ((countDouble - average) / (maxDouble - average)) + 0.5
         } else {
-            return 0.5 * (countDouble - average / average - minDouble) + 0.5
+            return 0.5 * ((countDouble - average) / (average - minDouble)) + 0.5
         }
     }
     

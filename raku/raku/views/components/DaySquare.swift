@@ -14,13 +14,10 @@ struct DaySquare: View {
     let contributionCount: Int
     let intensity: Double
     
-    @State private var showPopup: Bool = false
-
-    
     var body: some View {
         let isBeforeProjectCreated = day < project.created_at && project.type != .github
         let isInFuture = day > Date.now.startOfDay
-                
+        
         ZStack {
             if isBeforeProjectCreated {
                 // Before project creation date for non-GitHub projects
@@ -44,31 +41,13 @@ struct DaySquare: View {
                 if contributionCount > 0 {
                     Rectangle()
                         .fill(project.color)
-                        .saturation(intensity * 4.0)
+                        .saturation(intensity * 4)
                 } else {
                     Rectangle()
                         .fill(Color.gray.opacity(0.3))
                 }
             }
-            
-            if showPopup {
-                Text(String(format: "%.2f", intensity))
-                    .frame(width: 50, height: 50)
-                    .background(Color.black.opacity(0.7))
-                    .foregroundColor(.white)
-                    .cornerRadius(4)
-                    .transition(.opacity)
-                    .zIndex(1)
-            }
         }
         .cornerRadius(4)
-        .onTapGesture {
-            showPopup = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                withAnimation {
-                    showPopup = false
-                }
-            }
-        }
     }
 }
