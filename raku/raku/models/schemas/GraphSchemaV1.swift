@@ -37,7 +37,7 @@ enum GraphSchemaV1: VersionedSchema {
 
     @Model
     final class Project {
-        @Attribute(.unique) var name: String
+        var name: String
         @Relationship(deleteRule: .cascade, inverse: \Commit.project) var commits: [Commit]
         var created_at: Date
         var archived_at: Date?
