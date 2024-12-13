@@ -15,6 +15,5 @@ struct rakuApp: App {
             ContentView()
         }
         .modelContainer(for: Project.self, isAutosaveEnabled: false)
-        .environmentObject(ProjectManager())
     }
 }

@@ -10,8 +10,7 @@ import SwiftUI
 
 class ProjectManager: ObservableObject {
     @Environment(\.modelContext) private var modelContext
-
-    // Add a task
+    
     func createProject(name: String, type: ProjectType, color: Color) {
         let newProject = Project(name: name, type: type, color: color)
         modelContext.insert(newProject)
@@ -22,6 +21,12 @@ class ProjectManager: ObservableObject {
     func updateProject(project: Project, name: String, color: Color) {
         project.name = name
         project._color = extractColorComponents(from: color)
+        
+        try? modelContext.save()
+    }
+    
+    func archiveProject(project: Project) -> Void {
+        project.archived_at = Date()
         
         try? modelContext.save()
     }

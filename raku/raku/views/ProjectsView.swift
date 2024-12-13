@@ -26,8 +26,15 @@ struct ProjectsView: View {
             List(projects, id: \.name) { project in
                 ProjectView(project: project)
                     .listRowSeparator(.hidden)
+                    .swipeActions(edge: .trailing) {
+                        Button(role: .cancel) {
+                            self.projectManager.archiveProject(project: project)
+                        } label: {
+                            Label("Archive", systemImage: "archivebox")
+                        }
+                    }
             }
-            .listStyle(PlainListStyle()) // This removes default List styling
+            .listStyle(PlainListStyle())
             .navigationTitle("Projects")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
