@@ -31,17 +31,12 @@ struct DaySquare: View {
             } else if isInFuture {
                 Rectangle()
                     .fill(Color.clear)
-//                    .overlay(
-//                        Rectangle()
-//                            .stroke(style: StrokeStyle(lineWidth: 1, dash: [4, 2]))
-//                            .foregroundColor(.gray)
-//                    )
             } else {
                 // Contribution square
                 if contributionCount > 0 {
                     Rectangle()
                         .fill(project.color)
-                        .saturation(intensity * 4)
+                        .saturation(max(intensity * 3.25, 1))
                 } else {
                     Rectangle()
                         .fill(Color.gray.opacity(0.3))
@@ -50,4 +45,9 @@ struct DaySquare: View {
         }
         .cornerRadius(4)
     }
+}
+
+#Preview { @MainActor in
+    ProjectsView()
+        .modelContainer(previewContainer)
 }
