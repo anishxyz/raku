@@ -11,26 +11,27 @@ import SwiftData
 
 
 struct ProjectsView: View {
-    @Query(sort: \Project.created_at, order: .forward) private var projects: [Project]
+    @Query(
+        filter: #Predicate { $0.archived_at == nil },
+        sort: \Project.created_at,
+        order: .forward
+    ) private var projects: [Project]
+    @EnvironmentObject var projectManager: ProjectManager
+
     @State private var isCreateSheetOpen = false
     @State private var editingProject: Project? = nil
-    
+        
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 12) {
-                    ForEach(projects, id: \.name) { project in
-                        ProjectView(project: project)
-                    }
-                }
-                .padding()
+            List(projects, id: \.name) { project in
+                ProjectView(project: project)
+                    .listRowSeparator(.hidden)
             }
+            .listStyle(PlainListStyle()) // This removes default List styling
             .navigationTitle("Projects")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
-                        // Add your action here
-                        print("Plus button tapped!")
                         isCreateSheetOpen = true
                     }) {
                         Image(systemName: "plus")
@@ -43,7 +44,6 @@ struct ProjectsView: View {
             .sheet(isPresented: $isCreateSheetOpen) {
                 CreateProjectSheetView(isSheetPresented: $isCreateSheetOpen, editingProject: $editingProject)
                     .presentationDetents([.medium])
-//                    .presentationDragIndicator(.visible)
             }
         }
         

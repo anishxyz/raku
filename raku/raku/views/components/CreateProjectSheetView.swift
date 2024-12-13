@@ -16,8 +16,7 @@ struct CreateProjectSheetView: View {
     @State private var selectedType: ProjectType = .github
     @State private var selectedColor: Color = .orange
     
-    @Environment(\.modelContext) private var modelContext
-
+    @EnvironmentObject var projectManager: ProjectManager
 
     var body: some View {
         VStack(spacing: 20) {
@@ -77,18 +76,10 @@ struct CreateProjectSheetView: View {
     private func saveProject() {
         if let project = editingProject {
             // Update existing project
-            project.name = projectName
-            project.type = selectedType
-            
+            projectManager.updateProject(project: project, name: projectName, color: selectedColor)
         } else {
             // Create a new project
-            let newProject = Project(
-                type: selectedType,
-                name: projectName,
-                color: selectedColor
-            )
-            modelContext.insert(newProject)
+            projectManager.createProject(name: projectName, type: selectedType, color: selectedColor)
         }
-        try? modelContext.save()
     }
 }

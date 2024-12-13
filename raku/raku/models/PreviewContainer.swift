@@ -41,10 +41,10 @@ let previewContainer: ModelContainer = {
             let numberOfCommits = commitCounts[index]
 
             let project = Project(
-                created_at: startDate,
-                type: .binary,
                 name: "Project \(projectName)",
-                color: Color.blue
+                type: .binary,
+                color: Color.blue,
+                created_at: startDate
             )
             container.mainContext.insert(project)
 
@@ -70,10 +70,10 @@ let previewContainer: ModelContainer = {
         }
         
         let project = Project(
-            created_at: Date(),
-            type: .github,
             name: "anishxyz",
-            color: RakuColors.githubGreen
+            type: .github,
+            color: RakuColors.githubGreen,
+            created_at: Date()
         )
         container.mainContext.insert(project)
 

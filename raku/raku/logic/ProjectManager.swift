@@ -26,7 +26,7 @@ class ProjectManager: ObservableObject {
         try? modelContext.save()
     }
     
-    func deleteProject(project: Project) {
+    func deleteProject(project: Project) -> Void {
         project.archived_at = Date()
         
         try? modelContext.save()
