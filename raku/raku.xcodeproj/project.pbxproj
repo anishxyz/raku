@@ -22,7 +22,6 @@
 		B65B17062D0847030083440D /* DaySquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17052D0847030083440D /* DaySquare.swift */; };
 		B65B17082D09A85A0083440D /* tester.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17072D09A85A0083440D /* tester.swift */; };
 		B65B170A2D0C4B420083440D /* CreateProjectSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17092D0C4B420083440D /* CreateProjectSheetView.swift */; };
-		B65B170F2D0C52190083440D /* ProjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B170E2D0C52190083440D /* ProjectManager.swift */; };
 		B65B17122D0C53710083440D /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17112D0C53710083440D /* ColorUtils.swift */; };
 		B6F0690D2D003594003FBCF3 /* rakuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0690C2D003594003FBCF3 /* rakuApp.swift */; };
 		B6F0690F2D003594003FBCF3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0690E2D003594003FBCF3 /* ContentView.swift */; };
@@ -66,7 +65,6 @@
 		B65B17052D0847030083440D /* DaySquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySquare.swift; sourceTree = "<group>"; };
 		B65B17072D09A85A0083440D /* tester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tester.swift; sourceTree = "<group>"; };
 		B65B17092D0C4B420083440D /* CreateProjectSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectSheetView.swift; sourceTree = "<group>"; };
-		B65B170E2D0C52190083440D /* ProjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectManager.swift; sourceTree = "<group>"; };
 		B65B17112D0C53710083440D /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		B6F069092D003594003FBCF3 /* raku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = raku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F0690C2D003594003FBCF3 /* rakuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rakuApp.swift; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 		B65B170B2D0C51DC0083440D /* logic */ = {
 			isa = PBXGroup;
 			children = (
-				B65B170E2D0C52190083440D /* ProjectManager.swift */,
 			);
 			path = logic;
 			sourceTree = "<group>";
@@ -397,7 +394,6 @@
 				B65B16EF2D018EAF0083440D /* TodosView.swift in Sources */,
 				B65B16F82D055F770083440D /* DateExtension.swift in Sources */,
 				B65B170A2D0C4B420083440D /* CreateProjectSheetView.swift in Sources */,
-				B65B170F2D0C52190083440D /* ProjectManager.swift in Sources */,
 				B6F0690F2D003594003FBCF3 /* ContentView.swift in Sources */,
 				B65B17122D0C53710083440D /* ColorUtils.swift in Sources */,
 				B65B17082D09A85A0083440D /* tester.swift in Sources */,

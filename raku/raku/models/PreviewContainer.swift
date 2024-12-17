@@ -18,6 +18,14 @@ let previewContainer: ModelContainer = {
             for: Project.self,
             configurations: ModelConfiguration(isStoredInMemoryOnly: true)
         )
+        
+        let project = Project(
+            name: "anishxyz",
+            type: .github,
+            color: RakuColors.githubGreen,
+            created_at: Date()
+        )
+        container.mainContext.insert(project)
 
         // Fixed reference dates
         let oneYearAgo = Calendar.current.date(byAdding: .year, value: -1, to: Date()) ?? Date()
@@ -68,14 +76,6 @@ let previewContainer: ModelContainer = {
                 }
             }
         }
-        
-        let project = Project(
-            name: "anishxyz",
-            type: .github,
-            color: RakuColors.githubGreen,
-            created_at: Date()
-        )
-        container.mainContext.insert(project)
 
         return container
     } catch {

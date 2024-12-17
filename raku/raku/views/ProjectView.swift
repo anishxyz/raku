@@ -16,8 +16,11 @@ struct ProjectView: View {
         VStack(alignment: .leading, spacing: 16) {
             // Project info
             VStack(alignment: .leading) {
-                Text(project.name)
-                    .font(.headline)
+                HStack {
+                    Text(project.name)
+                        .font(.headline)
+                    Spacer()
+                }
                                 
                 ContributionGridView(project: project)
             }

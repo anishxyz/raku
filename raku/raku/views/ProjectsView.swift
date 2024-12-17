@@ -14,22 +14,22 @@ struct ProjectsView: View {
     @Query(
         filter: #Predicate { $0.archived_at == nil },
         sort: \Project.created_at,
-        order: .forward
+        order: .reverse
     ) private var projects: [Project]
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.colorScheme) private var colorScheme
 
     @State private var isCreateSheetOpen = false
     @State private var editingProject: Project? = nil
-    @StateObject private var projectManager = ProjectManager()
 
     var body: some View {
         NavigationView {
-            List(projects, id: \.name) { project in
+            List(projects, id: \.id) { project in
                 ProjectView(project: project)
                     .listRowSeparator(.hidden)
                     .swipeActions(edge: .trailing) {
                         Button(role: .cancel) {
-                            self.projectManager.archiveProject(project: project)
+                            archiveProject(project: project)
                         } label: {
                             Label("Archive", systemImage: "archivebox")
                         }
@@ -50,13 +50,22 @@ struct ProjectsView: View {
                 }
             }
             .sheet(isPresented: $isCreateSheetOpen) {
-                CreateProjectSheetView(isSheetPresented: $isCreateSheetOpen, editingProject: $editingProject)
-                    .presentationDetents([.medium])
+                ZStack {
+                    if colorScheme == .dark {
+                        Color.black
+                            .ignoresSafeArea()
+                    }
+                    CreateProjectSheetView(isSheetPresented: $isCreateSheetOpen, editingProject: $editingProject)
+                        .presentationDetents([.medium])
+               }
             }
         }
-        .onAppear {
-            projectManager.setModelContext(modelContext)
-        }
+    }
+    
+    func archiveProject(project: Project) -> Void {
+        project.archived_at = Date()
+        
+        try? modelContext.save()
     }
 }
 

@@ -16,52 +16,92 @@ struct CreateProjectSheetView: View {
     @State private var selectedType: ProjectType = .github
     @State private var selectedColor: Color = .orange
     
-    @EnvironmentObject var projectManager: ProjectManager
+    @Environment(\.modelContext) private var modelContext
 
     var body: some View {
         VStack(spacing: 20) {
             Text(editingProject == nil ? "Add a New Project" : "Edit Project")
                 .font(.headline)
-
-            TextField("Project Name", text: $projectName)
-                .textFieldStyle(.plain)
-                .textInputAutocapitalization(.never)
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 24)
-                        .stroke(RakuColors.secondaryBackground, lineWidth: 1)
-                )
-                .padding(.horizontal)
-
-            Picker("Project Type", selection: $selectedType) {
-                Text("GitHub").tag(ProjectType.github)
-                Text("Binary").tag(ProjectType.binary)
+            
+            VStack {
+                HStack {
+                    Text("Name")
+                        .font(.headline)
+                    
+                    Spacer()
+                    
+                    TextField("", text: $projectName)
+                        .multilineTextAlignment(.trailing)
+                        .frame(alignment: .trailing)
+                        .textInputAutocapitalization(.never)
+                }
+                
+                if editingProject == nil {
+                    HStack {
+                        Text("Type")
+                            .font(.headline)
+                        
+                        Spacer()
+                        
+                        Picker("Type", selection: $selectedType) {
+                            Text("GitHub").tag(ProjectType.github)
+                            Text("Binary").tag(ProjectType.binary)
+                        }
+                        .frame(height: 18)
+                        .pickerStyle(MenuPickerStyle())
+                        .padding(.horizontal, 0)
+                    }
+                    .padding(.top)
+                }
             }
-            .pickerStyle(SegmentedPickerStyle())
-            .padding(.horizontal)
-
-            ColorPicker("Select Color", selection: $selectedColor)
-                .padding(.horizontal)
+            .padding()
+            .background(RakuColors.secondaryBackground)
+            .cornerRadius(12)
+            
+            VStack {
+                HStack {
+                    Text("Color")
+                        .font(.headline)
+                    
+                    Spacer()
+                    
+                    ColorPicker("Select Color", selection: $selectedColor)
+                        .labelsHidden()
+                        .frame(height: 18)
+                }
+            }
+            .padding()
+            .background(RakuColors.secondaryBackground)
+            .cornerRadius(12)
+            
+            
 
             Spacer()
-
-            Button(action: {
-                saveProject()
-                isSheetPresented = false
-            }) {
-                Text(editingProject == nil ? "Save" : "Update")
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.accentColor)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+            
+            HStack {
+                Button(action: {
+                    isSheetPresented = false
+                }) {
+                    Text("Cancel")
+                        .cornerRadius(12)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical)
+                }
+                .buttonStyle(.bordered)
+                .tint(.red)
+                                
+                Button(action: {
+                    saveProject()
+                    isSheetPresented = false
+                }) {
+                    Text(editingProject == nil ? "Save" : "Update")
+                        .cornerRadius(12)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical)
+                }
+                .buttonStyle(.bordered)
+                .tint(.orange)
             }
-            .padding(.horizontal)
-
-            Button("Cancel") {
-                isSheetPresented = false
-            }
-            .padding(.top, 10)
         }
         .padding()
         .onAppear {
@@ -76,10 +116,19 @@ struct CreateProjectSheetView: View {
     private func saveProject() {
         if let project = editingProject {
             // Update existing project
-            projectManager.updateProject(project: project, name: projectName, color: selectedColor)
+            project.name = projectName
+            project._color = extractColorComponents(from: selectedColor)
         } else {
             // Create a new project
-            projectManager.createProject(name: projectName, type: selectedType, color: selectedColor)
+            let new_project = Project(name: projectName, type: selectedType, color: selectedColor)
+            modelContext.insert(new_project)
         }
+        try? modelContext.save()
     }
+}
+
+
+#Preview { @MainActor in
+    ProjectsView()
+        .modelContainer(previewContainer)
 }
