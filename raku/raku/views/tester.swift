@@ -11,6 +11,8 @@ import SwiftUI
 import SwiftUI
 
 struct ColorStepsView: View {
+    let baseGreen = Color(red: 0, green: 0.92, blue: 0)
+    
     var body: some View {
         HStack(spacing: 8) {
 //            RoundedRectangle(cornerRadius: 4)
@@ -18,20 +20,20 @@ struct ColorStepsView: View {
 //                .saturation(0.75)
 //                .frame(width: 20, height: 20)
             RoundedRectangle(cornerRadius: 4)
-                .fill(RakuColors.githubGreen)
+                .fill(baseGreen)
+                .saturation(0.25)
+                .frame(width: 20, height: 20)
+            RoundedRectangle(cornerRadius: 4)
+                .fill(baseGreen)
+                .saturation(0.5)
+                .frame(width: 20, height: 20)
+            RoundedRectangle(cornerRadius: 4)
+                .fill(baseGreen)
+                .saturation(0.75)
+                .frame(width: 20, height: 20)
+            RoundedRectangle(cornerRadius: 4)
+                .fill(baseGreen)
                 .saturation(1)
-                .frame(width: 20, height: 20)
-            RoundedRectangle(cornerRadius: 4)
-                .fill(RakuColors.githubGreen)
-                .saturation(2)
-                .frame(width: 20, height: 20)
-            RoundedRectangle(cornerRadius: 4)
-                .fill(RakuColors.githubGreen)
-                .saturation(3)
-                .frame(width: 20, height: 20)
-            RoundedRectangle(cornerRadius: 4)
-                .fill(RakuColors.githubGreen)
-                .saturation(4)
                 .frame(width: 20, height: 20)
         }
     }
