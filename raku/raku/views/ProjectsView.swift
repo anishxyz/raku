@@ -16,11 +16,12 @@ struct ProjectsView: View {
         sort: \Project.created_at,
         order: .forward
     ) private var projects: [Project]
-    @EnvironmentObject var projectManager: ProjectManager
+    @Environment(\.modelContext) private var modelContext
 
     @State private var isCreateSheetOpen = false
     @State private var editingProject: Project? = nil
-        
+    @StateObject private var projectManager = ProjectManager()
+
     var body: some View {
         NavigationView {
             List(projects, id: \.name) { project in
@@ -53,7 +54,9 @@ struct ProjectsView: View {
                     .presentationDetents([.medium])
             }
         }
-        
+        .onAppear {
+            projectManager.setModelContext(modelContext)
+        }
     }
 }
 

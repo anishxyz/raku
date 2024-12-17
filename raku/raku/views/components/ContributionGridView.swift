@@ -128,9 +128,9 @@ struct ContributionGridView: View {
                     }
                     
                     // Update created_at to the earliest date in commits_override
-                    if let earliestDate = project.commits_override.keys.min() {
-                        project.created_at = earliestDate
-                    }
+//                    if let earliestDate = project.commits_override.keys.min() {
+//                        project.created_at = earliestDate
+//                    }
                 }
             case .failure(let error):
                 print("Failed to fetch contributions: \(error)")
