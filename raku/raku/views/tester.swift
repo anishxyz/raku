@@ -11,7 +11,7 @@ import SwiftUI
 import SwiftUI
 
 struct ColorStepsView: View {
-    let baseGreen = Color(red: 0, green: 0.92, blue: 0)
+    let baseGreen = Color(red: 0, green: 0.8, blue: 0)
     
     var body: some View {
         HStack(spacing: 8) {

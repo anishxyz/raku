@@ -37,7 +37,6 @@ struct DaySquare: View {
                     Rectangle()
                         .fill(project.color)
                         .saturation(max(intensity, 0.25))
-//                        .saturation(max(intensity * 3.25, 1))
                 } else {
                     Rectangle()
                         .fill(Color.gray.opacity(0.3))
