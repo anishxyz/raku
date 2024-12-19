@@ -10,7 +10,7 @@ import SwiftUI
 import SwiftData
 
 struct ProjectView: View {
-    let project: Project
+    @Bindable var project: Project
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -20,6 +20,7 @@ struct ProjectView: View {
                     Text(project.name)
                         .font(.headline)
                     Spacer()
+                    CommitEditorView(project: project)
                 }
                                 
                 ContributionGridView(project: project)

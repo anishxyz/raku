@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ContributionGridView: View {
-    let project: Project
+    @Bindable var project: Project
 
     private let daySize: CGFloat = 16
     private let spacing: CGFloat = 4

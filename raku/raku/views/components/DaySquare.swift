@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DaySquare: View {
     let day: Date
-    let project: Project
+    @Bindable var project: Project
     let contributionCount: Int
     let intensity: Double
     
