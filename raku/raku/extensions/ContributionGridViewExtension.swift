@@ -135,6 +135,7 @@ extension ContributionGridView {
                     }
                     
                     try? modelContext.save()
+                    needsRefresh.toggle()
                 }
             case .failure(let error):
                 print("Failed to fetch contributions: \(error)")

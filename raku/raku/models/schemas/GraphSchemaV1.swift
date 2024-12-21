@@ -18,9 +18,10 @@ enum GraphSchemaV1: VersionedSchema {
     
     @Model
     final class Commit {
-//        #Unique<Commit>([\.id], [\.project, \.date])
+        #Unique<Commit>([\.id], [\.project, \.dateKey])
         
         @Attribute(.unique) var id: UUID = UUID()
+        @Attribute var dateKey: String
         var date: RakuDate
         var intensity: Int
         var project: Project?
@@ -29,12 +30,14 @@ enum GraphSchemaV1: VersionedSchema {
             self.date = RakuDate(date: date)
             self.intensity = intensity
             self.project = project
+            self.dateKey = RakuDate(date: date).key
         }
         
         init(date: RakuDate, intensity: Int, project: Project?) {
             self.date = date
             self.intensity = intensity
             self.project = project
+            self.dateKey = date.key
         }
     }
     

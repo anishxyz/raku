@@ -12,6 +12,10 @@ struct RakuDate: Equatable, Hashable, Codable, Comparable {
     let month: Int
     let day: Int
     
+    var key: String {
+        "\(year)-\(month)-\(day)"
+    }
+
     init(date: Date, timeZone: TimeZone = .current) {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = timeZone

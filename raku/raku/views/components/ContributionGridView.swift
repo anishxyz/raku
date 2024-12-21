@@ -15,6 +15,8 @@ struct ContributionGridView: View {
     private let spacing: CGFloat = 4
     
     @Environment(\.modelContext) var modelContext
+    
+    @State var needsRefresh = false
 
     var body: some View {
         GeometryReader { proxy in
@@ -29,22 +31,24 @@ struct ContributionGridView: View {
             let gridStartDate = Calendar.current.date(byAdding: .day, value: -(totalDays - 1), to: gridEndDate) ?? gridEndDate
             let allDays = generateDates(from: gridStartDate, to: gridEndDate)
             
+            // cache
+            let srd = RakuDate(date: gridStartDate)
+            let erd = RakuDate(date: gridEndDate)
+            let newCache: [RakuDate: Commit] = project.commits
+                .filter { $0.date >= srd && $0.date <= erd }
+                .reduce(into: [:]) { result, commit in
+                    result[commit.date] = commit
+                }
+        
+
             // contribution stats
-            let contributionCounts = getContributionCounts(for: allDays)
+            let contributionCounts = getContributionCounts(for: allDays, with: newCache)
             let average = calculateAverage(from: contributionCounts)
             let maxCount = contributionCounts.max() ?? 1
             let minCount = contributionCounts.min() ?? 0
             let dsContext = DaySquareContext(average: average, max: maxCount, min: minCount)
             
-            // cache
-            let srd = RakuDate(date: gridStartDate)
-            let erd = RakuDate(date: gridEndDate)
-            
-            let (existingCommits, newCommits) = ensureCommitsExist(
-                for: allDays,
-                existingCommits: project.commits.filter { $0.date >= srd && $0.date <= erd }
-            )
-
+            // View
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: spacing) {
                     ForEach(0..<columnsCount, id: \.self) { colIndex in
@@ -54,11 +58,11 @@ struct ContributionGridView: View {
                                 if dayIndex < allDays.count {
                                     let day = allDays[dayIndex]
                                     let rd = RakuDate(date: day)
-                     
+
                                     DaySquare(
                                         day: day,
                                         project: project,
-                                        commit: existingCommits[rd] ?? newCommits[rd],
+                                        commit: newCache[rd] ?? nil,
                                         viewContext: dsContext
                                     )
                                     .frame(width: daySize, height: daySize)
@@ -73,49 +77,48 @@ struct ContributionGridView: View {
                     fetchAndMergeContributions(for: project, startDate: gridStartDate, endDate: gridEndDate)
                 }
             }
+            .onChange(of: needsRefresh) {
+                // Just reading needsRefresh triggers a re-render.
+            }
         }
         .frame(height: (daySize * 7) + (spacing * 6))
     }
     
-    private func getContributionCounts(for days: [Date]) -> [Int] {
-        // Create a dictionary directly using RakuDate
-        let commitDict = Dictionary(
-            project.commits.map { ($0.date, $0.intensity) },
-            uniquingKeysWith: { first, _ in first }
-        )
-        
-        // Convert input dates to RakuDate for lookup
-        let contributionCounts = days.map { commitDict[RakuDate(date: $0)] ?? 0 }
-        
-        return contributionCounts
+    private func getContributionCounts(
+        for days: [Date],
+        with commitCache: [RakuDate: Commit]
+    ) -> [Int] {
+        return days.map { date in
+            let rd = RakuDate(date: date)
+            return commitCache[rd]?.intensity ?? 0
+        }
     }
     
     private func ensureCommitsExist(for days: [Date], existingCommits: [Commit]) -> ([RakuDate: Commit], [RakuDate: Commit]) {
-        // Create dictionary of existing commits
+
         let existingDict = Dictionary(
             uniqueKeysWithValues: existingCommits.map { ($0.date, $0) }
         )
-        
-        // Create dictionary for new commits
         var newDict: [RakuDate: Commit] = [:]
         
-        // Check each day and create commits where needed
-        for day in days {
-            let rd = RakuDate(date: day)
-            if existingDict[rd] == nil {
-                let commit = Commit(date: rd, intensity: 0, project: project)
-                commit.project = project
-                modelContext.insert(commit)
-                newDict[rd] = commit
+        // github handled at load time
+        if project.type != .github {
+            for day in days {
+                let rd = RakuDate(date: day)
+                if existingDict[rd] == nil {
+                    let commit = Commit(date: rd, intensity: 0, project: project)
+                    commit.project = project
+                    modelContext.insert(commit)
+                    newDict[rd] = commit
+                }
             }
-        }
-        
-        // Save all new commits at once if any were created
-        if !newDict.isEmpty {
-            do {
-                try modelContext.save()
-            } catch {
-                print("Failed to save commits: \(error)")
+            
+            if !newDict.isEmpty {
+                do {
+                    try modelContext.save()
+                } catch {
+                    print("Failed to save commits: \(error)")
+                }
             }
         }
         
