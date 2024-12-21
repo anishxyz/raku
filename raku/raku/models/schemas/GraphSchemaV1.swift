@@ -21,12 +21,12 @@ enum GraphSchemaV1: VersionedSchema {
 //        #Unique<Commit>([\.id], [\.project, \.date])
         
         @Attribute(.unique) var id: UUID = UUID()
-        var date: Date
+        var date: RakuDate
         var intensity: Float
         var project: Project?
                 
         init(date: Date = Date(), intensity: Float, project: Project?) {
-            self.date = date.startOfDay
+            self.date = RakuDate(date: date)
             self.intensity = intensity
             self.project = project
         }
@@ -35,7 +35,6 @@ enum GraphSchemaV1: VersionedSchema {
     enum ProjectType: String, Codable {
         case github
         case binary
-//        case range
     }
 
     @Model
@@ -46,7 +45,7 @@ enum GraphSchemaV1: VersionedSchema {
         var created_at: Date
         var archived_at: Date?
         var type: ProjectType
-        var commits_override: [Date: Int] // used for .github
+        var commits_override: [RakuDate: Int] // used for .github
         
         var _color: _Color
         

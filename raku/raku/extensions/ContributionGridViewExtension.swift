@@ -61,4 +61,51 @@ extension ContributionGridView {
         
         return (count: bestCount, columnWidth: bestColumnWidth)
     }
+    
+    
+    func calculateAverage(from counts: [Int]) -> Double {
+        guard !counts.isEmpty else { return 0.0 }
+        return Double(counts.reduce(0, +)) / Double(counts.count)
+    }
+    
+    func normalize(count: Int, average: Double, max: Int, min: Int) -> Double {
+        let maxDouble = Double(max)
+        let minDouble = Double(min)
+        let countDouble = Double(count)
+        
+        if maxDouble == average && minDouble == average {
+            return 0.5
+        }
+        
+        if countDouble >= average {
+            if maxDouble == average {
+                return 1.0
+            }
+            return 0.5 * ((countDouble - average) / (maxDouble - average)) + 0.5
+        } else {
+            if minDouble == average {
+                return 0.0
+            }
+            return 0.5 * ((countDouble - average) / (average - minDouble)) + 0.5
+        }
+    }
+    
+    func calculateStartDate(for today: Date) -> Date {
+        let calendar = Calendar.current
+        // Find the next Saturday
+        let weekday = calendar.component(.weekday, from: today)
+        let daysUntilSaturday = (7 - weekday + 7) % 7
+        let upcomingSaturday = calendar.date(byAdding: .day, value: daysUntilSaturday, to: today) ?? today
+        return upcomingSaturday
+    }
+
+    func generateDates(from start: Date, to end: Date) -> [Date] {
+        var dates: [Date] = []
+        var current = start
+        while current <= end {
+            dates.append(current)
+            current = Calendar.current.date(byAdding: .day, value: 1, to: current) ?? current
+        }
+        return dates
+    }
 }

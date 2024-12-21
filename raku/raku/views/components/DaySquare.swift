@@ -34,9 +34,14 @@ struct DaySquare: View {
             } else {
                 // Contribution square
                 if contributionCount > 0 {
-                    Rectangle()
-                        .fill(project.color)
-                        .saturation(max(intensity, 0.25))
+                    if project.type == .github {
+                        Rectangle()
+                            .fill(project.color)
+                            .saturation(max(intensity, 0.25))
+                    } else {
+                        Rectangle()
+                            .fill(project.color)
+                    }
                 } else {
                     Rectangle()
                         .fill(Color.gray.opacity(0.3))

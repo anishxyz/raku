@@ -18,5 +18,5 @@ struct RakuColors {
 }
 
 var RakuColorList: [Color] {
-    [RakuColors.githubGreen, RakuColors.blue, RakuColors.orange, RakuColors.purple, RakuColors.ferrariRed]
+    [RakuColors.blue, RakuColors.orange, RakuColors.purple, RakuColors.ferrariRed, RakuColors.githubGreen]
 }

@@ -30,7 +30,8 @@ struct CommitEditorView: View {
     
     private func loadTodayCommit() {
         let today = Date().startOfDay
-        todayCommit = project.commits.first(where: { $0.date == today })
+        let todayRakuDate = RakuDate(date: today)
+        todayCommit = project.commits.first(where: { $0.date == todayRakuDate })
         
         // Create an empty commit for today if none exists
         if todayCommit == nil {

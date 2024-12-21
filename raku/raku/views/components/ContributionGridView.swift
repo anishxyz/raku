@@ -65,58 +65,12 @@ struct ContributionGridView: View {
             }
         }
     }
-    
-    private func calculateAverage(from counts: [Int]) -> Double {
-       guard !counts.isEmpty else { return 0.0 }
-       return Double(counts.reduce(0, +)) / Double(counts.count)
-   }
-    
-    private func normalize(count: Int, average: Double, max: Int, min: Int) -> Double {
-        let maxDouble = Double(max)
-        let minDouble = Double(min)
-        let countDouble = Double(count)
-        
-        if maxDouble == average && minDouble == average {
-            return 0.5
-        }
-        
-        if countDouble >= average {
-            if maxDouble == average {
-                return 1.0
-            }
-            return 0.5 * ((countDouble - average) / (maxDouble - average)) + 0.5
-        } else {
-            if minDouble == average {
-                return 0.0
-            }
-            return 0.5 * ((countDouble - average) / (average - minDouble)) + 0.5
-        }
-    }
-    
-    private func calculateStartDate(for today: Date) -> Date {
-        let calendar = Calendar.current
-        // Find the next Saturday
-        let weekday = calendar.component(.weekday, from: today)
-        let daysUntilSaturday = (7 - weekday + 7) % 7
-        let upcomingSaturday = calendar.date(byAdding: .day, value: daysUntilSaturday, to: today) ?? today
-        return upcomingSaturday
-    }
-
-    private func generateDates(from start: Date, to end: Date) -> [Date] {
-        var dates: [Date] = []
-        var current = start
-        while current <= end {
-            dates.append(current)
-            current = Calendar.current.date(byAdding: .day, value: 1, to: current) ?? current
-        }
-        return dates
-    }
 
     private func getContributionCount(for day: Date) -> Int {
         if project.type == .github {
-            return project.commits_override[day] ?? 0
+            return project.commits_override[RakuDate(date: day)] ?? 0
         } else {
-            return project.commits.filter { $0.date == day }.count
+            return project.commits.filter { $0.date == RakuDate(date: day) }.count
         }
     }
     
@@ -132,7 +86,7 @@ struct ContributionGridView: View {
                     )
                     // overwrite
                     for (date, count) in newContributions {
-                        project.commits_override[date] = count
+                        project.commits_override[RakuDate(date: date)] = count
                     }
                     
                     // Update created_at to the earliest date in commits_override

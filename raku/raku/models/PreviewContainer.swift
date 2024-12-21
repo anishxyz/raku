@@ -18,20 +18,7 @@ let previewContainer: ModelContainer = {
             for: Project.self,
             configurations: ModelConfiguration(isStoredInMemoryOnly: true)
         )
-        
-        let projectColors = RakuColorList
 
-        for color in projectColors {
-            let project = Project(
-                name: "anishxyz",
-                type: .github,
-                color: color,
-                created_at: Date()
-            )
-            container.mainContext.insert(project)
-        }
-
-        
         let project = Project(
             name: "anishxyz",
             type: .github,
@@ -56,16 +43,21 @@ let previewContainer: ModelContainer = {
         let patternOnDays = 3   // Number of consecutive days with commits
         let patternOffDays = 2  // Number of consecutive days without commits
         let patternLength = patternOnDays + patternOffDays
-
+        
+        let projectColors = RakuColorList
+        let colorCount = projectColors.count
+        
         // Iterate over project names and create each project with patterned commits
         for (index, projectName) in BINARY_PROJECT_NAMES.enumerated() {
             let startDate = startDates[index]
             let numberOfCommits = commitCounts[index]
-
+            
+            let color = projectColors[index % colorCount]
+            
             let project = Project(
                 name: "Project \(projectName)",
                 type: .binary,
-                color: Color.blue,
+                color: color,
                 created_at: startDate
             )
             container.mainContext.insert(project)
