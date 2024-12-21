@@ -19,6 +19,19 @@ let previewContainer: ModelContainer = {
             configurations: ModelConfiguration(isStoredInMemoryOnly: true)
         )
         
+        let projectColors = RakuColorList
+
+        for color in projectColors {
+            let project = Project(
+                name: "anishxyz",
+                type: .github,
+                color: color,
+                created_at: Date()
+            )
+            container.mainContext.insert(project)
+        }
+
+        
         let project = Project(
             name: "anishxyz",
             type: .github,
@@ -26,6 +39,7 @@ let previewContainer: ModelContainer = {
             created_at: Date()
         )
         container.mainContext.insert(project)
+        
 
         // Fixed reference dates
         let oneYearAgo = Calendar.current.date(byAdding: .year, value: -1, to: Date()) ?? Date()
