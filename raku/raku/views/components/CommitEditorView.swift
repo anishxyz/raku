@@ -18,7 +18,7 @@ struct CommitEditorView: View {
     var body: some View {
         Group {
             if project.type == .binary {
-                CircleButton(isActive: todayCommit?.intensity == 1.0) {
+                CircleButton(isActive: todayCommit?.intensity == 1) {
                     handleCommitToggle()
                 }
             }
@@ -35,14 +35,17 @@ struct CommitEditorView: View {
         
         // Create an empty commit for today if none exists
         if todayCommit == nil {
+            print("here2")
             todayCommit = Commit(date: today, intensity: 0, project: project)
             modelContext.insert(todayCommit!)
+            try? modelContext.save()
         }
     }
     
     private func handleCommitToggle() {
         if let commit = todayCommit {
-            commit.intensity = commit.intensity == 0 ? 1.0 : 0
+            print("here1")
+            commit.intensity = commit.intensity == 0 ? 1 : 0
             try? modelContext.save()
         }
     }

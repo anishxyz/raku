@@ -22,11 +22,17 @@ enum GraphSchemaV1: VersionedSchema {
         
         @Attribute(.unique) var id: UUID = UUID()
         var date: RakuDate
-        var intensity: Float
+        var intensity: Int
         var project: Project?
                 
-        init(date: Date = Date(), intensity: Float, project: Project?) {
+        init(date: Date = Date(), intensity: Int, project: Project?) {
             self.date = RakuDate(date: date)
+            self.intensity = intensity
+            self.project = project
+        }
+        
+        init(date: RakuDate, intensity: Int, project: Project?) {
+            self.date = date
             self.intensity = intensity
             self.project = project
         }

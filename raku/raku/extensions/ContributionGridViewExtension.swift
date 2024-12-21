@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Foundation
+import SwiftData
 
 extension ContributionGridView {
     /// Computes the best fitting column count and column width such that
@@ -68,28 +69,6 @@ extension ContributionGridView {
         return Double(counts.reduce(0, +)) / Double(counts.count)
     }
     
-    func normalize(count: Int, average: Double, max: Int, min: Int) -> Double {
-        let maxDouble = Double(max)
-        let minDouble = Double(min)
-        let countDouble = Double(count)
-        
-        if maxDouble == average && minDouble == average {
-            return 0.5
-        }
-        
-        if countDouble >= average {
-            if maxDouble == average {
-                return 1.0
-            }
-            return 0.5 * ((countDouble - average) / (maxDouble - average)) + 0.5
-        } else {
-            if minDouble == average {
-                return 0.0
-            }
-            return 0.5 * ((countDouble - average) / (average - minDouble)) + 0.5
-        }
-    }
-    
     func calculateStartDate(for today: Date) -> Date {
         let calendar = Calendar.current
         // Find the next Saturday
@@ -107,5 +86,59 @@ extension ContributionGridView {
             current = Calendar.current.date(byAdding: .day, value: 1, to: current) ?? current
         }
         return dates
+    }
+    
+    func fetchAndMergeContributions(
+        for project: Project,
+        startDate: Date? = nil,
+        endDate: Date? = nil
+    ) {
+        let username = project.name
+        
+        let existingCommits: [RakuDate: Commit] = Dictionary(
+            uniqueKeysWithValues: project.commits
+                .filter { commit in
+                    if let start = startDate, let end = endDate {
+                        let srd = RakuDate(date: start)
+                        let erd = RakuDate(date: end)
+                        return commit.date >= srd && commit.date <= erd
+                    }
+                    return true
+                }
+                .map { ($0.date, $0) }
+        )
+        
+        RakuAPIManager.shared.fetchContributions(
+            for: username,
+            startDate: startDate,
+            endDate: endDate
+        ) { result in
+            
+            switch result {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    let newContributions = Dictionary(
+                        uniqueKeysWithValues: response.contributions.map { ($0.date, $0.count) }
+                    )
+                    // overwrite
+                    for (date, count) in newContributions {
+                        let rd = RakuDate(date: date)
+                        
+                        if let existingCommit = existingCommits[rd] {
+                            // Update existing commit
+                            existingCommit.intensity = count
+                        } else {
+                            // Create new commit
+                            let newCommit = Commit(date: date, intensity: count, project: project)
+                            modelContext.insert(newCommit)
+                        }
+                    }
+                    
+                    try? modelContext.save()
+                }
+            case .failure(let error):
+                print("Failed to fetch contributions: \(error)")
+            }
+        }
     }
 }

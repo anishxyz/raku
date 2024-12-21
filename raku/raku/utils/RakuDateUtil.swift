@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RakuDate: Equatable, Hashable, Codable {
+struct RakuDate: Equatable, Hashable, Codable, Comparable {
     let year: Int
     let month: Int
     let day: Int
@@ -21,6 +21,16 @@ struct RakuDate: Equatable, Hashable, Codable {
         self.year = components.year!
         self.month = components.month!
         self.day = components.day!
+    }
+    
+    static func < (lhs: RakuDate, rhs: RakuDate) -> Bool {
+        if lhs.year != rhs.year {
+            return lhs.year < rhs.year
+        }
+        if lhs.month != rhs.month {
+            return lhs.month < rhs.month
+        }
+        return lhs.day < rhs.day
     }
 }
 
