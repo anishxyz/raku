@@ -18,7 +18,7 @@ struct CommitEditorView: View {
     var body: some View {
         Group {
             if project.type == .binary {
-                CircleButton(isActive: todayCommit?.intensity == 1) {
+                SquareButton(isActive: todayCommit?.intensity == 1, activeColor: project.color) {
                     handleCommitToggle()
                 }
             }
@@ -62,6 +62,33 @@ struct CircleButton: View {
                         .fill(isActive ? Color.gray : Color.clear)
                 )
                 .frame(width: 24, height: 24)
+        }
+        .buttonStyle(.borderless)
+    }
+}
+
+struct SquareButton: View {
+    let isActive: Bool
+    let activeColor: Color
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .strokeBorder(isActive ? Color.clear : Color.gray, lineWidth: 2)
+                    .background(
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(isActive ? activeColor : Color.clear)
+                    )
+                    .frame(width: 24, height: 24)
+
+                if isActive {
+                    Image(systemName: "checkmark")
+                        .foregroundColor(.white)
+                        .font(.system(size: 12, weight: .bold))
+                }
+            }
         }
         .buttonStyle(.borderless)
     }

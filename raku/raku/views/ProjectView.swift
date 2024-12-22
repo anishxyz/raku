@@ -17,13 +17,19 @@ struct ProjectView: View {
             // Project info
             VStack(alignment: .leading) {
                 HStack {
-                    Text(project.name)
-                        .font(.headline)
+                    if project.type == .github {
+                        Text("@\(project.name)")
+                            .font(.headline)
+                    } else {
+                        Text(project.name)
+                            .font(.headline)
+                    }
                     Spacer()
                     CommitEditorView(project: project)
                 }
                                 
                 ContributionGridView(project: project)
+
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()

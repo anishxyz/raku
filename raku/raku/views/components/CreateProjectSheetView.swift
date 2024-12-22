@@ -13,10 +13,13 @@ struct CreateProjectSheetView: View {
     @Binding var isSheetPresented: Bool
     @Binding var editingProject: Project?
     @State private var projectName: String = ""
-    @State private var selectedType: ProjectType = .github
-    @State private var selectedColor: Color = .orange
+    @State private var selectedType: ProjectType = .binary
+    @State private var selectedColor: Color = RakuColors.orange
     
     @Environment(\.modelContext) private var modelContext
+    
+    let feedbackGenerator = UINotificationFeedbackGenerator()
+    let generator = UIImpactFeedbackGenerator(style: .medium)
 
     var body: some View {
         VStack(spacing: 20) {
@@ -25,12 +28,17 @@ struct CreateProjectSheetView: View {
             
             VStack {
                 HStack {
-                    Text("Name")
-                        .font(.headline)
-                    
+                    if selectedType == ProjectType.github {
+                        Text("Username")
+                            .font(.headline)
+                    } else {
+                        Text("Name")
+                            .font(.headline)
+                    }
+
                     Spacer()
                     
-                    TextField("", text: $projectName)
+                    TextField("", text: $projectName, prompt: Text("required"))
                         .multilineTextAlignment(.trailing)
                         .frame(alignment: .trailing)
                         .textInputAutocapitalization(.never)
@@ -43,13 +51,21 @@ struct CreateProjectSheetView: View {
                         
                         Spacer()
                         
-                        Picker("Type", selection: $selectedType) {
-                            Text("GitHub").tag(ProjectType.github)
-                            Text("Binary").tag(ProjectType.binary)
-                        }
-                        .frame(height: 18)
-                        .pickerStyle(MenuPickerStyle())
-                        .padding(.horizontal, 0)
+                        TypeButton(
+                            type: .binary,
+                            text: "Binary",
+                            isSelected: selectedType == .binary,
+                            action: { selectedType = .binary }
+                        )
+                        
+                        TypeButton(
+                            type: .github,
+                            text: "GitHub",
+                            isSelected: selectedType == .github,
+                            action: { selectedType = .github },
+                            accentColor: RakuColors.githubGreen
+                        )
+                        
                     }
                     .padding(.top)
                 }
@@ -65,9 +81,31 @@ struct CreateProjectSheetView: View {
                     
                     Spacer()
                     
-                    ColorPicker("Select Color", selection: $selectedColor)
-                        .labelsHidden()
-                        .frame(height: 18)
+                    HStack(spacing: 12) {
+                        ForEach(RakuColorList, id: \.self) { color in
+                            Button(action: {
+                                generator.impactOccurred()
+                                selectedColor = color
+                            }) {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(color)
+                                    .frame(width: 24, height: 24)
+                                    .overlay(
+                                        Group {
+                                            if selectedColor == color {
+                                                Image(systemName: "checkmark")
+                                                    .font(.system(size: 14, weight: .bold))
+                                                    .foregroundColor(.white)
+                                            }
+                                        }
+                                    )
+                            }
+                        }
+                        
+                        ColorPicker("Select Color", selection: $selectedColor)
+                            .labelsHidden()
+                            .frame(height: 24)
+                    }
                 }
             }
             .padding()
@@ -80,6 +118,7 @@ struct CreateProjectSheetView: View {
             
             HStack {
                 Button(action: {
+                    feedbackGenerator.notificationOccurred(.warning)
                     isSheetPresented = false
                 }) {
                     Text("Cancel")
@@ -91,6 +130,7 @@ struct CreateProjectSheetView: View {
                 .tint(.red)
                                 
                 Button(action: {
+                    feedbackGenerator.notificationOccurred(.success)
                     saveProject()
                     isSheetPresented = false
                 }) {
@@ -101,6 +141,7 @@ struct CreateProjectSheetView: View {
                 }
                 .buttonStyle(.bordered)
                 .tint(.orange)
+                .disabled(projectName.isEmpty)
             }
         }
         .padding()
@@ -131,4 +172,45 @@ struct CreateProjectSheetView: View {
 #Preview { @MainActor in
     ProjectsView()
         .modelContainer(previewContainer)
+}
+
+
+struct TypeButton: View {
+    let type: ProjectType
+    let text: String
+    let isSelected: Bool
+    let action: () -> Void
+    let accentColor: Color
+    let generator = UIImpactFeedbackGenerator(style: .medium)
+    
+    init(type: ProjectType, text: String, isSelected: Bool, action: @escaping () -> Void, accentColor: Color = RakuColors.accentColor) {
+        self.type = type
+        self.text = text
+        self.isSelected = isSelected
+        self.action = action
+        self.accentColor = accentColor
+    }
+
+    var body: some View {
+        Button {
+            generator.impactOccurred()
+            action()
+        } label: {
+           HStack {
+//               if isSelected {
+//                   Image(systemName: "checkmark")
+//               }
+               Text(text)
+           }
+           .padding(.horizontal, 12)
+           .padding(.vertical, 6)
+       }
+       .background(isSelected ? accentColor : Color.clear)
+       .foregroundColor(isSelected ? .white : accentColor)
+       .overlay(
+           RoundedRectangle(cornerRadius: 8)
+               .stroke(accentColor, lineWidth: 1)
+       )
+       .cornerRadius(8)
+    }
 }

@@ -61,7 +61,7 @@ struct DaySquare: View {
                     }
                 } else {
                     Rectangle()
-                        .fill(Color.gray.opacity(0.3))
+                        .fill(RakuColors.tertiaryBackground)
                 }
             }
         }

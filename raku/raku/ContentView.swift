@@ -12,22 +12,24 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
 
     var body: some View {
-        TabView {
-            ProjectsView()
-                .tabItem {
-                    Label("Projects", systemImage: "folder")
-                }
+        ProjectsView()
 
-            TodosView()
-                .tabItem {
-                    Label("Todos", systemImage: "gear")
-                }
-        }
+//        TabView {
+//            ProjectsView()
+//                .tabItem {
+//                    Label("Projects", systemImage: "folder")
+//                }
+//
+//            TodosView()
+//                .tabItem {
+//                    Label("Todos", systemImage: "gear")
+//                }
+//        }
     }
 
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Project.self, inMemory: true)
+        .modelContainer(previewContainer)
 }
