@@ -209,7 +209,7 @@ struct TypeButton: View {
        .foregroundColor(isSelected ? .white : accentColor)
        .overlay(
            RoundedRectangle(cornerRadius: 8)
-               .stroke(accentColor, lineWidth: 1)
+               .stroke(accentColor, lineWidth: 2)
        )
        .cornerRadius(8)
     }
