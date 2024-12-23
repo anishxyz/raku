@@ -22,6 +22,8 @@ struct DaySquare: View {
 
     let viewContext: DaySquareContext?
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         let contributionCount: Int = commit?.intensity ?? 0
         
@@ -54,7 +56,8 @@ struct DaySquare: View {
                     if project.type == .github {
                         Rectangle()
                             .fill(project.color)
-                            .saturation(max(intensity, 0.25))
+                            .saturation(colorScheme == .dark ? 1.5 * max(intensity, 0.25) : max(intensity, 0.25))
+                            .brightness(colorScheme == .dark ? -0.3 : 0)
                     } else {
                         Rectangle()
                             .fill(project.color)

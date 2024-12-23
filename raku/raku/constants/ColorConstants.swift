@@ -11,6 +11,10 @@ import SwiftUI
 struct RakuColors {
     static let secondaryBackground = Color(.systemGray6)
     static let tertiaryBackground = Color.gray.opacity(0.3)
+    static let lightModeGray6 = Color(UIColor { traits in
+        return traits.userInterfaceStyle == .dark ? .systemGray6 : .systemGray6
+    }.resolvedColor(with: .init(userInterfaceStyle: .light)))
+
     
     static let githubGreen = Color(red: 40/255, green: 190/255, blue: 69/255, opacity: 1)
     static let blue = Color.blue
