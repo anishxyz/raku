@@ -35,7 +35,7 @@ struct ProjectsView: View {
                         }
                     }
                     .swipeActions(edge: .leading) {
-                        if project.type != .github {
+                        if project.type == .binary {
                             Button {
                                 toggleTodayCommit(project: project)
                             } label: {

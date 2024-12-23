@@ -5,5 +5,7 @@ Raku: crafting daily patterns into a mosaic of achievement.
 ```
 
 TODOS:  
-[ ] Slide to edit, mark complete  
-[ ] Expanded view - 52x7, monthly etc  
+[X] Slide to mark complete  
+[ ] Widget views 
+[ ] Expanded view - 52x7, monthly etc 
+[ ] Edit button 
