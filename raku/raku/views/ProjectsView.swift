@@ -34,6 +34,16 @@ struct ProjectsView: View {
                             Label("Archive", systemImage: "archivebox")
                         }
                     }
+                    .swipeActions(edge: .leading) {
+                        if project.type != .github {
+                            Button {
+                                toggleTodayCommit(project: project)
+                            } label: {
+                                Label("Done", systemImage: "checkmark.square")
+                            }
+                            .tint(.green)
+                        }
+                    }
             }
             .listStyle(PlainListStyle())
             .navigationTitle("Projects")
@@ -64,6 +74,24 @@ struct ProjectsView: View {
     
     func archiveProject(project: Project) -> Void {
         project.archived_at = Date()
+        
+        try? modelContext.save()
+    }
+    
+    private func toggleTodayCommit(project: Project) {
+        let today = Date().startOfDay
+        let todayRakuDate = RakuDate(date: today)
+        var todayCommit = project.commits.first(where: { $0.date == todayRakuDate })
+        
+        // Create an empty commit for today if none exists
+        if todayCommit == nil {
+            todayCommit = Commit(date: today, intensity: 0, project: project)
+            modelContext.insert(todayCommit!)
+        }
+        
+        if let commit = todayCommit {
+            commit.intensity = commit.intensity == 0 ? 1 : 0
+        }
         
         try? modelContext.save()
     }
