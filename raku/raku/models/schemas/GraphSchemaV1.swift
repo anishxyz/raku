@@ -70,7 +70,7 @@ enum GraphSchemaV1: VersionedSchema {
         init(name: String, type: ProjectType, color: Color = Color.orange, created_at: Date = Date()) {
             self.type = type
             self.name = name
-            self.created_at = created_at.startOfDay
+            self.created_at = created_at
             self.archived_at = nil
             self.commits = []
             self.commits_override = [:]

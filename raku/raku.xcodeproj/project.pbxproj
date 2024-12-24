@@ -3,12 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B65B16E22D003C3E0083440D /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16E12D003C3E0083440D /* Commit.swift */; };
-		B65B16E42D003E280083440D /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16E32D003E280083440D /* Project.swift */; };
 		B65B16E82D003F850083440D /* GraphSchemaV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16E72D003F850083440D /* GraphSchemaV1.swift */; };
 		B65B16ED2D018E8A0083440D /* ProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16EC2D018E8A0083440D /* ProjectsView.swift */; };
 		B65B16EF2D018EAF0083440D /* TodosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16EE2D018EAF0083440D /* TodosView.swift */; };
@@ -20,12 +18,22 @@
 		B65B17022D0828040083440D /* RakuAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17012D0828040083440D /* RakuAPIManager.swift */; };
 		B65B17042D082B310083440D /* RakuAPIManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17032D082B310083440D /* RakuAPIManagerTests.swift */; };
 		B65B17062D0847030083440D /* DaySquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17052D0847030083440D /* DaySquare.swift */; };
-		B65B17082D09A85A0083440D /* tester.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17072D09A85A0083440D /* tester.swift */; };
+		B65B17082D09A85A0083440D /* Tester.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17072D09A85A0083440D /* Tester.swift */; };
 		B65B170A2D0C4B420083440D /* CreateProjectSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17092D0C4B420083440D /* CreateProjectSheetView.swift */; };
-		B65B17122D0C53710083440D /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17112D0C53710083440D /* ColorUtils.swift */; };
+		B65B17122D0C53710083440D /* _Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17112D0C53710083440D /* _Color.swift */; };
 		B65B17142D1414390083440D /* CommitEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17132D1414390083440D /* CommitEditorView.swift */; };
 		B6C850852D169853006E8176 /* ContributionGridViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850842D169845006E8176 /* ContributionGridViewExtension.swift */; };
-		B6C850872D16C153006E8176 /* RakuDateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850862D16C148006E8176 /* RakuDateUtil.swift */; };
+		B6C850872D16C153006E8176 /* RakuDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850862D16C148006E8176 /* RakuDate.swift */; };
+		B6C850C32D1AB8D0006E8176 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6C8508F2D1AB2A6006E8176 /* WidgetKit.framework */; };
+		B6C850C42D1AB8D0006E8176 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6C850912D1AB2A6006E8176 /* SwiftUI.framework */; };
+		B6C850CF2D1AB8D1006E8176 /* project-widgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B6C850C22D1AB8D0006E8176 /* project-widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B6C850D52D1ABC1E006E8176 /* GraphSchemaV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16E72D003F850083440D /* GraphSchemaV1.swift */; };
+		B6C850D72D1ABC81006E8176 /* ModelAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850D62D1ABC79006E8176 /* ModelAlias.swift */; };
+		B6C850D82D1ABC9F006E8176 /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16F52D0552F20083440D /* PreviewContainer.swift */; };
+		B6C850D92D1ABCFB006E8176 /* ModelAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850D62D1ABC79006E8176 /* ModelAlias.swift */; };
+		B6C850DA2D1ABD14006E8176 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16F32D02EACA0083440D /* ColorConstants.swift */; };
+		B6C850DB2D1ABD43006E8176 /* RakuDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850862D16C148006E8176 /* RakuDate.swift */; };
+		B6C850DC2D1ABD6D006E8176 /* _Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17112D0C53710083440D /* _Color.swift */; };
 		B6F0690D2D003594003FBCF3 /* rakuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0690C2D003594003FBCF3 /* rakuApp.swift */; };
 		B6F0690F2D003594003FBCF3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0690E2D003594003FBCF3 /* ContentView.swift */; };
 		B6F069132D003595003FBCF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F069122D003595003FBCF3 /* Assets.xcassets */; };
@@ -36,6 +44,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B6C850CD2D1AB8D1006E8176 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B6F069012D003594003FBCF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B6C850C12D1AB8D0006E8176;
+			remoteInfo = "project-widgetExtension";
+		};
 		B6F0691D2D003596003FBCF3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B6F069012D003594003FBCF3 /* Project object */;
@@ -52,9 +67,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B6C850A82D1AB2A8006E8176 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B6C850CF2D1AB8D1006E8176 /* project-widgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		B65B16E12D003C3E0083440D /* Commit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
-		B65B16E32D003E280083440D /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		B65B16E72D003F850083440D /* GraphSchemaV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphSchemaV1.swift; sourceTree = "<group>"; };
 		B65B16EC2D018E8A0083440D /* ProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsView.swift; sourceTree = "<group>"; };
 		B65B16EE2D018EAF0083440D /* TodosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosView.swift; sourceTree = "<group>"; };
@@ -66,12 +93,17 @@
 		B65B17012D0828040083440D /* RakuAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RakuAPIManager.swift; sourceTree = "<group>"; };
 		B65B17032D082B310083440D /* RakuAPIManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RakuAPIManagerTests.swift; sourceTree = "<group>"; };
 		B65B17052D0847030083440D /* DaySquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySquare.swift; sourceTree = "<group>"; };
-		B65B17072D09A85A0083440D /* tester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tester.swift; sourceTree = "<group>"; };
+		B65B17072D09A85A0083440D /* Tester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tester.swift; sourceTree = "<group>"; };
 		B65B17092D0C4B420083440D /* CreateProjectSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectSheetView.swift; sourceTree = "<group>"; };
-		B65B17112D0C53710083440D /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
+		B65B17112D0C53710083440D /* _Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Color.swift; sourceTree = "<group>"; };
 		B65B17132D1414390083440D /* CommitEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitEditorView.swift; sourceTree = "<group>"; };
 		B6C850842D169845006E8176 /* ContributionGridViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionGridViewExtension.swift; sourceTree = "<group>"; };
-		B6C850862D16C148006E8176 /* RakuDateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RakuDateUtil.swift; sourceTree = "<group>"; };
+		B6C850862D16C148006E8176 /* RakuDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RakuDate.swift; sourceTree = "<group>"; };
+		B6C8508F2D1AB2A6006E8176 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		B6C850912D1AB2A6006E8176 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		B6C850C22D1AB8D0006E8176 /* project-widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "project-widgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6C850D42D1ABBED006E8176 /* project-widgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "project-widgetExtension.entitlements"; sourceTree = "<group>"; };
+		B6C850D62D1ABC79006E8176 /* ModelAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAlias.swift; sourceTree = "<group>"; };
 		B6F069092D003594003FBCF3 /* raku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = raku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F0690C2D003594003FBCF3 /* rakuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rakuApp.swift; sourceTree = "<group>"; };
 		B6F0690E2D003594003FBCF3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -85,7 +117,30 @@
 		B6F0692C2D003596003FBCF3 /* rakuUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rakuUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B6C850D02D1AB8D1006E8176 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = B6C850C12D1AB8D0006E8176 /* project-widgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B6C850C52D1AB8D0006E8176 /* project-widget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B6C850D02D1AB8D1006E8176 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "project-widget"; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		B6C850BF2D1AB8D0006E8176 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6C850C42D1AB8D0006E8176 /* SwiftUI.framework in Frameworks */,
+				B6C850C32D1AB8D0006E8176 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B6F069062D003594003FBCF3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -113,10 +168,11 @@
 		B65B16E02D003BED0083440D /* models */ = {
 			isa = PBXGroup;
 			children = (
+				B65B17112D0C53710083440D /* _Color.swift */,
+				B6C850862D16C148006E8176 /* RakuDate.swift */,
+				B6C850D62D1ABC79006E8176 /* ModelAlias.swift */,
 				B65B16E62D003F690083440D /* schemas */,
 				B65B16E52D003F610083440D /* migrations */,
-				B65B16E12D003C3E0083440D /* Commit.swift */,
-				B65B16E32D003E280083440D /* Project.swift */,
 				B65B16F52D0552F20083440D /* PreviewContainer.swift */,
 			);
 			path = models;
@@ -144,7 +200,7 @@
 				B65B16EC2D018E8A0083440D /* ProjectsView.swift */,
 				B65B16EE2D018EAF0083440D /* TodosView.swift */,
 				B65B16F02D02E6540083440D /* ProjectView.swift */,
-				B65B17072D09A85A0083440D /* tester.swift */,
+				B65B17072D09A85A0083440D /* Tester.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -195,18 +251,28 @@
 		B65B17102D0C53380083440D /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				B6C850862D16C148006E8176 /* RakuDateUtil.swift */,
-				B65B17112D0C53710083440D /* ColorUtils.swift */,
 			);
 			path = utils;
+			sourceTree = "<group>";
+		};
+		B6C8508E2D1AB2A6006E8176 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B6C8508F2D1AB2A6006E8176 /* WidgetKit.framework */,
+				B6C850912D1AB2A6006E8176 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B6F069002D003594003FBCF3 = {
 			isa = PBXGroup;
 			children = (
+				B6C850D42D1ABBED006E8176 /* project-widgetExtension.entitlements */,
 				B6F0690B2D003594003FBCF3 /* raku */,
 				B6F0691F2D003596003FBCF3 /* rakuTests */,
 				B6F069292D003596003FBCF3 /* rakuUITests */,
+				B6C850C52D1AB8D0006E8176 /* project-widget */,
+				B6C8508E2D1AB2A6006E8176 /* Frameworks */,
 				B6F0690A2D003594003FBCF3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -217,6 +283,7 @@
 				B6F069092D003594003FBCF3 /* raku.app */,
 				B6F0691C2D003596003FBCF3 /* rakuTests.xctest */,
 				B6F069262D003596003FBCF3 /* rakuUITests.xctest */,
+				B6C850C22D1AB8D0006E8176 /* project-widgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -269,6 +336,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B6C850C12D1AB8D0006E8176 /* project-widgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6C850D12D1AB8D1006E8176 /* Build configuration list for PBXNativeTarget "project-widgetExtension" */;
+			buildPhases = (
+				B6C850BE2D1AB8D0006E8176 /* Sources */,
+				B6C850BF2D1AB8D0006E8176 /* Frameworks */,
+				B6C850C02D1AB8D0006E8176 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B6C850C52D1AB8D0006E8176 /* project-widget */,
+			);
+			name = "project-widgetExtension";
+			packageProductDependencies = (
+			);
+			productName = "project-widgetExtension";
+			productReference = B6C850C22D1AB8D0006E8176 /* project-widgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		B6F069082D003594003FBCF3 /* raku */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6F069302D003596003FBCF3 /* Build configuration list for PBXNativeTarget "raku" */;
@@ -276,10 +365,12 @@
 				B6F069052D003594003FBCF3 /* Sources */,
 				B6F069062D003594003FBCF3 /* Frameworks */,
 				B6F069072D003594003FBCF3 /* Resources */,
+				B6C850A82D1AB2A8006E8176 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B6C850CE2D1AB8D1006E8176 /* PBXTargetDependency */,
 			);
 			name = raku;
 			productName = raku;
@@ -329,9 +420,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1540;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
+					B6C850C12D1AB8D0006E8176 = {
+						CreatedOnToolsVersion = 16.2;
+					};
 					B6F069082D003594003FBCF3 = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -361,11 +455,19 @@
 				B6F069082D003594003FBCF3 /* raku */,
 				B6F0691B2D003596003FBCF3 /* rakuTests */,
 				B6F069252D003596003FBCF3 /* rakuUITests */,
+				B6C850C12D1AB8D0006E8176 /* project-widgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B6C850C02D1AB8D0006E8176 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B6F069072D003594003FBCF3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -392,25 +494,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B6C850BE2D1AB8D0006E8176 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6C850DB2D1ABD43006E8176 /* RakuDate.swift in Sources */,
+				B6C850D92D1ABCFB006E8176 /* ModelAlias.swift in Sources */,
+				B6C850D52D1ABC1E006E8176 /* GraphSchemaV1.swift in Sources */,
+				B6C850DA2D1ABD14006E8176 /* ColorConstants.swift in Sources */,
+				B6C850DC2D1ABD6D006E8176 /* _Color.swift in Sources */,
+				B6C850D82D1ABC9F006E8176 /* PreviewContainer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B6F069052D003594003FBCF3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B65B17022D0828040083440D /* RakuAPIManager.swift in Sources */,
 				B65B16ED2D018E8A0083440D /* ProjectsView.swift in Sources */,
-				B65B16E22D003C3E0083440D /* Commit.swift in Sources */,
 				B65B17062D0847030083440D /* DaySquare.swift in Sources */,
-				B6C850872D16C153006E8176 /* RakuDateUtil.swift in Sources */,
+				B6C850872D16C153006E8176 /* RakuDate.swift in Sources */,
 				B65B16EF2D018EAF0083440D /* TodosView.swift in Sources */,
+				B6C850D72D1ABC81006E8176 /* ModelAlias.swift in Sources */,
 				B65B17142D1414390083440D /* CommitEditorView.swift in Sources */,
 				B65B16F82D055F770083440D /* DateExtension.swift in Sources */,
 				B65B170A2D0C4B420083440D /* CreateProjectSheetView.swift in Sources */,
 				B6F0690F2D003594003FBCF3 /* ContentView.swift in Sources */,
 				B6C850852D169853006E8176 /* ContributionGridViewExtension.swift in Sources */,
-				B65B17122D0C53710083440D /* ColorUtils.swift in Sources */,
-				B65B17082D09A85A0083440D /* tester.swift in Sources */,
+				B65B17122D0C53710083440D /* _Color.swift in Sources */,
+				B65B17082D09A85A0083440D /* Tester.swift in Sources */,
 				B65B16E82D003F850083440D /* GraphSchemaV1.swift in Sources */,
-				B65B16E42D003E280083440D /* Project.swift in Sources */,
 				B65B16FC2D056B5E0083440D /* ContributionGridView.swift in Sources */,
 				B65B16F42D02EACA0083440D /* ColorConstants.swift in Sources */,
 				B65B16F12D02E6540083440D /* ProjectView.swift in Sources */,
@@ -440,6 +554,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B6C850CE2D1AB8D1006E8176 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B6C850C12D1AB8D0006E8176 /* project-widgetExtension */;
+			targetProxy = B6C850CD2D1AB8D1006E8176 /* PBXContainerItemProxy */;
+		};
 		B6F0691E2D003596003FBCF3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B6F069082D003594003FBCF3 /* raku */;
@@ -453,6 +572,67 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		B6C850D22D1AB8D1006E8176 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "project-widgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4FF97FVLA5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "project-widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "project-widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.anish.raku.project-widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B6C850D32D1AB8D1006E8176 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "project-widgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4FF97FVLA5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "project-widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "project-widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.anish.raku.project-widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		B6F0692E2D003596003FBCF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -656,8 +836,8 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 4FF97FVLA5;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.anish.rakuTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -679,8 +859,8 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 4FF97FVLA5;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.anish.rakuTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -701,8 +881,8 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 4FF97FVLA5;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.anish.rakuUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -723,8 +903,8 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 4FF97FVLA5;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.anish.rakuUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -740,6 +920,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B6C850D12D1AB8D1006E8176 /* Build configuration list for PBXNativeTarget "project-widgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6C850D22D1AB8D1006E8176 /* Debug */,
+				B6C850D32D1AB8D1006E8176 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B6F069042D003594003FBCF3 /* Build configuration list for PBXProject "raku" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
