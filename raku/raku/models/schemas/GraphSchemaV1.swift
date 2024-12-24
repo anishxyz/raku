@@ -54,7 +54,6 @@ enum GraphSchemaV1: VersionedSchema {
         var created_at: Date
         var archived_at: Date?
         var type: ProjectType
-        var commits_override: [RakuDate: Int] // used for .github
         
         var _color: _Color
         
@@ -73,7 +72,6 @@ enum GraphSchemaV1: VersionedSchema {
             self.created_at = created_at
             self.archived_at = nil
             self.commits = []
-            self.commits_override = [:]
             self._color = extractColorComponents(from: color)
         }
     }

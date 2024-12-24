@@ -20,6 +20,10 @@ struct CreateProjectSheetView: View {
     
     let feedbackGenerator = UINotificationFeedbackGenerator()
     let generator = UIImpactFeedbackGenerator(style: .medium)
+    
+    private var logic: ProjectLogic {
+        ProjectLogic(modelContext: modelContext)
+    }
 
     var body: some View {
         VStack(spacing: 20) {
@@ -156,15 +160,12 @@ struct CreateProjectSheetView: View {
 
     private func saveProject() {
         if let project = editingProject {
-            // Update existing project
-            project.name = projectName
-            project._color = extractColorComponents(from: selectedColor)
+            // update existing
+            self.logic.updateProject(project: project, name: projectName, color: selectedColor)
         } else {
-            // Create a new project
-            let new_project = Project(name: projectName, type: selectedType, color: selectedColor)
-            modelContext.insert(new_project)
+            // create new
+            self.logic.createProject(name: projectName, type: selectedType, color: selectedColor)
         }
-        try? modelContext.save()
     }
 }
 

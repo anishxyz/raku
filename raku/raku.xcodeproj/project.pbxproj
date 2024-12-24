@@ -34,6 +34,9 @@
 		B6C850DA2D1ABD14006E8176 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16F32D02EACA0083440D /* ColorConstants.swift */; };
 		B6C850DB2D1ABD43006E8176 /* RakuDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850862D16C148006E8176 /* RakuDate.swift */; };
 		B6C850DC2D1ABD6D006E8176 /* _Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17112D0C53710083440D /* _Color.swift */; };
+		B6C850DE2D1AC59E006E8176 /* ProjectLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850DD2D1AC591006E8176 /* ProjectLogic.swift */; };
+		B6C850E02D1AC5AA006E8176 /* CommitLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850DF2D1AC5A6006E8176 /* CommitLogic.swift */; };
+		B6C850E22D1AC6FF006E8176 /* ModelContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850E12D1AC6FA006E8176 /* ModelContext.swift */; };
 		B6F0690D2D003594003FBCF3 /* rakuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0690C2D003594003FBCF3 /* rakuApp.swift */; };
 		B6F0690F2D003594003FBCF3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F0690E2D003594003FBCF3 /* ContentView.swift */; };
 		B6F069132D003595003FBCF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F069122D003595003FBCF3 /* Assets.xcassets */; };
@@ -104,6 +107,9 @@
 		B6C850C22D1AB8D0006E8176 /* project-widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "project-widgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6C850D42D1ABBED006E8176 /* project-widgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "project-widgetExtension.entitlements"; sourceTree = "<group>"; };
 		B6C850D62D1ABC79006E8176 /* ModelAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAlias.swift; sourceTree = "<group>"; };
+		B6C850DD2D1AC591006E8176 /* ProjectLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectLogic.swift; sourceTree = "<group>"; };
+		B6C850DF2D1AC5A6006E8176 /* CommitLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitLogic.swift; sourceTree = "<group>"; };
+		B6C850E12D1AC6FA006E8176 /* ModelContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContext.swift; sourceTree = "<group>"; };
 		B6F069092D003594003FBCF3 /* raku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = raku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F0690C2D003594003FBCF3 /* rakuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rakuApp.swift; sourceTree = "<group>"; };
 		B6F0690E2D003594003FBCF3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -216,6 +222,7 @@
 		B65B16F92D055FA00083440D /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B6C850E12D1AC6FA006E8176 /* ModelContext.swift */,
 				B6C850842D169845006E8176 /* ContributionGridViewExtension.swift */,
 				B65B16F72D055F770083440D /* DateExtension.swift */,
 			);
@@ -244,6 +251,8 @@
 		B65B170B2D0C51DC0083440D /* logic */ = {
 			isa = PBXGroup;
 			children = (
+				B6C850DF2D1AC5A6006E8176 /* CommitLogic.swift */,
+				B6C850DD2D1AC591006E8176 /* ProjectLogic.swift */,
 			);
 			path = logic;
 			sourceTree = "<group>";
@@ -516,15 +525,18 @@
 				B65B17062D0847030083440D /* DaySquare.swift in Sources */,
 				B6C850872D16C153006E8176 /* RakuDate.swift in Sources */,
 				B65B16EF2D018EAF0083440D /* TodosView.swift in Sources */,
+				B6C850E22D1AC6FF006E8176 /* ModelContext.swift in Sources */,
 				B6C850D72D1ABC81006E8176 /* ModelAlias.swift in Sources */,
 				B65B17142D1414390083440D /* CommitEditorView.swift in Sources */,
 				B65B16F82D055F770083440D /* DateExtension.swift in Sources */,
 				B65B170A2D0C4B420083440D /* CreateProjectSheetView.swift in Sources */,
 				B6F0690F2D003594003FBCF3 /* ContentView.swift in Sources */,
+				B6C850DE2D1AC59E006E8176 /* ProjectLogic.swift in Sources */,
 				B6C850852D169853006E8176 /* ContributionGridViewExtension.swift in Sources */,
 				B65B17122D0C53710083440D /* _Color.swift in Sources */,
 				B65B17082D09A85A0083440D /* Tester.swift in Sources */,
 				B65B16E82D003F850083440D /* GraphSchemaV1.swift in Sources */,
+				B6C850E02D1AC5AA006E8176 /* CommitLogic.swift in Sources */,
 				B65B16FC2D056B5E0083440D /* ContributionGridView.swift in Sources */,
 				B65B16F42D02EACA0083440D /* ColorConstants.swift in Sources */,
 				B65B16F12D02E6540083440D /* ProjectView.swift in Sources */,
