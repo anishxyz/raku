@@ -16,7 +16,11 @@ struct ContributionGridView: View {
     
     @Environment(\.modelContext) var modelContext
     
-    @State var needsRefresh = false
+    @State var forceRefresh = false
+    
+    private var projectLogic: ProjectLogic {
+        ProjectLogic(modelContext: modelContext)
+    }
 
     var body: some View {
         GeometryReader { proxy in
@@ -74,10 +78,11 @@ struct ContributionGridView: View {
             }
             .onAppear {
                 if project.type == .github {
-                    fetchAndMergeContributions(for: project, startDate: gridStartDate, endDate: gridEndDate)
+                    projectLogic.fetchAndMergeGithubContributions(for: project, startDate: gridStartDate, endDate: gridEndDate)
+                    forceRefresh.toggle()
                 }
             }
-            .onChange(of: needsRefresh) {
+            .onChange(of: forceRefresh) {
                 // Just reading needsRefresh triggers a re-render.
             }
         }

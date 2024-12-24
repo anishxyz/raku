@@ -9,23 +9,26 @@ import WidgetKit
 import SwiftUI
 
 struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+    func placeholder(in context: Context) -> ProjectEntry {
+        let newProject = Project(name: "Placeholder", type: .binary, color: .blue)
+        return ProjectEntry(date: Date(), project: newProject)
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
+    func getSnapshot(in context: Context, completion: @escaping (ProjectEntry) -> ()) {
+        let newProject = Project(name: "Placeholder", type: .binary, color: .blue)
+        let entry = ProjectEntry(date: Date(), project: newProject)
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
+        var entries: [ProjectEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
+            let newProject = Project(name: "Placeholder", type: .binary, color: .blue)
+            let entry = ProjectEntry(date: entryDate, project: newProject)
             entries.append(entry)
         }
 
@@ -38,9 +41,9 @@ struct Provider: TimelineProvider {
 //    }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct ProjectEntry: TimelineEntry {
     let date: Date
-    let emoji: String
+    let project: Project
 }
 
 struct project_widgetEntryView : View {
@@ -51,8 +54,8 @@ struct project_widgetEntryView : View {
             Text("Time:")
             Text(entry.date, style: .time)
 
-            Text("Emoji:")
-            Text(entry.emoji)
+            Text("Name:")
+            Text(entry.project.name)
         }
     }
 }
@@ -79,6 +82,7 @@ struct project_widget: Widget {
 #Preview(as: .systemSmall) {
     project_widget()
 } timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
+    ProjectEntry(date: .now, project: Project(name: "Example", type: .binary, color: .blue))
+    ProjectEntry(date: Calendar.current.date(byAdding: .hour, value: 1, to: .now)!, project: Project(name: "Upcoming", type: .binary, color: .green))
 }
+
