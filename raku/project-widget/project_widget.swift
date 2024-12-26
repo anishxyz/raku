@@ -7,6 +7,7 @@
 
 import WidgetKit
 import SwiftUI
+import SwiftData
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> ProjectEntry {
@@ -47,16 +48,27 @@ struct ProjectEntry: TimelineEntry {
 }
 
 struct project_widgetEntryView : View {
-    var entry: Provider.Entry
+    @Query private var projects: [Project]
+    var entry: Provider.Entry? = nil
 
     var body: some View {
         VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Name:")
-            Text(entry.project.created_at.description)
+            if let firstProject = projects.first {
+                VStack {
+                    HStack {
+                        Text(firstProject.name)
+                            .font(.headline)
+                        Spacer()
+                    }
+                    ContributionGridView(project: firstProject, daySize: 12, spacing: 4)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+            } else {
+                Text("No projects available")
+            }
+            
         }
+        .padding(.vertical, 24)
     }
 }
 
@@ -68,10 +80,13 @@ struct project_widget: Widget {
             if #available(iOS 17.0, *) {
                 project_widgetEntryView(entry: entry)
                     .containerBackground(.fill.tertiary, for: .widget)
+                    .modelContainer(for: [Project.self])
             } else {
                 project_widgetEntryView(entry: entry)
                     .padding()
                     .background()
+                    .modelContainer(for: [Project.self])
+
             }
         }
         .configurationDisplayName("My Widget")
@@ -85,4 +100,3 @@ struct project_widget: Widget {
     ProjectEntry(date: .now, project: Project(name: "Example", type: .binary, color: .blue))
     ProjectEntry(date: Calendar.current.date(byAdding: .hour, value: 1, to: .now)!, project: Project(name: "Upcoming", type: .binary, color: .green))
 }
-

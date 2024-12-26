@@ -11,8 +11,8 @@ import SwiftUI
 struct ContributionGridView: View {
     @Bindable var project: Project
 
-    private let daySize: CGFloat = 16  // will approx to this value
-    private let spacing: CGFloat = 4
+    var daySize: CGFloat = 16  // will approx to this value
+    var spacing: CGFloat = 4
     
     @Environment(\.modelContext) var modelContext
     
@@ -21,12 +21,23 @@ struct ContributionGridView: View {
     private var projectLogic: ProjectLogic {
         ProjectLogic(modelContext: modelContext)
     }
+    
+    @State private var computedDaySize: CGFloat = 16
 
     var body: some View {
         GeometryReader { proxy in
             // column math
             let availableWidth = proxy.size.width
-            let (columnsCount, daySize) = computeColumns(totalWidth: availableWidth, desiredColumnWidth: daySize, spacing: spacing)
+            let (columnsCount, newDaySize) = computeColumns(totalWidth: availableWidth, desiredColumnWidth: daySize, spacing: spacing)
+            
+            // TODO: find a better way of doing this
+            Color.clear
+               .onAppear {
+                   computedDaySize = newDaySize
+               }
+               .onChange(of: proxy.size.width) {
+                   computedDaySize = newDaySize
+               }
             
             // date layout
             let today = Date().startOfDay
@@ -53,27 +64,17 @@ struct ContributionGridView: View {
             let dsContext = DaySquareContext(average: average, max: maxCount, min: minCount)
             
             // View
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: spacing) {
-                    ForEach(0..<columnsCount, id: \.self) { colIndex in
-                        VStack(spacing: spacing) {
-                            ForEach(0..<7, id: \.self) { rowIndex in
-                                let dayIndex = colIndex * 7 + rowIndex
-                                if dayIndex < allDays.count {
-                                    let day = allDays[dayIndex]
-                                    let rd = RakuDate(date: day)
-
-                                    DaySquare(
-                                        day: day,
-                                        project: project,
-                                        commit: newCache[rd] ?? nil,
-                                        viewContext: dsContext
-                                    )
-                                    .frame(width: daySize, height: daySize)
-                                }
-                            }
-                        }
-                    }
+            HStack(spacing: spacing) {
+                ForEach(0..<columnsCount, id: \.self) { colIndex in
+                    DayColumnView(
+                        colIndex: colIndex,
+                        spacing: spacing,
+                        computedDaySize: computedDaySize,
+                        allDays: allDays,
+                        commitCache: newCache,
+                        dsContext: dsContext,
+                        project: project
+                    )
                 }
             }
             .onAppear {
@@ -86,7 +87,8 @@ struct ContributionGridView: View {
                 // Just reading needsRefresh triggers a re-render.
             }
         }
-        .frame(height: (daySize * 7) + (spacing * 6))
+        .frame(height: (computedDaySize * 7) + (spacing * 6))
+        .background(.clear)
     }
     
     private func getContributionCounts(
@@ -131,3 +133,34 @@ struct ContributionGridView: View {
     }
 }
 
+struct DayColumnView: View {
+    let colIndex: Int
+    let spacing: CGFloat
+    let computedDaySize: CGFloat
+    let allDays: [Date]
+    let commitCache: [RakuDate: Commit]
+    let dsContext: DaySquareContext
+    let project: Project
+    
+    var body: some View {
+        VStack(spacing: spacing) {
+            // Always 7 rows per column
+            ForEach(0..<7, id: \.self) { (rowIndex: Int) in
+                let dayIndex = colIndex * 7 + rowIndex
+                if dayIndex < allDays.count {
+                    let day = allDays[dayIndex]
+                    let rd = RakuDate(date: day)
+                    
+                    DaySquare(
+                        day: day,
+                        radius: spacing,  // or pass in another “cornerRadius” param if needed
+                        project: project,
+                        commit: commitCache[rd],
+                        viewContext: dsContext
+                    )
+                    .frame(width: computedDaySize, height: computedDaySize)
+                }
+            }
+        }
+    }
+}

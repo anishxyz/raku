@@ -16,7 +16,7 @@ struct DaySquareContext {
 
 struct DaySquare: View {
     let day: Date
-    
+    var radius: Double = 4
     @Bindable var project: Project
     var commit: Commit?
 
@@ -26,7 +26,7 @@ struct DaySquare: View {
     
     var body: some View {
         let contributionCount: Int = commit?.intensity ?? 0
-        
+            
         let intensity: Double
         if let dsContext = viewContext {
             intensity = normalize(count: contributionCount, average: dsContext.average, max: dsContext.max, min: dsContext.min)
@@ -68,7 +68,7 @@ struct DaySquare: View {
                 }
             }
         }
-        .cornerRadius(4)
+        .cornerRadius(radius)
     }
     
     private func normalize(count: Int, average: Double, max: Int, min: Int) -> Double {
@@ -92,9 +92,4 @@ struct DaySquare: View {
             return 0.5 * ((countDouble - average) / (average - minDouble)) + 0.5
         }
     }
-}
-
-#Preview { @MainActor in
-    ProjectsView()
-        .modelContainer(previewContainer)
 }
