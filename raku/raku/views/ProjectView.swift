@@ -20,6 +20,9 @@ struct ProjectView: View {
                     if project.type == .github {
                         Text("@\(project.name)")
                             .font(.headline)
+//                        Image("symbol.github")
+//                            .foregroundColor(.black)
+//                            .font(.system(size: 20))
                     } else {
                         Text(project.name)
                             .font(.headline)

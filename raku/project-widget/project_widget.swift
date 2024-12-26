@@ -26,7 +26,7 @@ struct Provider: TimelineProvider {
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+            let entryDate = Calendar.current.date(byAdding: .second, value: hourOffset, to: currentDate)!
             let newProject = Project(name: "Placeholder", type: .binary, color: .blue)
             let entry = ProjectEntry(date: entryDate, project: newProject)
             entries.append(entry)
@@ -55,7 +55,7 @@ struct project_widgetEntryView : View {
             Text(entry.date, style: .time)
 
             Text("Name:")
-            Text(entry.project.name)
+            Text(entry.project.created_at.description)
         }
     }
 }
