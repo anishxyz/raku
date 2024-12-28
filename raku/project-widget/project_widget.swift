@@ -47,23 +47,13 @@ struct project_widgetEntryView : View {
 
     var body: some View {
         VStack {
-            if let firstProject = projects.first(where: { $0.type == .binary }) {
-                VStack {
-                    HStack {
-                        Text(firstProject.name)
-                            .font(.headline)
-                        Text(entry.date.formatted(.dateTime.hour().minute().second()))
-                        Spacer()
-                    }
-                    ContributionGridView(project: firstProject, daySize: 10, spacing: 3)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
+            if let firstProject = projects.first(where: { $0.type == .github }) {
+                ContributionGridView(project: firstProject, daySize: 14.5, spacing: 4)
+                    .clipCornerRadius(8, corners: [.allCorners])
             } else {
                 Text("No projects available")
             }
-            
         }
-        .padding(.vertical, 24)
     }
 }
 
