@@ -153,7 +153,7 @@ struct DayColumnView: View {
                     
                     DaySquare(
                         day: day,
-                        radius: spacing,  // or pass in another “cornerRadius” param if needed
+                        radius: spacing,
                         project: project,
                         commit: commitCache[rd],
                         viewContext: dsContext

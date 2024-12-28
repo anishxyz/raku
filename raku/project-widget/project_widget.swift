@@ -10,31 +10,26 @@ import SwiftUI
 import SwiftData
 
 struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> ProjectEntry {
-        let newProject = Project(name: "Placeholder", type: .binary, color: .blue)
-        return ProjectEntry(date: Date(), project: newProject)
+    func placeholder(in context: Context) -> ProjectWidgetEntry {
+        return ProjectWidgetEntry(date: Date())
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (ProjectEntry) -> ()) {
-        let newProject = Project(name: "Placeholder", type: .binary, color: .blue)
-        let entry = ProjectEntry(date: Date(), project: newProject)
+    func getSnapshot(in context: Context, completion: @escaping (ProjectWidgetEntry) -> ()) {
+        let entry = ProjectWidgetEntry(date: Date())
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [ProjectEntry] = []
-
+        var entries: [ProjectWidgetEntry] = []
+        print("getTimeline called at \(Date())")
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .second, value: hourOffset, to: currentDate)!
-            let newProject = Project(name: "Placeholder", type: .binary, color: .blue)
-            let entry = ProjectEntry(date: entryDate, project: newProject)
+            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+            let entry = ProjectWidgetEntry(date: entryDate)
             entries.append(entry)
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+        completion(Timeline(entries: entries, policy: .atEnd))
     }
 
 //    func relevances() async -> WidgetRelevances<Void> {
@@ -42,25 +37,25 @@ struct Provider: TimelineProvider {
 //    }
 }
 
-struct ProjectEntry: TimelineEntry {
+struct ProjectWidgetEntry: TimelineEntry {
     let date: Date
-    let project: Project
 }
 
 struct project_widgetEntryView : View {
     @Query private var projects: [Project]
-    var entry: Provider.Entry? = nil
+    var entry: Provider.Entry
 
     var body: some View {
         VStack {
-            if let firstProject = projects.first {
+            if let firstProject = projects.first(where: { $0.type == .binary }) {
                 VStack {
                     HStack {
                         Text(firstProject.name)
                             .font(.headline)
+                        Text(entry.date.formatted(.dateTime.hour().minute().second()))
                         Spacer()
                     }
-                    ContributionGridView(project: firstProject, daySize: 12, spacing: 4)
+                    ContributionGridView(project: firstProject, daySize: 10, spacing: 3)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             } else {
@@ -89,14 +84,8 @@ struct project_widget: Widget {
 
             }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Project Widget")
+        .description("Contribution graph for a project")
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
-}
-
-#Preview(as: .systemSmall) {
-    project_widget()
-} timeline: {
-    ProjectEntry(date: .now, project: Project(name: "Example", type: .binary, color: .blue))
-    ProjectEntry(date: Calendar.current.date(byAdding: .hour, value: 1, to: .now)!, project: Project(name: "Upcoming", type: .binary, color: .green))
 }

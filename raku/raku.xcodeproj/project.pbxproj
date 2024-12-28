@@ -28,6 +28,8 @@
 		B66E93F02D1D2A0D00969DA4 /* DaySquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17052D0847030083440D /* DaySquare.swift */; };
 		B66E93F12D1D2A1800969DA4 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B16F72D055F770083440D /* DateExtension.swift */; };
 		B66E93F22D1D2A3500969DA4 /* RakuAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B17012D0828040083440D /* RakuAPIManager.swift */; };
+		B66E93F42D1D3FD200969DA4 /* ClipCornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66E93F32D1D3FC600969DA4 /* ClipCornerRadius.swift */; };
+		B66E93F52D1D3FD200969DA4 /* ClipCornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66E93F32D1D3FC600969DA4 /* ClipCornerRadius.swift */; };
 		B6C850852D169853006E8176 /* ContributionGridViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850842D169845006E8176 /* ContributionGridViewExtension.swift */; };
 		B6C850872D16C153006E8176 /* RakuDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850862D16C148006E8176 /* RakuDate.swift */; };
 		B6C850C32D1AB8D0006E8176 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6C8508F2D1AB2A6006E8176 /* WidgetKit.framework */; };
@@ -106,6 +108,7 @@
 		B65B17092D0C4B420083440D /* CreateProjectSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectSheetView.swift; sourceTree = "<group>"; };
 		B65B17112D0C53710083440D /* _Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Color.swift; sourceTree = "<group>"; };
 		B65B17132D1414390083440D /* CommitEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitEditorView.swift; sourceTree = "<group>"; };
+		B66E93F32D1D3FC600969DA4 /* ClipCornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipCornerRadius.swift; sourceTree = "<group>"; };
 		B6C850842D169845006E8176 /* ContributionGridViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionGridViewExtension.swift; sourceTree = "<group>"; };
 		B6C850862D16C148006E8176 /* RakuDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RakuDate.swift; sourceTree = "<group>"; };
 		B6C8508F2D1AB2A6006E8176 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -238,6 +241,7 @@
 		B65B16FA2D056B520083440D /* components */ = {
 			isa = PBXGroup;
 			children = (
+				B66E93F32D1D3FC600969DA4 /* ClipCornerRadius.swift */,
 				B65B16FB2D056B5E0083440D /* ContributionGridView.swift */,
 				B65B17052D0847030083440D /* DaySquare.swift */,
 				B65B17092D0C4B420083440D /* CreateProjectSheetView.swift */,
@@ -514,6 +518,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B66E93ED2D1D29E300969DA4 /* ProjectLogic.swift in Sources */,
+				B66E93F42D1D3FD200969DA4 /* ClipCornerRadius.swift in Sources */,
 				B6C850DB2D1ABD43006E8176 /* RakuDate.swift in Sources */,
 				B66E93EE2D1D29F000969DA4 /* ContributionGridView.swift in Sources */,
 				B66E93F22D1D2A3500969DA4 /* RakuAPIManager.swift in Sources */,
@@ -537,6 +542,7 @@
 				B65B17062D0847030083440D /* DaySquare.swift in Sources */,
 				B6C850872D16C153006E8176 /* RakuDate.swift in Sources */,
 				B65B16EF2D018EAF0083440D /* TodosView.swift in Sources */,
+				B66E93F52D1D3FD200969DA4 /* ClipCornerRadius.swift in Sources */,
 				B6C850E22D1AC6FF006E8176 /* ModelContext.swift in Sources */,
 				B6C850D72D1ABC81006E8176 /* ModelAlias.swift in Sources */,
 				B65B17142D1414390083440D /* CommitEditorView.swift in Sources */,

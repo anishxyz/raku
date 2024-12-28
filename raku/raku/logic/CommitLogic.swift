@@ -32,7 +32,7 @@ struct CommitLogic {
             commit.intensity = commit.intensity == 0 ? 1 : 0
         }
         
-        try? self.modelContext.save()
+        self.modelContext.save_and_update()
     }
     
     func loadTodayCommit(project: Project) -> Commit {

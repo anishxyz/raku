@@ -32,6 +32,7 @@ struct ProjectView: View {
                 }
                                 
                 ContributionGridView(project: project)
+                    .clipCornerRadius(8, corners: [.bottomLeft, .bottomRight])
 
             }
             .frame(maxWidth: .infinity, alignment: .leading)
