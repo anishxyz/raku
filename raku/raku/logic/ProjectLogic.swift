@@ -93,6 +93,7 @@ struct ProjectLogic {
                     
                     try? self.modelContext.save()
                 }
+                
             case .failure(let error):
                 print("Failed to fetch contributions: \(error)")
             }

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftData
 import SwiftUI
+import WidgetKit
 
 
 struct CommitEditorView: View {
@@ -24,6 +25,7 @@ struct CommitEditorView: View {
             if project.type == .binary {
                 SquareButton(isActive: todayCommit?.intensity == 1, activeColor: project.color) {
                     commitLogic.toggleCommit(commit: todayCommit)
+                    WidgetCenter.shared.reloadAllTimelines()
                 }
             }
         }

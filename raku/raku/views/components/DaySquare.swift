@@ -34,8 +34,8 @@ struct DaySquare: View {
             intensity = Double(contributionCount)
         }
         
-        let isBeforeProjectCreated = day < project.created_at && project.type != .github
-        let isInFuture = day > Date.now.startOfDay
+        let isBeforeProjectCreated = day.startOfDay < project.created_at.startOfDay && project.type != .github
+        let isInFuture = day.startOfDay > Date.now.startOfDay
         
         return ZStack {
             if isBeforeProjectCreated {

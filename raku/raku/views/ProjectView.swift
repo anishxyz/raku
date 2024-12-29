@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 struct ProjectView: View {
     @Bindable var project: Project

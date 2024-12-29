@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 import SwiftData
 
-
 struct ProjectsView: View {
     @Query(
         filter: #Predicate { $0.archived_at == nil },

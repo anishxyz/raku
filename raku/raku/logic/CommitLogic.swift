@@ -7,7 +7,7 @@
 
 import SwiftData
 import Foundation
-
+import WidgetKit
 
 struct CommitLogic {
     
@@ -32,7 +32,7 @@ struct CommitLogic {
             commit.intensity = commit.intensity == 0 ? 1 : 0
         }
         
-        self.modelContext.save_and_update()
+        try? self.modelContext.save()
     }
     
     func loadTodayCommit(project: Project) -> Commit {

@@ -10,10 +10,22 @@ import SwiftData
 
 @main
 struct rakuApp: App {
+    var sharedModelContainer: ModelContainer = {
+        let groupID = "group.xyz.anish.raku"
+        let schema = Schema([Project.self])
+        let modelConfiguration = ModelConfiguration(schema: schema, groupContainer: .identifier(groupID))
+        
+        do {
+            return try ModelContainer(for: Project.self, configurations: modelConfiguration)
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Project.self, isAutosaveEnabled: false)
+        .modelContainer(sharedModelContainer)
     }
 }

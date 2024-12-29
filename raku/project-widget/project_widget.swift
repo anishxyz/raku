@@ -10,26 +10,74 @@ import SwiftUI
 import SwiftData
 
 struct Provider: TimelineProvider {
+    
+    var sharedModelContainer: ModelContainer = {
+        let groupID = "group.xyz.anish.raku"
+        let schema = Schema([Project.self])
+        let modelConfiguration = ModelConfiguration(schema: schema, groupContainer: .identifier(groupID))
+        
+        do {
+            return try ModelContainer(for: Project.self, configurations: modelConfiguration)
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
+    
+    var modelContext: ModelContext {
+        ModelContext(sharedModelContainer)
+    }
+
     func placeholder(in context: Context) -> ProjectWidgetEntry {
-        return ProjectWidgetEntry(date: Date())
+        return ProjectWidgetEntry(date: Date(), project: nil)
+    }
+    
+    func createEntry(completion: @escaping (ProjectWidgetEntry) -> Void) {
+        let descriptor = FetchDescriptor<Project>(
+            predicate: #Predicate<Project> { project in
+                project.archived_at == nil
+            },
+            sortBy: [SortDescriptor(\.created_at, order: .reverse)]
+        )
+                
+        do {
+            let projects = try modelContext.fetch(descriptor)
+            let entry = ProjectWidgetEntry(
+                date: Date(),
+                project: projects.first
+            )
+            completion(entry)
+        } catch {
+            print("Error fetching project: \(error)")
+            completion(ProjectWidgetEntry(date: Date()))
+        }
     }
 
     func getSnapshot(in context: Context, completion: @escaping (ProjectWidgetEntry) -> ()) {
-        let entry = ProjectWidgetEntry(date: Date())
-        completion(entry)
+        createEntry { entry in
+            completion(entry)
+        }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [ProjectWidgetEntry] = []
-        print("getTimeline called at \(Date())")
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = ProjectWidgetEntry(date: entryDate)
-            entries.append(entry)
+        createEntry { entry in
+            // Create multiple entries for the next few hours
+            var entries: [ProjectWidgetEntry] = []
+            let currentDate = Date()
+            
+            // Add entries for the next 24 hours, updating every hour
+            for hourOffset in 0...1 {
+                guard let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate) else {
+                    continue
+                }
+                
+                let entry = ProjectWidgetEntry(date: entryDate, project: entry.project)
+                entries.append(entry)
+            }
+            
+            // Set timeline to refresh after the last entry
+            let timeline = Timeline(entries: entries, policy: .atEnd)
+            completion(timeline)
         }
-        completion(Timeline(entries: entries, policy: .atEnd))
     }
 
 //    func relevances() async -> WidgetRelevances<Void> {
@@ -38,16 +86,16 @@ struct Provider: TimelineProvider {
 }
 
 struct ProjectWidgetEntry: TimelineEntry {
-    let date: Date
+    var date: Date
+    var project: Project?
 }
 
 struct project_widgetEntryView : View {
-    @Query private var projects: [Project]
     var entry: Provider.Entry
 
     var body: some View {
         VStack {
-            if let firstProject = projects.first(where: { $0.type == .github }) {
+            if let firstProject = entry.project {
                 ContributionGridView(project: firstProject, daySize: 14.5, spacing: 4)
                     .clipCornerRadius(8, corners: [.allCorners])
             } else {
@@ -65,13 +113,10 @@ struct project_widget: Widget {
             if #available(iOS 17.0, *) {
                 project_widgetEntryView(entry: entry)
                     .containerBackground(.fill.tertiary, for: .widget)
-                    .modelContainer(for: [Project.self])
             } else {
                 project_widgetEntryView(entry: entry)
                     .padding()
                     .background()
-                    .modelContainer(for: [Project.self])
-
             }
         }
         .configurationDisplayName("Project Widget")
