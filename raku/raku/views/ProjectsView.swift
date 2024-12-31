@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 struct ProjectsView: View {
     @Query(
@@ -37,6 +38,7 @@ struct ProjectsView: View {
                     .swipeActions(edge: .trailing) {
                         Button(role: .cancel) {
                             projectLogic.archiveProject(project: project)
+                            WidgetCenter.shared.reloadAllTimelines()
                         } label: {
                             Label("Archive", systemImage: "archivebox")
                         }
@@ -45,6 +47,7 @@ struct ProjectsView: View {
                         if project.type == .binary {
                             Button {
                                 commitLogic.toggleTodayCommit(project: project)
+                                WidgetCenter.shared.reloadAllTimelines()
                             } label: {
                                 Label("Done", systemImage: "checkmark.square")
                             }

@@ -17,7 +17,7 @@ enum GraphSchemaV1: VersionedSchema {
     }
     
     @Model
-    final class Commit {
+    public final class Commit {
         #Unique<Commit>([\.id], [\.project, \.dateKey])
         
         @Attribute(.unique) var id: UUID = UUID()
@@ -47,8 +47,8 @@ enum GraphSchemaV1: VersionedSchema {
     }
 
     @Model
-    final class Project {
-        @Attribute(.unique) var id: UUID = UUID()
+    public final class Project {
+        @Attribute(.unique) public var id: UUID = UUID()
         var name: String
         @Relationship(deleteRule: .cascade, inverse: \Commit.project) var commits: [Commit]
         var created_at: Date

@@ -18,16 +18,8 @@ struct ProjectView: View {
             // Project info
             VStack(alignment: .leading) {
                 HStack {
-                    if project.type == .github {
-                        Text("@\(project.name)")
-                            .font(.headline)
-//                        Image("symbol.github")
-//                            .foregroundColor(.black)
-//                            .font(.system(size: 20))
-                    } else {
-                        Text(project.name)
-                            .font(.headline)
-                    }
+                    Text(project.name)
+                        .font(.headline)
                     Spacer()
                     CommitEditorView(project: project)
                 }
