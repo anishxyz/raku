@@ -57,15 +57,17 @@ struct ProjectProvider: AppIntentTimelineProvider {
     
     func timeline(for configuration: ProjectWidgetIntent, in context: Context) async -> Timeline<ProjectWidgetEntry> {
         let projects = projects(for: configuration)
+        let nextUpdateDate = Date().addingTimeInterval(3600)
+
         guard let project = projects.first else {
             return Timeline(
                 entries: [.empty],
-                policy: .never
+                policy: .after(nextUpdateDate)
             )
         }
         
         let entry = ProjectWidgetEntry(date: .now, project: project)
-        return Timeline(entries: [entry], policy: .never)
+        return Timeline(entries: [entry], policy: .after(nextUpdateDate))
     }
 
     func recommendations() -> [AppIntentRecommendation<ProjectWidgetIntent>] {
