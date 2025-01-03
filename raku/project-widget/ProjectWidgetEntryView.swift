@@ -34,7 +34,6 @@ struct ProjectWidgetEntryView : View {
                         }
                         Spacer()
                     }
-                    .padding(4)
                 }
             } else {
                 Text("Project not available")
