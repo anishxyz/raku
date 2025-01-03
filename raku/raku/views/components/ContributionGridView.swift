@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import WidgetKit
 
 struct ContributionGridView: View {
     @Bindable var project: Project
@@ -81,6 +82,7 @@ struct ContributionGridView: View {
                 if project.type == .github {
                     projectLogic.fetchAndMergeGithubContributions(for: project, startDate: gridStartDate, endDate: gridEndDate)
                     forceRefresh.toggle()
+                    WidgetCenter.shared.reloadAllTimelines()
                 }
             }
             .onChange(of: forceRefresh) {
