@@ -23,8 +23,13 @@ struct ProjectWidgetEntryView : View {
                                 .font(.headline)
                                 .padding(.vertical, 4)
                                 .padding(.horizontal, 8)
-                                .background(.ultraThinMaterial)
-                                .cornerRadius(8)
+                                .background {
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                            .fill(.ultraThinMaterial)
+                                            .opacity(0.8)
+                                    }
+                                }
                             Spacer()
                         }
                         Spacer()
