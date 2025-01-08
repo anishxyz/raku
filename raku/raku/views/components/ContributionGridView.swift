@@ -103,36 +103,36 @@ struct ContributionGridView: View {
         }
     }
     
-    private func ensureCommitsExist(for days: [Date], existingCommits: [Commit]) -> ([RakuDate: Commit], [RakuDate: Commit]) {
-
-        let existingDict = Dictionary(
-            uniqueKeysWithValues: existingCommits.map { ($0.date, $0) }
-        )
-        var newDict: [RakuDate: Commit] = [:]
-        
-        // github handled at load time
-        if project.type != .github {
-            for day in days {
-                let rd = RakuDate(date: day)
-                if existingDict[rd] == nil {
-                    let commit = Commit(date: rd, intensity: 0, project: project)
-                    commit.project = project
-                    modelContext.insert(commit)
-                    newDict[rd] = commit
-                }
-            }
-            
-            if !newDict.isEmpty {
-                do {
-                    try modelContext.save()
-                } catch {
-                    print("Failed to save commits: \(error)")
-                }
-            }
-        }
-        
-        return (existingDict, newDict)
-    }
+//    private func ensureCommitsExist(for days: [Date], existingCommits: [Commit]) -> ([RakuDate: Commit], [RakuDate: Commit]) {
+//
+//        let existingDict = Dictionary(
+//            uniqueKeysWithValues: existingCommits.map { ($0.date, $0) }
+//        )
+//        var newDict: [RakuDate: Commit] = [:]
+//        
+//        // github handled at load time
+//        if project.type != .github {
+//            for day in days {
+//                let rd = RakuDate(date: day)
+//                if existingDict[rd] == nil {
+//                    let commit = Commit(date: rd, intensity: 0, project: project)
+//                    commit.project = project
+//                    modelContext.insert(commit)
+//                    newDict[rd] = commit
+//                }
+//            }
+//            
+//            if !newDict.isEmpty {
+//                do {
+//                    try modelContext.save()
+//                } catch {
+//                    print("Failed to save commits: \(error)")
+//                }
+//            }
+//        }
+//        
+//        return (existingDict, newDict)
+//    }
 }
 
 struct DayColumnView: View {

@@ -45,7 +45,27 @@ struct ProjectLogic {
         try? self.modelContext.save()
     }
     
-    func fetchAndMergeGithubContributions(
+    func refresh(for project: Project, startDate: Date, endDate: Date) {
+        switch project.type {
+        case .github:
+            // refresh github contributions
+            self._fetchAndMergeGithubContributions(
+                for: project,
+                startDate: startDate,
+                endDate: endDate
+            )
+            
+        case .binary:
+            // Binary projects don't need refreshing
+            return
+            
+        case _:
+           // Handle any other cases
+           return
+        }
+    }
+    
+    private func _fetchAndMergeGithubContributions(
         for project: Project,
         startDate: Date? = nil,
         endDate: Date? = nil
