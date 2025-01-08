@@ -45,23 +45,50 @@ struct ProjectLogic {
         try? self.modelContext.save()
     }
     
-    func refresh(for project: Project, startDate: Date, endDate: Date) {
+    func refresh(for project: Project, startDate: Date? = nil, endDate: Date? = nil) {
+        let trueStartDate = startDate ?? Calendar.current.date(byAdding: .month, value: -6, to: Date())!
+        let trueEndDate = endDate ?? Calendar.current.date(byAdding: .day, value: 7, to: Date())!
+        
         switch project.type {
         case .github:
-            // refresh github contributions
             self._fetchAndMergeGithubContributions(
                 for: project,
-                startDate: startDate,
-                endDate: endDate
+                startDate: trueStartDate,
+                endDate: trueEndDate
             )
             
         case .binary:
-            // Binary projects don't need refreshing
-            return
+            self._createBlankCommits(for: project, startDate: trueStartDate, endDate: trueEndDate)
             
         case _:
            // Handle any other cases
            return
+        }
+    }
+    
+    private func _createBlankCommits(for project: Project, startDate: Date, endDate: Date) {
+        let days = generateRakuDates(from: startDate, to: endDate)
+        
+        let existingDict: [RakuDate: Commit]  = Dictionary(
+            uniqueKeysWithValues: project.commits.map { ($0.date, $0) }
+        )
+        var newDict: [RakuDate: Commit] = [:]
+        
+        for day in days {
+            if existingDict[day] == nil {
+                let commit = Commit(date: day, intensity: 0, project: project)
+                commit.project = project
+                modelContext.insert(commit)
+                newDict[day] = commit
+            }
+        }
+        
+        if !newDict.isEmpty {
+            do {
+                try modelContext.save()
+            } catch {
+                print("Failed to save commits: \(error)")
+            }
         }
     }
     

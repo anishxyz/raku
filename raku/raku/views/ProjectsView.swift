@@ -79,6 +79,15 @@ struct ProjectsView: View {
                         .presentationDetents([.medium])
                }
             }
+            .refreshable {
+                // Refresh all projects
+                for project in projects {
+                    projectLogic.refresh(for: project)
+                }
+                
+                // Update widget
+                WidgetCenter.shared.reloadAllTimelines()
+            }
         }
     }
 }

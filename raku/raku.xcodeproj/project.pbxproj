@@ -31,6 +31,8 @@
 		B66E93F42D1D3FD200969DA4 /* ClipCornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66E93F32D1D3FC600969DA4 /* ClipCornerRadius.swift */; };
 		B66E93F52D1D3FD200969DA4 /* ClipCornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66E93F32D1D3FC600969DA4 /* ClipCornerRadius.swift */; };
 		B66E93F72D20DF0600969DA4 /* CommitLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850DF2D1AC5A6006E8176 /* CommitLogic.swift */; };
+		B69D0E042D2E68350053AE15 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69D0E032D2E682E0053AE15 /* DateUtils.swift */; };
+		B69D0E052D2E68350053AE15 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69D0E032D2E682E0053AE15 /* DateUtils.swift */; };
 		B6C850852D169853006E8176 /* ContributionGridViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850842D169845006E8176 /* ContributionGridViewExtension.swift */; };
 		B6C850872D16C153006E8176 /* RakuDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850862D16C148006E8176 /* RakuDate.swift */; };
 		B6C850C32D1AB8D0006E8176 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6C8508F2D1AB2A6006E8176 /* WidgetKit.framework */; };
@@ -109,6 +111,7 @@
 		B65B17112D0C53710083440D /* _Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Color.swift; sourceTree = "<group>"; };
 		B65B17132D1414390083440D /* CommitEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitEditorView.swift; sourceTree = "<group>"; };
 		B66E93F32D1D3FC600969DA4 /* ClipCornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipCornerRadius.swift; sourceTree = "<group>"; };
+		B69D0E032D2E682E0053AE15 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		B6C850842D169845006E8176 /* ContributionGridViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionGridViewExtension.swift; sourceTree = "<group>"; };
 		B6C850862D16C148006E8176 /* RakuDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RakuDate.swift; sourceTree = "<group>"; };
 		B6C8508F2D1AB2A6006E8176 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -268,6 +271,7 @@
 		B65B17102D0C53380083440D /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				B69D0E032D2E682E0053AE15 /* DateUtils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -517,6 +521,7 @@
 			files = (
 				B66E93ED2D1D29E300969DA4 /* ProjectLogic.swift in Sources */,
 				B66E93F42D1D3FD200969DA4 /* ClipCornerRadius.swift in Sources */,
+				B69D0E052D2E68350053AE15 /* DateUtils.swift in Sources */,
 				B6C850DB2D1ABD43006E8176 /* RakuDate.swift in Sources */,
 				B66E93EE2D1D29F000969DA4 /* ContributionGridView.swift in Sources */,
 				B66E93F22D1D2A3500969DA4 /* RakuAPIManager.swift in Sources */,
@@ -539,6 +544,7 @@
 				B65B17022D0828040083440D /* RakuAPIManager.swift in Sources */,
 				B65B16ED2D018E8A0083440D /* ProjectsView.swift in Sources */,
 				B65B17062D0847030083440D /* DaySquare.swift in Sources */,
+				B69D0E042D2E68350053AE15 /* DateUtils.swift in Sources */,
 				B6C850872D16C153006E8176 /* RakuDate.swift in Sources */,
 				B65B16EF2D018EAF0083440D /* TodosView.swift in Sources */,
 				B66E93F52D1D3FD200969DA4 /* ClipCornerRadius.swift in Sources */,

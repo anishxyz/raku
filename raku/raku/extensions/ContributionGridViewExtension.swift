@@ -77,15 +77,15 @@ extension ContributionGridView {
         let upcomingSaturday = calendar.date(byAdding: .day, value: daysUntilSaturday, to: today) ?? today
         return upcomingSaturday
     }
-
-    func generateDates(from start: Date, to end: Date) -> [Date] {
-        var dates: [Date] = []
-        var current = start
-        while current <= end {
-            dates.append(current)
-            current = Calendar.current.date(byAdding: .day, value: 1, to: current) ?? current
+    
+    func getContributionCounts(
+        for days: [Date],
+        with commitCache: [RakuDate: Commit]
+    ) -> [Int] {
+        return days.map { date in
+            let rd = RakuDate(date: date)
+            return commitCache[rd]?.intensity ?? 0
         }
-        return dates
     }
 
 }
