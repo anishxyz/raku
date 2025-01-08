@@ -21,11 +21,15 @@ struct CommitEditorView: View {
     }
     
     var body: some View {
-        Group {
+        VStack {
             if project.type == .binary {
                 SquareButton(isActive: todayCommit?.intensity == 1, activeColor: project.color) {
                     commitLogic.toggleCommit(commit: todayCommit)
                     WidgetCenter.shared.reloadAllTimelines()
+                }
+            } else {
+                SquareButton(isActive: (todayCommit?.intensity ?? 0) > 0, activeColor: project.color) {
+                    // not toggle-able
                 }
             }
         }

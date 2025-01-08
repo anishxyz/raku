@@ -52,6 +52,13 @@ struct ProjectsView: View {
                                 Label("Done", systemImage: "checkmark.square")
                             }
                             .tint(.green)
+                        } else {
+                            Button {
+                                projectLogic.refresh(for: project)
+                            } label: {
+                                Label("Refresh", systemImage: "arrow.clockwise")
+                            }
+                            .tint(.blue)
                         }
                     }
             }

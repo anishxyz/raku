@@ -36,6 +36,14 @@ struct RakuDate: Equatable, Hashable, Codable, Comparable {
         }
         return lhs.day < rhs.day
     }
+    
+    func toDate(timeZone: TimeZone = .current) -> Date? {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = timeZone
+
+        let components = DateComponents(year: year, month: month, day: day)
+        return calendar.date(from: components)
+    }
 }
 
 //extension RakuDate {

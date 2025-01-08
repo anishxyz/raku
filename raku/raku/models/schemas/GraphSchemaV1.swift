@@ -42,8 +42,8 @@ enum GraphSchemaV1: VersionedSchema {
     }
     
     enum ProjectType: String, Codable {
-        case github
-        case binary
+        case github = "github"
+        case binary = "binary"
     }
 
     @Model

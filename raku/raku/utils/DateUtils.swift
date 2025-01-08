@@ -20,7 +20,7 @@ func generateDates(from start: Date, to end: Date) -> [Date] {
 
 func generateRakuDates(from start: Date, to end: Date) -> [RakuDate] {
     var dates: [RakuDate] = []
-    var calendar = Calendar(identifier: .gregorian)
+    let calendar = Calendar(identifier: .gregorian)
     
     // Create date iterator starting from the start date
     var currentDate = start

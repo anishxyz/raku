@@ -21,7 +21,9 @@ struct ProjectView: View {
                     Text(project.name)
                         .font(.headline)
                     Spacer()
-                    CommitEditorView(project: project)
+                    if project.type == .binary {
+                        CommitEditorView(project: project)
+                    }
                 }
                                 
                 ContributionGridView(project: project)
