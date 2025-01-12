@@ -14,7 +14,11 @@ import WidgetKit
 struct CommitEditorView: View {
     let project: Project
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.scenePhase) private var scenePhase
+
     @State private var todayCommit: Commit?
+
+    let feedbackGenerator = UINotificationFeedbackGenerator()
     
     private var commitLogic: CommitLogic {
         CommitLogic(modelContext: modelContext)
@@ -25,16 +29,28 @@ struct CommitEditorView: View {
             if project.type == .binary {
                 SquareButton(isActive: todayCommit?.intensity == 1, activeColor: project.color) {
                     commitLogic.toggleCommit(commit: todayCommit)
+                    feedbackGenerator.notificationOccurred(.success)
                     WidgetCenter.shared.reloadAllTimelines()
                 }
             } else {
                 SquareButton(isActive: (todayCommit?.intensity ?? 0) > 0, activeColor: project.color) {
                     // not toggle-able
+                    feedbackGenerator.notificationOccurred(.error)
                 }
             }
         }
         .onAppear {
             todayCommit = commitLogic.loadTodayCommit(project: project)
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged)) { _ in
+            // Force-refresh the commit for the new day
+            todayCommit = commitLogic.loadTodayCommit(project: project)
+        }
+        .onChange(of: scenePhase) { oldPhase, newPhase in
+            if newPhase == .active {
+                // We just became active (i.e., moved from background/suspended to foreground)
+                todayCommit = commitLogic.loadTodayCommit(project: project)
+            }
         }
     }
 }

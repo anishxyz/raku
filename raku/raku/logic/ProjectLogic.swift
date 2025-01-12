@@ -61,8 +61,8 @@ struct ProjectLogic {
             self._createBlankCommits(for: project, startDate: trueStartDate, endDate: trueEndDate)
             
         case _:
-           // Handle any other cases
-           return
+            // Handle any other cases
+            return
         }
     }
     

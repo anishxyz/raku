@@ -10,7 +10,7 @@ import SwiftUI
 import WidgetKit
 
 struct ContributionGridView: View {
-    @Bindable var project: Project
+    var project: Project
 
     var daySize: CGFloat = 16  // will approx to this value
     var spacing: CGFloat = 4
@@ -78,7 +78,7 @@ struct ContributionGridView: View {
                     )
                 }
             }
-            .onAppear {
+            .task {
                 projectLogic.refresh(for: project, startDate: gridStartDate, endDate: gridEndDate)
                 forceRefresh.toggle()
                 WidgetCenter.shared.reloadAllTimelines()

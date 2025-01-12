@@ -18,6 +18,7 @@ struct ProjectsView: View {
     ) private var projects: [Project]
     @Environment(\.modelContext) private var modelContext
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.scenePhase) private var scenePhase
 
     @State private var isCreateSheetOpen = false
     @State private var editingProject: Project? = nil
@@ -86,16 +87,22 @@ struct ProjectsView: View {
                         .presentationDetents([.medium])
                }
             }
-            .refreshable {
-                // Refresh all projects
-                for project in projects {
-                    projectLogic.refresh(for: project)
+            .onChange(of: scenePhase) { oldPhase, newPhase in
+                if newPhase == .active {
+                    refreshAllProjects()
                 }
-                
-                // Update widget
-                WidgetCenter.shared.reloadAllTimelines()
+            }
+            .refreshable {
+                refreshAllProjects()
             }
         }
+    }
+    
+    private func refreshAllProjects() {
+        for project in projects {
+            projectLogic.refresh(for: project)
+        }
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }
 
