@@ -159,12 +159,14 @@ struct CreateProjectSheetView: View {
     }
 
     private func saveProject() {
-        if let project = editingProject {
+        if let edited_project = editingProject {
             // update existing
-            _ = self.logic.updateProject(project: project, name: projectName, color: selectedColor)
+            let project = self.logic.updateProject(project: edited_project, name: projectName, color: selectedColor)
+            self.logic.refresh(for: project)
         } else {
             // create new
-            _ = self.logic.createProject(name: projectName, type: selectedType, color: selectedColor)
+            let project = self.logic.createProject(name: projectName, type: selectedType, color: selectedColor)
+            self.logic.refresh(for: project)
         }
     }
 }
