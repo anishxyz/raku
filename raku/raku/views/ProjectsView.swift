@@ -22,8 +22,6 @@ struct ProjectsView: View {
 
     @State private var isCreateSheetOpen = false
     @State private var editingProject: Project? = nil
-    @State private var selectedProject: Project? = nil
-    @State private var isProjectSheetOpen = false
     
     private var projectLogic: ProjectLogic {
         ProjectLogic(modelContext: modelContext)
@@ -38,10 +36,6 @@ struct ProjectsView: View {
             List(projects, id: \.id) { project in
                 ProjectView(project: project)
                     .listRowSeparator(.hidden)
-                    .onTapGesture {
-                        selectedProject = project
-                        isProjectSheetOpen = true
-                    }
                     .swipeActions(edge: .trailing) {
                         Button(role: .cancel) {
                             projectLogic.archiveProject(project: project)
@@ -92,17 +86,6 @@ struct ProjectsView: View {
                     CreateProjectSheetView(isSheetPresented: $isCreateSheetOpen, editingProject: $editingProject)
                         .presentationDetents([.medium])
                }
-            }
-            .sheet(isPresented: $isProjectSheetOpen) {
-                ZStack {
-                    if colorScheme == .dark {
-                        Color.black
-                            .ignoresSafeArea()
-                    }
-                    ProjectSheetView(selectedProject: $selectedProject, isSheetPresented: $isProjectSheetOpen)
-                        .presentationDetents([.large])
-
-                }
             }
             .onChange(of: scenePhase) { oldPhase, newPhase in
                 if newPhase == .active {
