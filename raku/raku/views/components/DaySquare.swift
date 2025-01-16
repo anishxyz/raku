@@ -15,12 +15,13 @@ struct DaySquareContext {
 }
 
 struct DaySquare: View {
-    let day: Date
+    let day: RakuDate
     var radius: Double = 4
     @Bindable var project: Project
     var commit: Commit?
 
     let viewContext: DaySquareContext?
+    var futureShown: Bool = false
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -34,8 +35,8 @@ struct DaySquare: View {
             intensity = Double(contributionCount)
         }
         
-        let isBeforeProjectCreated = day.startOfDay < project.created_at.startOfDay && project.type != .github
-        let isInFuture = day.startOfDay > Date.now.startOfDay
+        let isBeforeProjectCreated = day < RakuDate(date: project.created_at) && project.type != .github
+        let isInFuture = day > RakuDate(date: Date.now)
         
         return ZStack {
             if isBeforeProjectCreated {
@@ -48,8 +49,18 @@ struct DaySquare: View {
                             .foregroundColor(.gray)
                     )
             } else if isInFuture {
-                Rectangle()
-                    .fill(Color.clear)
+                if futureShown {
+                    Rectangle()
+                        .fill(Color.clear)
+                        .overlay(
+                            Rectangle()
+                                .stroke(style: StrokeStyle(lineWidth: 1, dash: [4, 2]))
+                                .foregroundColor(.gray)
+                        )
+                } else {
+                    Rectangle()
+                        .fill(Color.clear)
+                }
             } else {
                 // Contribution square
                 if contributionCount > 0 {

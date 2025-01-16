@@ -33,6 +33,14 @@
 		B66E93F72D20DF0600969DA4 /* CommitLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850DF2D1AC5A6006E8176 /* CommitLogic.swift */; };
 		B69D0E042D2E68350053AE15 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69D0E032D2E682E0053AE15 /* DateUtils.swift */; };
 		B69D0E052D2E68350053AE15 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69D0E032D2E682E0053AE15 /* DateUtils.swift */; };
+		B6ADD1592D39179000FF0BBA /* BulletCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD1582D39178B00FF0BBA /* BulletCalendarView.swift */; };
+		B6ADD15A2D39179000FF0BBA /* BulletCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD1582D39178B00FF0BBA /* BulletCalendarView.swift */; };
+		B6ADD15C2D3922B300FF0BBA /* GenericUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD15B2D3922AA00FF0BBA /* GenericUtils.swift */; };
+		B6ADD15D2D3922B300FF0BBA /* GenericUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD15B2D3922AA00FF0BBA /* GenericUtils.swift */; };
+		B6ADD15F2D39275C00FF0BBA /* BulletCalendarViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD15E2D39275800FF0BBA /* BulletCalendarViewExtension.swift */; };
+		B6ADD1602D39275C00FF0BBA /* BulletCalendarViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD15E2D39275800FF0BBA /* BulletCalendarViewExtension.swift */; };
+		B6ADD1622D3929C000FF0BBA /* ProjectSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD1612D3929BC00FF0BBA /* ProjectSheetView.swift */; };
+		B6ADD1632D3929C000FF0BBA /* ProjectSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD1612D3929BC00FF0BBA /* ProjectSheetView.swift */; };
 		B6C850852D169853006E8176 /* ContributionGridViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850842D169845006E8176 /* ContributionGridViewExtension.swift */; };
 		B6C850872D16C153006E8176 /* RakuDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850862D16C148006E8176 /* RakuDate.swift */; };
 		B6C850C32D1AB8D0006E8176 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6C8508F2D1AB2A6006E8176 /* WidgetKit.framework */; };
@@ -112,6 +120,10 @@
 		B65B17132D1414390083440D /* CommitEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitEditorView.swift; sourceTree = "<group>"; };
 		B66E93F32D1D3FC600969DA4 /* ClipCornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipCornerRadius.swift; sourceTree = "<group>"; };
 		B69D0E032D2E682E0053AE15 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		B6ADD1582D39178B00FF0BBA /* BulletCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletCalendarView.swift; sourceTree = "<group>"; };
+		B6ADD15B2D3922AA00FF0BBA /* GenericUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericUtils.swift; sourceTree = "<group>"; };
+		B6ADD15E2D39275800FF0BBA /* BulletCalendarViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletCalendarViewExtension.swift; sourceTree = "<group>"; };
+		B6ADD1612D3929BC00FF0BBA /* ProjectSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSheetView.swift; sourceTree = "<group>"; };
 		B6C850842D169845006E8176 /* ContributionGridViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionGridViewExtension.swift; sourceTree = "<group>"; };
 		B6C850862D16C148006E8176 /* RakuDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RakuDate.swift; sourceTree = "<group>"; };
 		B6C8508F2D1AB2A6006E8176 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -233,6 +245,7 @@
 		B65B16F92D055FA00083440D /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B6ADD15E2D39275800FF0BBA /* BulletCalendarViewExtension.swift */,
 				B6C850842D169845006E8176 /* ContributionGridViewExtension.swift */,
 				B65B16F72D055F770083440D /* DateExtension.swift */,
 			);
@@ -242,6 +255,8 @@
 		B65B16FA2D056B520083440D /* components */ = {
 			isa = PBXGroup;
 			children = (
+				B6ADD1612D3929BC00FF0BBA /* ProjectSheetView.swift */,
+				B6ADD1582D39178B00FF0BBA /* BulletCalendarView.swift */,
 				B66E93F32D1D3FC600969DA4 /* ClipCornerRadius.swift */,
 				B65B16FB2D056B5E0083440D /* ContributionGridView.swift */,
 				B65B17052D0847030083440D /* DaySquare.swift */,
@@ -271,6 +286,7 @@
 		B65B17102D0C53380083440D /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				B6ADD15B2D3922AA00FF0BBA /* GenericUtils.swift */,
 				B69D0E032D2E682E0053AE15 /* DateUtils.swift */,
 			);
 			path = utils;
@@ -521,17 +537,21 @@
 			files = (
 				B66E93ED2D1D29E300969DA4 /* ProjectLogic.swift in Sources */,
 				B66E93F42D1D3FD200969DA4 /* ClipCornerRadius.swift in Sources */,
+				B6ADD1632D3929C000FF0BBA /* ProjectSheetView.swift in Sources */,
 				B69D0E052D2E68350053AE15 /* DateUtils.swift in Sources */,
 				B6C850DB2D1ABD43006E8176 /* RakuDate.swift in Sources */,
 				B66E93EE2D1D29F000969DA4 /* ContributionGridView.swift in Sources */,
 				B66E93F22D1D2A3500969DA4 /* RakuAPIManager.swift in Sources */,
+				B6ADD15D2D3922B300FF0BBA /* GenericUtils.swift in Sources */,
 				B66E93F12D1D2A1800969DA4 /* DateExtension.swift in Sources */,
+				B6ADD15F2D39275C00FF0BBA /* BulletCalendarViewExtension.swift in Sources */,
 				B66E93F02D1D2A0D00969DA4 /* DaySquare.swift in Sources */,
 				B66E93F72D20DF0600969DA4 /* CommitLogic.swift in Sources */,
 				B6C850D92D1ABCFB006E8176 /* ModelAlias.swift in Sources */,
 				B6C850D52D1ABC1E006E8176 /* GraphSchemaV1.swift in Sources */,
 				B66E93EF2D1D29FE00969DA4 /* ContributionGridViewExtension.swift in Sources */,
 				B6C850DA2D1ABD14006E8176 /* ColorConstants.swift in Sources */,
+				B6ADD15A2D39179000FF0BBA /* BulletCalendarView.swift in Sources */,
 				B6C850DC2D1ABD6D006E8176 /* _Color.swift in Sources */,
 				B6C850D82D1ABC9F006E8176 /* PreviewContainer.swift in Sources */,
 			);
@@ -550,12 +570,16 @@
 				B66E93F52D1D3FD200969DA4 /* ClipCornerRadius.swift in Sources */,
 				B6C850D72D1ABC81006E8176 /* ModelAlias.swift in Sources */,
 				B65B17142D1414390083440D /* CommitEditorView.swift in Sources */,
+				B6ADD1592D39179000FF0BBA /* BulletCalendarView.swift in Sources */,
+				B6ADD1622D3929C000FF0BBA /* ProjectSheetView.swift in Sources */,
+				B6ADD1602D39275C00FF0BBA /* BulletCalendarViewExtension.swift in Sources */,
 				B65B16F82D055F770083440D /* DateExtension.swift in Sources */,
 				B65B170A2D0C4B420083440D /* CreateProjectSheetView.swift in Sources */,
 				B6F0690F2D003594003FBCF3 /* ContentView.swift in Sources */,
 				B6C850DE2D1AC59E006E8176 /* ProjectLogic.swift in Sources */,
 				B6C850852D169853006E8176 /* ContributionGridViewExtension.swift in Sources */,
 				B65B17122D0C53710083440D /* _Color.swift in Sources */,
+				B6ADD15C2D3922B300FF0BBA /* GenericUtils.swift in Sources */,
 				B65B17082D09A85A0083440D /* Tester.swift in Sources */,
 				B65B16E82D003F850083440D /* GraphSchemaV1.swift in Sources */,
 				B6C850E02D1AC5AA006E8176 /* CommitLogic.swift in Sources */,

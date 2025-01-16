@@ -111,7 +111,7 @@ struct DayColumnView: View {
                     let rd = RakuDate(date: day)
                     
                     DaySquare(
-                        day: day,
+                        day: rd,
                         radius: spacing,
                         project: project,
                         commit: commitCache[rd],

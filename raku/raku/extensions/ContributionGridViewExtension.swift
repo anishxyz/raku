@@ -63,12 +63,6 @@ extension ContributionGridView {
         return (count: bestCount, columnWidth: bestColumnWidth)
     }
     
-    
-    func calculateAverage(from counts: [Int]) -> Double {
-        guard !counts.isEmpty else { return 0.0 }
-        return Double(counts.reduce(0, +)) / Double(counts.count)
-    }
-    
     func calculateStartDate(for today: Date) -> Date {
         let calendar = Calendar.current
         // Find the next Saturday
@@ -77,15 +71,4 @@ extension ContributionGridView {
         let upcomingSaturday = calendar.date(byAdding: .day, value: daysUntilSaturday, to: today) ?? today
         return upcomingSaturday
     }
-    
-    func getContributionCounts(
-        for days: [Date],
-        with commitCache: [RakuDate: Commit]
-    ) -> [Int] {
-        return days.map { date in
-            let rd = RakuDate(date: date)
-            return commitCache[rd]?.intensity ?? 0
-        }
-    }
-
 }
