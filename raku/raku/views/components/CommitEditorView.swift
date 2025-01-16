@@ -24,6 +24,8 @@ struct CommitEditorView: View {
         CommitLogic(modelContext: modelContext)
     }
     
+    @State private var shakeOffset: CGFloat = 0
+    
     var body: some View {
         VStack {
             if project.type == .binary {
@@ -34,9 +36,15 @@ struct CommitEditorView: View {
                 }
             } else {
                 SquareButton(isActive: (todayCommit?.intensity ?? 0) > 0, activeColor: project.color) {
-                    // not toggle-able
+                    shakeButton()
                     feedbackGenerator.notificationOccurred(.error)
                 }
+                .offset(x: shakeOffset)
+                .animation(
+                    .easeInOut(duration: 0.2)
+                        .repeatCount(3, autoreverses: true),
+                    value: shakeOffset
+                )
             }
         }
         .onAppear {
@@ -51,6 +59,16 @@ struct CommitEditorView: View {
                 // We just became active (i.e., moved from background/suspended to foreground)
                 todayCommit = commitLogic.loadTodayCommit(project: project)
             }
+        }
+    }
+    
+    private func shakeButton() {
+        shakeOffset = -10
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+            shakeOffset = 10
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            shakeOffset = 0
         }
     }
 }
@@ -80,4 +98,9 @@ struct SquareButton: View {
         }
         .buttonStyle(.borderless)
     }
+}
+
+#Preview { @MainActor in
+    ContentView()
+        .modelContainer(previewContainer)
 }

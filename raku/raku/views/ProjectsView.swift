@@ -108,6 +108,6 @@ struct ProjectsView: View {
 
 
 #Preview { @MainActor in
-    ProjectsView()
+    ContentView()
         .modelContainer(previewContainer)
 }
