@@ -14,10 +14,8 @@ struct ProjectDetailView: View {
     
     var body: some View {
         VStack {
-            ScrollView(.vertical) {
-                BulletCalendarView(project: project)
-                    .padding()
-            }
+            BulletCalendarView(project: project)
+                .padding()
         }
     }
 }

@@ -35,6 +35,14 @@ struct ProjectsView: View {
         NavigationView {
             List(projects, id: \.id) { project in
                 ProjectView(project: project)
+                    .overlay {
+                        NavigationLink {
+                            ProjectDetailView(project: project)
+                        } label: {
+                            EmptyView()
+                        }
+                        .opacity(0)
+                    }
                     .listRowSeparator(.hidden)
                     .swipeActions(edge: .trailing) {
                         Button(role: .cancel) {

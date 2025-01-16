@@ -37,19 +37,20 @@ struct BulletCalendarView: View {
             let minCount = contributionCounts.min() ?? 0
             let dsContext = DaySquareContext(average: average, max: maxCount, min: minCount)
             
-            
-            HStack(alignment: .top, spacing: revisedColumnSpacing) {
-                ForEach(0..<12, id: \.self) { monthIndex in
-                    MonthView(
-                        monthIndex: monthIndex,
-                        allDays: allDays,
-                        revisedRowSpacing: revisedRowSpacing,
-                        revisedTileWidth: revisedTileWidth,
-                        revisedTileHeight: revisedTileHeight,
-                        project: project,
-                        commitCache: commitCache,
-                        dsContext: dsContext
-                    )
+            ScrollView(.vertical) {
+                HStack(alignment: .top, spacing: revisedColumnSpacing) {
+                    ForEach(0..<12, id: \.self) { monthIndex in
+                        MonthView(
+                            monthIndex: monthIndex,
+                            allDays: allDays,
+                            revisedRowSpacing: revisedRowSpacing,
+                            revisedTileWidth: revisedTileWidth,
+                            revisedTileHeight: revisedTileHeight,
+                            project: project,
+                            commitCache: commitCache,
+                            dsContext: dsContext
+                        )
+                    }
                 }
             }
         }

@@ -25,15 +25,22 @@ struct CommitEditorView: View {
     }
     
     @State private var shakeOffset: CGFloat = 0
+    @State private var jumpOffset: CGFloat = 0
     
     var body: some View {
         VStack {
             if project.type == .binary {
                 SquareButton(isActive: todayCommit?.intensity == 1, activeColor: project.color) {
+                    jumpButton()
                     commitLogic.toggleCommit(commit: todayCommit)
                     feedbackGenerator.notificationOccurred(.success)
                     WidgetCenter.shared.reloadAllTimelines()
                 }
+                .offset(y: jumpOffset)
+                .animation(
+                    .spring(response: 0.3, dampingFraction: 0.6),
+                    value: jumpOffset
+                )
             } else {
                 SquareButton(isActive: (todayCommit?.intensity ?? 0) > 0, activeColor: project.color) {
                     shakeButton()
@@ -69,6 +76,16 @@ struct CommitEditorView: View {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             shakeOffset = 0
+        }
+    }
+    
+    private func jumpButton() {
+        // Initial jump up
+        jumpOffset = -5
+        
+        // Reset after the animation
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            jumpOffset = 0
         }
     }
 }
