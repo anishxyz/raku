@@ -102,6 +102,6 @@ struct MonthView: View {
 
 
 #Preview {
-    var project = Project(name: "anishxyz", type: .github)
+    let project = Project(name: "anishxyz", type: .github)
     BulletCalendarView(project: project)
 }

@@ -31,8 +31,9 @@ struct CommitEditorView: View {
         VStack {
             if project.type == .binary {
                 SquareButton(isActive: todayCommit?.intensity == 1, activeColor: project.color) {
-                    jumpButton()
-                    commitLogic.toggleCommit(commit: todayCommit)
+                    if commitLogic.toggleCommit(commit: todayCommit) > 0 {
+                        jumpButton()
+                    }
                     feedbackGenerator.notificationOccurred(.success)
                     WidgetCenter.shared.reloadAllTimelines()
                 }
@@ -84,7 +85,7 @@ struct CommitEditorView: View {
         jumpOffset = -5
         
         // Reset after the animation
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             jumpOffset = 0
         }
     }

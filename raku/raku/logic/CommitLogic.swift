@@ -51,11 +51,14 @@ struct CommitLogic {
         return todayCommit!
     }
     
-    func toggleCommit(commit: Commit?) {
+    func toggleCommit(commit: Commit?) -> Int {
         if let commit = commit {
             commit.intensity = commit.intensity == 0 ? 1 : 0
             try? self.modelContext.save()
+            
+            return commit.intensity
         }
+        return 0
     }
 }
 
