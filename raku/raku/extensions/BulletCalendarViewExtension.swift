@@ -26,16 +26,14 @@ extension BulletCalendarView {
         return (adjustedColumnSpacing, revisedTileWidth, adjustedRowSpacing, revisedTileWidth)
     }
     
-    func calculateYearBounds() -> (Date, Date) {
+    func calculateYearBounds(for year: Int? = nil) -> (Date, Date) {
         let calendar = Calendar.current
-        let currentYear = calendar.component(.year, from: Date())
+        let targetYear = year ?? calendar.component(.year, from: Date())
 
-        // Calculate the first and last date of the current year
-        let startOfYear = calendar.date(from: DateComponents(year: currentYear, month: 1, day: 1))!
-        let endOfYear = calendar.date(from: DateComponents(year: currentYear, month: 12, day: 31, hour: 23, minute: 59, second: 59))!
+        // Calculate the first and last date of the target year
+        let startOfYear = calendar.date(from: DateComponents(year: targetYear, month: 1, day: 1))!
+        let endOfYear = calendar.date(from: DateComponents(year: targetYear, month: 12, day: 31, hour: 23, minute: 59, second: 59))!
         
-//        let start = RakuDate(date: startOfYear)
-//        let end = RakuDate(date: endOfYear)
         return (startOfYear, endOfYear)
     }
 }

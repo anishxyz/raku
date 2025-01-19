@@ -13,9 +13,17 @@ struct ProjectDetailView: View {
     var project: Project
     
     var body: some View {
-        VStack {
-            BulletCalendarView(project: project)
-                .padding()
+        let currentYear = Calendar.current.component(.year, from: Date())
+
+        ScrollView {
+            VStack {
+                BulletCalendarView(project: project, year: currentYear)
+                    .padding()
+            }
         }
+        .navigationBarTitle(project.name, displayMode: .inline)
+        .toolbar(.hidden, for: .tabBar)
+
     }
 }
+

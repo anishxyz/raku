@@ -11,6 +11,7 @@ import WidgetKit
 
 struct BulletCalendarView: View {
     var project: Project
+    var year: Int = 2025
 
     var columnSpacing: CGFloat = 8
     var rowSpacing: CGFloat = 2
@@ -18,13 +19,23 @@ struct BulletCalendarView: View {
     var tileWidth: CGFloat = 16
     var tileHeight: CGFloat = 16
     
+    @State private var computedHeight: CGFloat = 1000
+
     var body: some View {
         GeometryReader { proxy in
             let availableWidth = proxy.size.width
 
             let (revisedColumnSpacing, revisedTileWidth, revisedRowSpacing, revisedTileHeight) = calculateLayout(availableWidth: availableWidth, columnSpacing: columnSpacing, tileWidth: tileWidth, rowSpacing: rowSpacing, tileHeight: tileHeight)
             
-            let (startDate, endDate) = calculateYearBounds()
+            Color.clear
+               .onAppear {
+                   computedHeight = (revisedTileHeight * 31) + (revisedRowSpacing * 30) + 72
+               }
+               .onChange(of: proxy.size.width) {
+                   computedHeight = (revisedTileHeight * 31) + (revisedRowSpacing * 30) + 72
+               }
+            
+            let (startDate, endDate) = calculateYearBounds(for: year)
             let allDays: [RakuDate] = generateRakuDates(from: startDate, to: endDate)
             let commitCache: [RakuDate: Commit] = project.commits
                 .filter { $0.date >= RakuDate(date: startDate) && $0.date <= RakuDate(date: endDate) }
@@ -37,23 +48,22 @@ struct BulletCalendarView: View {
             let minCount = contributionCounts.min() ?? 0
             let dsContext = DaySquareContext(average: average, max: maxCount, min: minCount)
             
-            ScrollView(.vertical) {
-                HStack(alignment: .top, spacing: revisedColumnSpacing) {
-                    ForEach(0..<12, id: \.self) { monthIndex in
-                        MonthView(
-                            monthIndex: monthIndex,
-                            allDays: allDays,
-                            revisedRowSpacing: revisedRowSpacing,
-                            revisedTileWidth: revisedTileWidth,
-                            revisedTileHeight: revisedTileHeight,
-                            project: project,
-                            commitCache: commitCache,
-                            dsContext: dsContext
-                        )
-                    }
+            HStack(alignment: .top, spacing: revisedColumnSpacing) {
+                ForEach(0..<12, id: \.self) { monthIndex in
+                    MonthView(
+                        monthIndex: monthIndex,
+                        allDays: allDays,
+                        revisedRowSpacing: revisedRowSpacing,
+                        revisedTileWidth: revisedTileWidth,
+                        revisedTileHeight: revisedTileHeight,
+                        project: project,
+                        commitCache: commitCache,
+                        dsContext: dsContext
+                    )
                 }
             }
         }
+        .frame(height: computedHeight)
     }
 }
 
