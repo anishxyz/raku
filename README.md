@@ -9,8 +9,12 @@ Raku: crafting daily patterns into a mosaic of achievement.
 ```
 [X] Slide to mark complete  
 [X] Widget views  
-[ ] Expanded view - 52x7, monthly etc  
+[X] Expanded view - bullet calendar
+[ ] Expanded view - mosaic
+[ ] Commitment statistics  
 [ ] Edit button  
+[ ] Weekly cadence ?
+[ ] Stack projects on top of each other  
 ```
 
 #### NITS:
