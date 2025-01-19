@@ -23,7 +23,6 @@ struct ProjectDetailView: View {
         }
         .navigationBarTitle(project.name, displayMode: .inline)
         .toolbar(.hidden, for: .tabBar)
-
     }
 }
 

@@ -13,15 +13,19 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
-            ProjectsView()
-                .tabItem {
-                    Label("Projects", systemImage: "rectangle.grid.1x2")
-                }
-
-            TodosView()
-                .tabItem {
-                    Label("Todos", systemImage: "checkmark.square")
-                }
+            NavigationStack {
+                ProjectsView()
+            }
+            .tabItem {
+                Label("Projects", systemImage: "rectangle.grid.1x2")
+            }
+            
+            NavigationStack {
+                TodosView()
+            }
+            .tabItem {
+                Label("Todos", systemImage: "checkmark.square")
+            }
         }
     }
 

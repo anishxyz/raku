@@ -28,24 +28,23 @@ struct TodosView: View {
     }
 
     var body: some View {
-        NavigationView {
-            List(projects, id: \.id) { project in
-                ProjectTodoView(project: project)
-                    .swipeActions(edge: .leading) {
-                        if project.type == .binary {
-                            Button {
-                                commitLogic.toggleTodayCommit(project: project)
-                                WidgetCenter.shared.reloadAllTimelines()
-                            } label: {
-                                Label("Done", systemImage: "checkmark.square")
-                            }
-                            .tint(.green)
+        List(projects, id: \.id) { project in
+            ProjectTodoView(project: project)
+                .swipeActions(edge: .leading) {
+                    if project.type == .binary {
+                        Button {
+                            commitLogic.toggleTodayCommit(project: project)
+                            WidgetCenter.shared.reloadAllTimelines()
+                        } label: {
+                            Label("Done", systemImage: "checkmark.square")
                         }
+                        .tint(.green)
                     }
-            }
-            .listStyle(PlainListStyle())
-            .navigationTitle("TODOS")
+                }
         }
+        .toolbar(.visible, for: .tabBar)
+        .listStyle(PlainListStyle())
+        .navigationTitle("TODOS")
     }
 }
 

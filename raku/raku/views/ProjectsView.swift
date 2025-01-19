@@ -32,77 +32,76 @@ struct ProjectsView: View {
     }
 
     var body: some View {
-        NavigationView {
-            List(projects, id: \.id) { project in
-                ProjectView(project: project)
-                    .overlay {
-                        NavigationLink {
-                            ProjectDetailView(project: project)
-                        } label: {
-                            EmptyView()
-                        }
-                        .opacity(0)
+        List(projects, id: \.id) { project in
+            ProjectView(project: project)
+                .overlay {
+                    NavigationLink {
+                        ProjectDetailView(project: project)
+                    } label: {
+                        EmptyView()
                     }
-                    .listRowSeparator(.hidden)
-                    .swipeActions(edge: .trailing) {
-                        Button(role: .cancel) {
-                            projectLogic.archiveProject(project: project)
+                    .opacity(0)
+                }
+                .toolbar(.visible, for: .tabBar)
+                .listRowSeparator(.hidden)
+                .swipeActions(edge: .trailing) {
+                    Button(role: .cancel) {
+                        projectLogic.archiveProject(project: project)
+                        WidgetCenter.shared.reloadAllTimelines()
+                    } label: {
+                        Label("Archive", systemImage: "archivebox")
+                    }
+                }
+                .swipeActions(edge: .leading) {
+                    if project.type == .binary {
+                        Button {
+                            commitLogic.toggleTodayCommit(project: project)
                             WidgetCenter.shared.reloadAllTimelines()
                         } label: {
-                            Label("Archive", systemImage: "archivebox")
+                            Label("Done", systemImage: "checkmark.square")
                         }
-                    }
-                    .swipeActions(edge: .leading) {
-                        if project.type == .binary {
-                            Button {
-                                commitLogic.toggleTodayCommit(project: project)
-                                WidgetCenter.shared.reloadAllTimelines()
-                            } label: {
-                                Label("Done", systemImage: "checkmark.square")
-                            }
-                            .tint(.green)
-                        } else {
-                            Button {
-                                projectLogic.refresh(for: project)
-                            } label: {
-                                Label("Refresh", systemImage: "arrow.clockwise")
-                            }
-                            .tint(.blue)
+                        .tint(.green)
+                    } else {
+                        Button {
+                            projectLogic.refresh(for: project)
+                        } label: {
+                            Label("Refresh", systemImage: "arrow.clockwise")
                         }
+                        .tint(.blue)
                     }
-            }
-            .listStyle(PlainListStyle())
-            .navigationTitle("Projects")
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        isCreateSheetOpen = true
-                    }) {
-                        Image(systemName: "plus")
-                    }
-                    .clipShape(.circle)
-                    .buttonStyle(.bordered)
-                    .tint(.orange)
                 }
-            }
-            .sheet(isPresented: $isCreateSheetOpen) {
-                ZStack {
-                    if colorScheme == .dark {
-                        Color.black
-                            .ignoresSafeArea()
-                    }
-                    CreateProjectSheetView(isSheetPresented: $isCreateSheetOpen, editingProject: $editingProject)
-                        .presentationDetents([.medium])
-               }
-            }
-            .onChange(of: scenePhase) { oldPhase, newPhase in
-                if newPhase == .active {
-                    refreshAllProjects()
+        }
+        .listStyle(PlainListStyle())
+        .navigationTitle("Projects")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(action: {
+                    isCreateSheetOpen = true
+                }) {
+                    Image(systemName: "plus")
                 }
+                .clipShape(.circle)
+                .buttonStyle(.bordered)
+                .tint(.orange)
             }
-            .refreshable {
+        }
+        .sheet(isPresented: $isCreateSheetOpen) {
+            ZStack {
+                if colorScheme == .dark {
+                    Color.black
+                        .ignoresSafeArea()
+                }
+                CreateProjectSheetView(isSheetPresented: $isCreateSheetOpen, editingProject: $editingProject)
+                    .presentationDetents([.medium])
+           }
+        }
+        .onChange(of: scenePhase) { oldPhase, newPhase in
+            if newPhase == .active {
                 refreshAllProjects()
             }
+        }
+        .refreshable {
+            refreshAllProjects()
         }
     }
     
