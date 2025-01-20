@@ -41,6 +41,8 @@
 		B6ADD1602D39275C00FF0BBA /* BulletCalendarViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD15E2D39275800FF0BBA /* BulletCalendarViewExtension.swift */; };
 		B6ADD1622D3929C000FF0BBA /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD1612D3929BC00FF0BBA /* ProjectDetailView.swift */; };
 		B6ADD1632D3929C000FF0BBA /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD1612D3929BC00FF0BBA /* ProjectDetailView.swift */; };
+		B6ADD1752D3E3F4500FF0BBA /* ProjectStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD1742D3E3F4100FF0BBA /* ProjectStatsView.swift */; };
+		B6ADD1762D3E3F4500FF0BBA /* ProjectStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD1742D3E3F4100FF0BBA /* ProjectStatsView.swift */; };
 		B6C850852D169853006E8176 /* ContributionGridViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850842D169845006E8176 /* ContributionGridViewExtension.swift */; };
 		B6C850872D16C153006E8176 /* RakuDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850862D16C148006E8176 /* RakuDate.swift */; };
 		B6C850C32D1AB8D0006E8176 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6C8508F2D1AB2A6006E8176 /* WidgetKit.framework */; };
@@ -124,6 +126,7 @@
 		B6ADD15B2D3922AA00FF0BBA /* GenericUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericUtils.swift; sourceTree = "<group>"; };
 		B6ADD15E2D39275800FF0BBA /* BulletCalendarViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletCalendarViewExtension.swift; sourceTree = "<group>"; };
 		B6ADD1612D3929BC00FF0BBA /* ProjectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailView.swift; sourceTree = "<group>"; };
+		B6ADD1742D3E3F4100FF0BBA /* ProjectStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStatsView.swift; sourceTree = "<group>"; };
 		B6C850842D169845006E8176 /* ContributionGridViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionGridViewExtension.swift; sourceTree = "<group>"; };
 		B6C850862D16C148006E8176 /* RakuDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RakuDate.swift; sourceTree = "<group>"; };
 		B6C8508F2D1AB2A6006E8176 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -255,6 +258,7 @@
 		B65B16FA2D056B520083440D /* components */ = {
 			isa = PBXGroup;
 			children = (
+				B6ADD1742D3E3F4100FF0BBA /* ProjectStatsView.swift */,
 				B6ADD1612D3929BC00FF0BBA /* ProjectDetailView.swift */,
 				B6ADD1582D39178B00FF0BBA /* BulletCalendarView.swift */,
 				B66E93F32D1D3FC600969DA4 /* ClipCornerRadius.swift */,
@@ -537,6 +541,7 @@
 			files = (
 				B66E93ED2D1D29E300969DA4 /* ProjectLogic.swift in Sources */,
 				B66E93F42D1D3FD200969DA4 /* ClipCornerRadius.swift in Sources */,
+				B6ADD1752D3E3F4500FF0BBA /* ProjectStatsView.swift in Sources */,
 				B6ADD1632D3929C000FF0BBA /* ProjectDetailView.swift in Sources */,
 				B69D0E052D2E68350053AE15 /* DateUtils.swift in Sources */,
 				B6C850DB2D1ABD43006E8176 /* RakuDate.swift in Sources */,
@@ -579,6 +584,7 @@
 				B6C850DE2D1AC59E006E8176 /* ProjectLogic.swift in Sources */,
 				B6C850852D169853006E8176 /* ContributionGridViewExtension.swift in Sources */,
 				B65B17122D0C53710083440D /* _Color.swift in Sources */,
+				B6ADD1762D3E3F4500FF0BBA /* ProjectStatsView.swift in Sources */,
 				B6ADD15C2D3922B300FF0BBA /* GenericUtils.swift in Sources */,
 				B65B17082D09A85A0083440D /* Tester.swift in Sources */,
 				B65B16E82D003F850083440D /* GraphSchemaV1.swift in Sources */,

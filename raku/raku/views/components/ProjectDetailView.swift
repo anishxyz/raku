@@ -13,16 +13,27 @@ struct ProjectDetailView: View {
     var project: Project
     
     var body: some View {
-        let currentYear = Calendar.current.component(.year, from: Date())
-
+//        let currentYear = Calendar.current.component(.year, from: Date())
+//        ScrollView {
+//            VStack {
+//                BulletCalendarView(project: project, year: currentYear)
+//                    .padding()
+//            }
+//        }
+//        .toolbar(.hidden, for: .tabBar)
+        
         ScrollView {
             VStack {
-                BulletCalendarView(project: project, year: currentYear)
-                    .padding()
+                
+                ProjectStatsView(project: project)
+                Spacer()
             }
+            .padding()
+            .background(Color(RakuColors.secondaryBackground))
+            .cornerRadius(24)
         }
+        .padding()
         .navigationBarTitle(project.name, displayMode: .inline)
-        .toolbar(.hidden, for: .tabBar)
     }
 }
 
