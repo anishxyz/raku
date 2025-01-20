@@ -128,7 +128,7 @@ struct ProjectStatsView: View {
             ForEach([TimeRange.week, .month, .year]) { range in
                 VStack(alignment: .leading, spacing: 8) {
                     Text(range.title)
-                        .font(.headline)
+                        .font(.body.monospaced())
                     
                     ProjectProgressBar(sections: progressSections(for: range))
                     
@@ -147,4 +147,9 @@ struct ProjectStatsView: View {
         }
         .padding(.vertical)
     }
+}
+
+#Preview {
+    let project = DummyProject.createYearLongProject(name: "Test Project")
+    ProjectDetailView(project: project)
 }

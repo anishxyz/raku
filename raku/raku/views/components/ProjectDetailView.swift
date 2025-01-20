@@ -24,7 +24,12 @@ struct ProjectDetailView: View {
         
         ScrollView {
             VStack {
-                
+                HStack {
+                    Spacer()
+                    Text("Commitment Statistics")
+                        .font(.headline.bold())
+                    Spacer()
+                }
                 ProjectStatsView(project: project)
                 Spacer()
             }
@@ -37,3 +42,7 @@ struct ProjectDetailView: View {
     }
 }
 
+#Preview {
+    let project = DummyProject.createYearLongProject(name: "Test Project")
+    ProjectDetailView(project: project)
+}
