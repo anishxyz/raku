@@ -36,8 +36,8 @@ struct ProjectDetailView: View {
             .padding()
             .background(Color(RakuColors.secondaryBackground))
             .cornerRadius(24)
+            .padding()
         }
-        .padding()
         .navigationBarTitle(project.name, displayMode: .inline)
     }
 }

@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+
+// fixes - handle project start date mid week/month/year
+// fixes - color scheme / transition
+// fixes - labels
+
 struct ProgressSection: Identifiable {
     let id = UUID()
     var percentage: CGFloat  // Changed from width to percentage
@@ -128,7 +133,7 @@ struct ProjectStatsView: View {
             ForEach([TimeRange.week, .month, .year]) { range in
                 VStack(alignment: .leading, spacing: 8) {
                     Text(range.title)
-                        .font(.body.monospaced())
+                        .font(.body)
                     
                     ProjectProgressBar(sections: progressSections(for: range))
                     
