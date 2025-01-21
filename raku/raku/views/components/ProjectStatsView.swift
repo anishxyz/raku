@@ -8,7 +8,6 @@
 import SwiftUI
 
 
-// fixes - handle project start date mid week/month/year
 // fixes - color scheme / transition
 // fixes - labels
 
