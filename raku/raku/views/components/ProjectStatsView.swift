@@ -65,21 +65,21 @@ struct ProjectStatsView: View {
             
             switch self {
             case .week:
-                let sunday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now))!
-                return (sunday, calendar.date(byAdding: .day, value: 7, to: sunday)!)
+                let sunday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now))!.startOfDay
+                return (sunday, calendar.date(byAdding: .day, value: 7, to: sunday)!.startOfDay)
             case .month:
                 let components = calendar.dateComponents([.year, .month], from: now)
-                let startOfMonth = calendar.date(from: components)!
-                return (startOfMonth, calendar.date(byAdding: .month, value: 1, to: startOfMonth)!)
+                let startOfMonth = calendar.date(from: components)!.startOfDay
+                return (startOfMonth, calendar.date(byAdding: .month, value: 1, to: startOfMonth)!.startOfDay)
             case .year:
                 let components = calendar.dateComponents([.year], from: now)
-                let startOfYear = calendar.date(from: components)!
-                return (startOfYear, calendar.date(byAdding: .year, value: 1, to: startOfYear)!)
+                let startOfYear = calendar.date(from: components)!.startOfDay
+                return (startOfYear, calendar.date(byAdding: .year, value: 1, to: startOfYear)!.startOfDay)
             }
         }
     }
     
-    func calculateProgress(for range: TimeRange) -> (missed: Int, completed: Int, future: Int) {
+    func calculateProgress(for range: TimeRange) -> (ineligible: Int, missed: Int, completed: Int, future: Int) {
         let (startDate, endDate) = range.dateRange()
         let calendar = Calendar.current
         let now = Date()
@@ -91,15 +91,21 @@ struct ProjectStatsView: View {
                 result[commit.date] = commit
             }
         
+        var ineligible = 0
         var missed = 0
         var completed = 0
         var future = 0
         
-        var currentDate = startDate
+        // Adjust logic for `.github` type
+        let isGitHubProject = (project.type == .github)        
+        var currentDate = startDate.startOfDay
         while currentDate < endDate {
             let rakuDate = RakuDate(date: currentDate)
             
-            if currentDate > now {
+            if !isGitHubProject && currentDate < project.created_at.startOfDay {
+                print(currentDate, project.created_at, project.name)
+                ineligible += 1
+            } else if currentDate > now {
                 future += 1
             } else if let commit = commitCache[rakuDate] {
                 if commit.intensity > 0 {
@@ -114,20 +120,21 @@ struct ProjectStatsView: View {
             currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
         }
         
-        return (missed, completed, future)
+        return (ineligible, missed, completed, future)
     }
-    
+
     func progressSections(for range: TimeRange) -> [ProgressSection] {
-        let (missed, completed, future) = calculateProgress(for: range)
-        let total = CGFloat(missed + completed + future)
+        let (_, missed, completed, future) = calculateProgress(for: range)
+        let adjustedTotal = CGFloat(missed + completed + future)
         
         return [
-            ProgressSection(percentage: CGFloat(missed) / total, color: RakuColors.ferrariRed),
-            ProgressSection(percentage: CGFloat(completed) / total, color: RakuColors.githubGreen),
-            ProgressSection(percentage: CGFloat(future) / total, color: RakuColors.tertiaryBackground)
+            ProgressSection(percentage: CGFloat(missed) / adjustedTotal, color: RakuColors.ferrariRed),
+            ProgressSection(percentage: CGFloat(completed) / adjustedTotal, color: RakuColors.githubGreen),
+            ProgressSection(percentage: CGFloat(future) / adjustedTotal, color: RakuColors.quaternaryBackground)
+//            ProgressSection(percentage: CGFloat(ineligible) / total, color: RakuColors.quaternaryBackground)
         ]
     }
-    
+        
     var body: some View {
         VStack(spacing: 16) {
             ForEach([TimeRange.week, .month, .year]) { range in
@@ -139,14 +146,34 @@ struct ProjectStatsView: View {
                     
                     let progress = calculateProgress(for: range)
                     HStack {
-                        Text("\(progress.missed) missed")
-                            .foregroundColor(.red)
-                        Text("\(progress.completed) completed")
-                            .foregroundColor(.green)
-                        Text("\(progress.future) upcoming")
+                        HStack(spacing: 4) {
+                           Image(systemName: "xmark.square")
+                           Text("\(progress.missed)")
+                        }
+                        .foregroundColor(.red)
+                        
+                        HStack(spacing: 4) {
+                           Image(systemName: "checkmark.square")
+                           Text("\(progress.completed)")
+                        }
+                        .foregroundColor(.green)
+
+                        HStack(spacing: 4) {
+                           Image(systemName: "arrow.forward.square")
+                           Text("\(progress.future)")
+                        }
+                        .foregroundColor(.gray)
+
+                        if progress.ineligible > 0 {
+                            HStack(spacing: 4) {
+                               Image(systemName: "minus.square")
+                               Text("\(progress.ineligible)")
+                            }
                             .foregroundColor(.gray)
+                        }
                     }
                     .font(.caption)
+
                 }
             }
         }

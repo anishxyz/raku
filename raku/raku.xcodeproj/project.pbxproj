@@ -41,10 +41,10 @@
 		B6ADD1602D39275C00FF0BBA /* BulletCalendarViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD15E2D39275800FF0BBA /* BulletCalendarViewExtension.swift */; };
 		B6ADD1622D3929C000FF0BBA /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD1612D3929BC00FF0BBA /* ProjectDetailView.swift */; };
 		B6ADD1632D3929C000FF0BBA /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD1612D3929BC00FF0BBA /* ProjectDetailView.swift */; };
-		B6ADD1752D3E3F4500FF0BBA /* ProjectStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD1742D3E3F4100FF0BBA /* ProjectStatsView.swift */; };
 		B6ADD1762D3E3F4500FF0BBA /* ProjectStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD1742D3E3F4100FF0BBA /* ProjectStatsView.swift */; };
 		B6ADD17E2D3E492F00FF0BBA /* DummyProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD17D2D3E492500FF0BBA /* DummyProject.swift */; };
 		B6ADD17F2D3E492F00FF0BBA /* DummyProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD17D2D3E492500FF0BBA /* DummyProject.swift */; };
+		B6ADD1802D3F786300FF0BBA /* ProjectStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ADD1742D3E3F4100FF0BBA /* ProjectStatsView.swift */; };
 		B6C850852D169853006E8176 /* ContributionGridViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850842D169845006E8176 /* ContributionGridViewExtension.swift */; };
 		B6C850872D16C153006E8176 /* RakuDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C850862D16C148006E8176 /* RakuDate.swift */; };
 		B6C850C32D1AB8D0006E8176 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6C8508F2D1AB2A6006E8176 /* WidgetKit.framework */; };
@@ -545,7 +545,7 @@
 			files = (
 				B66E93ED2D1D29E300969DA4 /* ProjectLogic.swift in Sources */,
 				B66E93F42D1D3FD200969DA4 /* ClipCornerRadius.swift in Sources */,
-				B6ADD1752D3E3F4500FF0BBA /* ProjectStatsView.swift in Sources */,
+				B6ADD1802D3F786300FF0BBA /* ProjectStatsView.swift in Sources */,
 				B6ADD1632D3929C000FF0BBA /* ProjectDetailView.swift in Sources */,
 				B69D0E052D2E68350053AE15 /* DateUtils.swift in Sources */,
 				B6C850DB2D1ABD43006E8176 /* RakuDate.swift in Sources */,
