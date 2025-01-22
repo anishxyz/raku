@@ -86,14 +86,7 @@ struct ProjectsView: View {
             }
         }
         .sheet(isPresented: $isCreateSheetOpen) {
-            ZStack {
-                if colorScheme == .dark {
-                    Color.black
-                        .ignoresSafeArea()
-                }
-                CreateProjectSheetView(isSheetPresented: $isCreateSheetOpen, editingProject: $editingProject)
-                    .presentationDetents([.medium])
-           }
+            EditProjectSheetView(isPresented: $isCreateSheetOpen, editingProject: $editingProject)
         }
         .onChange(of: scenePhase) { oldPhase, newPhase in
             if newPhase == .active {

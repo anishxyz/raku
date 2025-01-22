@@ -10,9 +10,10 @@ import Foundation
 
 struct ProjectDetailView: View {
     
-    var project: Project
+    @State var project: Project
     
     @State private var showBulletCalendar = false
+    @State private var showProjectEditor = false
     
     var body: some View {
         ScrollView {
@@ -31,8 +32,8 @@ struct ProjectDetailView: View {
             .padding()
             .background(Color(RakuColors.secondaryBackground))
             .cornerRadius(24)
-            .padding()
-            
+            .padding([.horizontal, .top])
+
             // bullet calendar
             VStack {
                 Button(action: {
@@ -51,8 +52,26 @@ struct ProjectDetailView: View {
             .padding(.vertical, 20)
             .background(Color(RakuColors.secondaryBackground))
             .cornerRadius(24)
-            .padding(.horizontal)
+            .padding([.horizontal, .top])
             
+            VStack {
+                Button(action: {
+                    showProjectEditor = true
+                }) {
+                    HStack {
+                        Spacer()
+                        Image(systemName: "gear")
+                        Text("Edit Project")
+                            .font(.headline.bold())
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+            }
+            .padding(.vertical, 20)
+            .background(Color(RakuColors.secondaryBackground))
+            .cornerRadius(24)
+            .padding([.horizontal, .top])
         }
         .navigationBarTitle(project.name, displayMode: .inline)
         .fullScreenCover(isPresented: $showBulletCalendar, content: {
@@ -70,6 +89,9 @@ struct ProjectDetailView: View {
                 })
             }
         })
+        .sheet(isPresented: $showProjectEditor) {
+            EditProjectSheetView(isPresented: $showProjectEditor, editingProject: Binding<Project?>($project))
+        }
     }
 }
 

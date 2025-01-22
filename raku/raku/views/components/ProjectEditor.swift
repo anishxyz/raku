@@ -1,5 +1,5 @@
 //
-//  CreateProjectSheetView.swift
+//  ProjectEditor.swift
 //  raku
 //
 //  Created by Anish Agrawal on 12/13/24.
@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import SwiftData
 
-struct CreateProjectSheetView: View {
+struct ProjectEditor: View {
     @Binding var isSheetPresented: Bool
     @Binding var editingProject: Project?
     @State private var projectName: String = ""

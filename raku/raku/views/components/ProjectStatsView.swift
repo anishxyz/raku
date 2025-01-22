@@ -102,7 +102,6 @@ struct ProjectStatsView: View {
             let rakuDate = RakuDate(date: currentDate)
             
             if !isGitHubProject && currentDate < project.created_at.startOfDay {
-                print(currentDate, project.created_at, project.name)
                 ineligible += 1
             } else if currentDate > now {
                 future += 1
