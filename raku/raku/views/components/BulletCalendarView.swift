@@ -90,11 +90,12 @@ struct MonthView: View {
         VStack(spacing: revisedRowSpacing) {
             Text(monthFirstLetters[monthIndex].uppercased())
                 .font(.headline.monospaced())
-            Text(monthSecondLetters[monthIndex].uppercased())
-                .font(.headline.monospaced())
-            Text(monthThirdLetters[monthIndex].uppercased())
-                .font(.headline.monospaced())
                 .padding(.bottom, 4)
+//            Text(monthSecondLetters[monthIndex].uppercased())
+//                .font(.headline.monospaced())
+//            Text(monthThirdLetters[monthIndex].uppercased())
+//                .font(.headline.monospaced())
+//                .padding(.bottom, 4)
             ForEach(allDays.filter { $0.month == monthIndex + 1 }, id: \.key) { day in
                 DaySquare(
                     day: day,

@@ -17,7 +17,7 @@ struct DummyProject {
         commitCount: Int = 50,
         startDate: Date = Date()
     ) -> Project {
-        let project = Project(
+        var project = Project(
             name: name,
             type: type,
             color: color,

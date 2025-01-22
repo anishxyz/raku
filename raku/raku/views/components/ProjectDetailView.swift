@@ -12,20 +12,15 @@ struct ProjectDetailView: View {
     
     var project: Project
     
+    @State private var showBulletCalendar = false
+    
     var body: some View {
-//        let currentYear = Calendar.current.component(.year, from: Date())
-//        ScrollView {
-//            VStack {
-//                BulletCalendarView(project: project, year: currentYear)
-//                    .padding()
-//            }
-//        }
-//        .toolbar(.hidden, for: .tabBar)
-        
         ScrollView {
+            // stat group
             VStack {
                 HStack {
                     Spacer()
+                    Image(systemName: "chart.dots.scatter")
                     Text("Commitment Statistics")
                         .font(.headline.bold())
                     Spacer()
@@ -37,8 +32,44 @@ struct ProjectDetailView: View {
             .background(Color(RakuColors.secondaryBackground))
             .cornerRadius(24)
             .padding()
+            
+            // bullet calendar
+            VStack {
+                Button(action: {
+                    showBulletCalendar = true
+                }) {
+                    HStack {
+                        Spacer()
+                        Image(systemName: "calendar")
+                        Text("Bullet Calendar")
+                            .font(.headline.bold())
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+            }
+            .padding(.vertical, 20)
+            .background(Color(RakuColors.secondaryBackground))
+            .cornerRadius(24)
+            .padding(.horizontal)
+            
         }
         .navigationBarTitle(project.name, displayMode: .inline)
+        .fullScreenCover(isPresented: $showBulletCalendar, content: {
+            let currentYear = Calendar.current.component(.year, from: Date())
+            NavigationView {
+                ScrollView {
+                    VStack {
+                        BulletCalendarView(project: project, year: currentYear)
+                            .padding()
+                    }
+                }
+                .navigationBarTitle("Bullet Calendar", displayMode: .inline)
+                .navigationBarItems(trailing: Button("Close") {
+                    showBulletCalendar = false
+                })
+            }
+        })
     }
 }
 
