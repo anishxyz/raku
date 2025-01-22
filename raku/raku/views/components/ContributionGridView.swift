@@ -83,6 +83,11 @@ struct ContributionGridView: View {
                 forceRefresh.toggle()
                 WidgetCenter.shared.reloadAllTimelines()
             }
+            .onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged)) { _ in
+                projectLogic.refresh(for: project, startDate: gridStartDate, endDate: gridEndDate)
+                forceRefresh.toggle()
+                WidgetCenter.shared.reloadAllTimelines()
+            }
             .onChange(of: forceRefresh) {
                 // Just reading needsRefresh triggers a re-render.
             }

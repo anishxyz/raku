@@ -55,7 +55,7 @@ struct CommitEditorView: View {
                 )
             }
         }
-        .onAppear {
+        .task {
             todayCommit = commitLogic.loadTodayCommit(project: project)
         }
         .onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged)) { _ in
