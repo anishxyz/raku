@@ -89,7 +89,7 @@ struct ContributionGridView: View {
                 WidgetCenter.shared.reloadAllTimelines()
             }
             .onChange(of: forceRefresh) {
-                // Just reading needsRefresh triggers a re-render.
+                // Just reading forceRefresh triggers a re-render.
             }
         }
         .frame(height: (computedDaySize * 7) + (spacing * 6))
