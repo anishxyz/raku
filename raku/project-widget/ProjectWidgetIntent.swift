@@ -9,6 +9,7 @@ import WidgetKit
 import AppIntents
 import SwiftData
 
+// Define a widgets configurable interface
 struct ProjectWidgetIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "Select Project"
     static var description = IntentDescription("Selects the contribution graph to display")
@@ -16,10 +17,13 @@ struct ProjectWidgetIntent: WidgetConfigurationIntent {
 
     @Parameter(title: "Project")
     var project: ProjectEntity?
-
-
+    
+    @Parameter(title: "Show Title", default: true)
+    var showTitle: Bool
+    
     init(project: ProjectEntity) {
         self.project = project
+        self.showTitle = true
     }
 
     init() {
@@ -27,6 +31,7 @@ struct ProjectWidgetIntent: WidgetConfigurationIntent {
 
 }
 
+// Connect app data model to widget configuration
 struct ProjectEntity: AppEntity, Identifiable, Hashable {
     var id: UUID
     var name: String
@@ -50,7 +55,7 @@ struct ProjectEntity: AppEntity, Identifiable, Hashable {
 }
 
 
-
+// define how to fetch App Entity
 struct ProjectEntityQuery: EntityQuery, Sendable {
     func entities(for identifiers: [UUID]) async throws -> [ProjectEntity] {
         let modelContext = ModelContext(Project.container)

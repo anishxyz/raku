@@ -13,6 +13,7 @@ import SwiftData
 struct ProjectWidgetEntry: TimelineEntry {
     var date: Date
     var project: Project?
+    var showTitle: Bool = true
     
     static var empty: Self {
         Self(date: .now)
@@ -52,7 +53,7 @@ struct ProjectProvider: AppIntentTimelineProvider {
             return .empty
         }
         
-        return ProjectWidgetEntry(date: .now, project: project)
+        return ProjectWidgetEntry(date: .now, project: project, showTitle: configuration.showTitle)
     }
     
     func timeline(for configuration: ProjectWidgetIntent, in context: Context) async -> Timeline<ProjectWidgetEntry> {
@@ -66,7 +67,7 @@ struct ProjectProvider: AppIntentTimelineProvider {
             )
         }
         
-        let entry = ProjectWidgetEntry(date: .now, project: project)
+        let entry = ProjectWidgetEntry(date: .now, project: project, showTitle: configuration.showTitle)
         return Timeline(entries: [entry], policy: .after(nextUpdateDate))
     }
 

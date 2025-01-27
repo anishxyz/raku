@@ -17,22 +17,24 @@ struct ProjectWidgetEntryView : View {
                     ContributionGridView(project: project, daySize: 14.5, spacing: 4)
                         .clipCornerRadius(8, corners: [.allCorners])
                     
-                    VStack {
-                        HStack {
-                            Text(project.name)
-                                .font(.headline)
-                                .padding(.vertical, 4)
-                                .padding(.horizontal, 8)
-                                .background {
-                                    ZStack {
-                                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                            .fill(.ultraThinMaterial)
-                                            .opacity(0.8)
+                    if entry.showTitle {
+                        VStack {
+                            HStack {
+                                Text(project.name)
+                                    .font(.headline)
+                                    .padding(.vertical, 4)
+                                    .padding(.horizontal, 8)
+                                    .background {
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                                .fill(.ultraThinMaterial)
+                                                .opacity(0.8)
+                                        }
                                     }
-                                }
+                                Spacer()
+                            }
                             Spacer()
                         }
-                        Spacer()
                     }
                 }
             } else {
