@@ -4,6 +4,7 @@
 Raku: crafting daily patterns into a mosaic of achievement.
 ```
 
+### [Build log](https://x.com/anishtxt/status/1873221188253827158)
 
 #### TODOS:  
 ```
@@ -11,10 +12,11 @@ Raku: crafting daily patterns into a mosaic of achievement.
 [X] Widget views  
 [X] Expanded view - bullet calendar
 [ ] Expanded view - mosaic
-[ ] Commitment statistics  
-[ ] Edit button  
+[X] Commitment statistics  
+[X] Edit button  
 [ ] Weekly cadence ?
-[ ] Stack projects on top of each other  
+[ ] Stack projects on top of each other
+[ ] Live activity at 8p as a reminder  
 ```
 
 #### NITS:
