@@ -4,6 +4,10 @@
 Raku: crafting daily patterns into a mosaic of achievement.
 ```
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7f79da24-2799-4ffd-abb3-2201eb4722b8" width="50%">
+</p>
+
 ### [Build log](https://x.com/anishtxt/status/1873221188253827158)
 
 #### TODOS:  
